@@ -1,0 +1,31 @@
+/*  */
+footer {
+    border-top: 1px solid white;
+    min-width: 850px;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-around;
+    padding: 2em;
+    align-items: center;
+}
+
+footer .container ul {
+   
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    list-style: none;
+    font-size: 1.2em;
+
+}
+
+footer .connections {
+    display: flex;
+    gap: 2em;
+}
+
+footer .connections img {
+    width: 50px;
+}

@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+@import url("https://use.fontawesome.com/releases/v6.5.0/css/all.css");
+
+
+.overlay-panel,
+.form-container h1 {
+  font-weight: bold;
+  margin: 0;
+}
+
+
+
+.overlay-panel p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+.form-container span {
+  font-size: 12px;
+}
+
+.form-container a {
+  color: #ffffff;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+.container button {
+  border-radius: 20px;
+  border: 1px solid rgb(47, 122, 184);
+  background-color: rgb(47, 122, 184);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.container button:active {
+  transform: scale(0.95);
+}
+
+.container button:focus {
+  outline: none;
+}
+
+.container .ghost {
+  background-color: orange;
+  border-color: #ffffff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5em;
+}
+
+.container {
+  margin: 0 auto;
+  margin-top: 10em;
+  margin-bottom: 20em;
+  border-radius: 0.5em;
+  overflow: hidden;
+ 
+}
+
+.form-container {
+  flex: 0 0 50%;
+  padding: 2em;
+  background: rgb(32, 32, 32);
+  color: white;
+}
+
+.form-container input {
+  padding: 0.5em 0.5em;
+  width: 100%;
+  font-size: 16px;
+}
+
+.overlay {
+  height: 100%;
+}
+
+.overlay-container {
+  flex: 0 0 50%;
+  padding: 2em;
+  background: url("../../../public/images/crash\(2\).webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.overlay-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+}
+
+.container {
+  display: flex;
+  width: 800px;
+}
+
+.social-container {
+  display: flex;
+  gap: 1em;
+}
+
+.social-container a {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.social-container img {
+  width: 100%;
+}

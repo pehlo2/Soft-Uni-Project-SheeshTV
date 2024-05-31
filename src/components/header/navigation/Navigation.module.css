@@ -1,0 +1,25 @@
+header {
+  min-width: 850px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid white;
+  padding: 1em 3em;
+  font-size: 18px;
+  align-items: center;
+ 
+}
+
+header .logo p {
+  font-size: 42px;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2em;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: white;
+}
