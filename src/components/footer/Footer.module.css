@@ -1,7 +1,7 @@
 /*  */
 footer {
-    border-top: 1px solid white;
-    min-width: 850px;
+    border-top: 1px solid var(--border-color);
+  
 }
 
 footer .container {
@@ -9,6 +9,7 @@ footer .container {
     justify-content: space-around;
     padding: 2em;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 footer .container ul {

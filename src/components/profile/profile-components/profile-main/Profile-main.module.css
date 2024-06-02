@@ -1,0 +1,124 @@
+.main-profile {
+    display: flex;
+
+    gap: 2em;
+}
+
+.video {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+
+}
+
+.video-box {
+    display: flex;
+    flex-direction: column;
+    gap: 3.4em;
+    flex: 0 1 70%;
+}
+
+.video-box>h1{
+    color: rgb(188, 188, 188);
+    border-bottom: 1px solid rgb(91, 91, 91);
+    line-height: 2;
+  }
+.video-wrapper {
+    background: rgb(45, 45, 45);
+    border-radius: 0.4em;
+    border: 1px solid rgb(91, 91, 91);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+/*  */
+.main-profile {
+    display: flex;
+
+    gap: 2em;
+}
+
+.video {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+
+}
+
+.video-box {
+    display: flex;
+    flex-direction: column;
+    gap: 3.4em;
+    flex: 0 1 70%;
+}
+
+
+.video-wrapper {
+    background: rgb(45, 45, 45);
+    border-radius: 0.4em;
+    border: 1px solid rgb(91, 91, 91);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+
+
+
+.video-owner {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.4em;
+}
+
+.video-owner h3 {
+    font-size: 20px;
+    color: white;
+}
+
+.video-owner img {
+    width: 60px;
+    height: 60px;
+    border-radius: 40%;
+    padding: 0.4em;
+}
+
+.video-owner a {
+    font-size: 18px;
+    color: orange;
+    background: rgb(113, 113, 113);
+    border-radius: 0.3em;
+    padding: 0.2em 1em;
+    text-decoration: none;
+}
+
+.video-info {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em 2em;
+}
+
+.video .social-tab {
+    border-top: 1px solid grey;
+
+    padding: 2em 1em;
+    display: flex;
+    gap: 1em;
+    justify-content: flex-end;
+
+}
+
+.video .social-tab a {
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgb(91, 91, 91);
+    background: transparent;
+    padding: 0.5em 1em;
+    border-radius: 10em;
+}

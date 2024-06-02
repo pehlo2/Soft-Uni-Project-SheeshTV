@@ -1,0 +1,29 @@
+
+.comments {
+    justify-content: space-between;
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    background: rgb(45, 45, 45);
+    border-radius: 0.4em;
+    border: 1px solid rgb(91, 91, 91);
+    padding: 0.5em 2em;
+  }
+  
+  .comments input {
+    width: 90%;
+    padding: 0.4em 2em;
+    font-size: 18px;
+    background: rgb(45, 45, 45);
+    color: rgb(153, 18, 18);
+    border: 1px solid rgb(91, 91, 91);
+  }
+  
+  .comments a {
+    border: 1px solid rgb(91, 91, 91);
+    text-decoration: none;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    padding: 0.3em 2em;
+    border-radius: 0.3em;
+  }

@@ -1,0 +1,154 @@
+
+
+.profile-wrapper {
+  width: 100%;
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  background: url("https://t3.ftcdn.net/jpg/06/25/33/96/360_F_625339603_zZDUsipJzoMRiRE3Hqiecl8J7HEzi0mY.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
+
+.main {
+  display: flex;
+}
+
+.profile-main {
+  display: flex;
+  gap: 2em;
+  padding: 1em;
+  color: white;
+}
+
+.profile-main.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+}
+
+.media {
+
+  border-radius: 30%;
+  overflow: hidden;
+
+  width: 150px;
+  height: 150px;
+
+}
+.media img{
+
+width: 100%;
+
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  justify-content: center;
+}
+
+.profile-info {
+  background: rgb(45, 45, 45);
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2em 0;
+}
+
+.content h3 {
+  font-size: 24px;
+}
+
+.buttons {
+  display: flex;
+  gap: 1em;
+
+}
+
+.buttons>a:nth-child(1) {
+  color: black;
+
+}
+
+.buttons .message-button {
+  background: rgba(64, 64, 64, 0.7);
+  border: 1px solid rgb(170, 170, 170);
+
+}
+
+.content a {
+  text-decoration: none;
+  text-align: center;
+  color: white;
+  background: rgb(180, 122, 16);
+  padding: 0.2em 1.5em;
+  border-radius: 0.3em;
+}
+
+.profile-stats {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 4em;
+}
+
+.profile-stats p {
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+}
+
+.profile-description {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.profile-links {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  padding: 0 3em;
+}
+
+.profile-links a {
+  text-decoration: none;
+  color: white;
+  background: transparent;
+  padding: 0.5em 2em;
+  border-radius: 0.3em;
+  border: 1px solid rgb(91, 91, 91);
+}
+
+.followers {
+  position: relative;
+}
+
+.followers::after {
+  background-color: rgb(255, 255, 255);
+  width: 3px;
+  height: 68%;
+  top: 8px;
+  right: -2em;
+  content: "";
+  position: absolute;
+
+
+}
+
+.followers::before {
+  background-color: rgb(252, 252, 252);
+  width: 2px;
+  height: 68%;
+  top: 8px;
+  left: -2em;
+  content: "";
+  position: absolute
+}

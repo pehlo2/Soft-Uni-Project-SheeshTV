@@ -1,19 +1,27 @@
-import './Navigation.module.css'
+import styles from './Navigation.module.css'
 import { Link } from 'react-router-dom'
-export default function Navigation() {
+import DarkMode from '../../dark-mode/DarkMode'
 
-    return (<header>
-        <div className="logo">
+
+export default function Navigation({
+    toggleTheme
+}) {
+
+    return (<header className={styles["main-header"]}>
+        <div className={styles["logo"]}>
             <p>SheeshTV</p>
         </div>
-        <div className="search">
-            <input type="search" />
+        <div className={styles["search"]}>
+            <input type={styles["search"]} />
         </div>
         <nav>
+
             <ul>
+            < DarkMode toggleTheme={toggleTheme} />
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/register">Register</Link></li>
                 <li><Link to="/login">Login</Link></li>
+                <li><Link to="/profile">Profile</Link></li>
             </ul>
         </nav>
     </header>)

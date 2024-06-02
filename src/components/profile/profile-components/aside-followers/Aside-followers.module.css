@@ -1,0 +1,58 @@
+
+.followers-aside {
+    color: wheat;
+    display: flex;
+    flex: 0 1 30%;
+    flex-direction: column;
+    border: 1px solid rgb(91, 91, 91);
+    align-items: center;
+    border-radius: 0.4em;
+    background: rgb(45, 45, 45);
+    ;
+    height: 635px;
+    gap: 1em;
+    position: sticky;
+    top: 3em;
+  
+  }
+  
+  .followers-aside h3 {
+    text-align: center;
+  }
+  
+  .followers-wrapper {
+    width: 90%;
+  
+  }
+  
+  .followers-box {
+    display: flex;
+    border: 1px solid rgb(91, 91, 91);
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.4em 2em;
+  }
+  
+  .followers-box-inner {
+    display: flex;
+    gap: 1em;
+  }
+  
+  .followers-media img {
+    width: 60px;
+    height: 60px;
+    border-radius: 40%;
+    padding: 0.2em;
+  }
+  
+  .remove-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .remove-button a {
+    text-decoration: none;
+    color: white;
+  }
+  

@@ -1,0 +1,18 @@
+.home-sections {
+    padding: 7em 0;
+   
+}
+
+.home-sections h1{
+    font-size: 40px;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 1em;
+    display: flex;
+    justify-content: space-between;
+ gap: 2em;
+    flex-wrap: wrap;
+}
