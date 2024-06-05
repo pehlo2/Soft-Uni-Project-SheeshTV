@@ -1,9 +1,9 @@
 .home-sections {
     padding: 7em 0;
-   
+    color: var(--font-color);;
 }
 
-.home-sections h1{
+.home-sections h1 {
     font-size: 40px;
 }
 
@@ -13,6 +13,6 @@
     padding: 0 1em;
     display: flex;
     justify-content: space-between;
- gap: 2em;
+    gap: 2em;
     flex-wrap: wrap;
 }

@@ -1,9 +1,12 @@
 
 import Comments from '../comments/Coments';
 import styles from './Video.module.css'
+import { useState } from 'react';
+import VideoModal from '../../../../video-modal/Video-modal';
 
 const Video = () => {
-
+     const [showModal, setShowModal] = useState(false);
+   
 
     return (
         <div className={styles["video"]}>
@@ -25,13 +28,13 @@ const Video = () => {
                 </div>
                 <div className={styles["social-tab"]}>
                     <a href="">Likes</a>
-                    <a href="">Comments</a>
+                    <a onClick={() => setShowModal(!showModal)}>Comments</a>
                     <a href="">Copy Link</a>
-
                 </div>
             </div>
-
             <Comments />
+            {showModal && <VideoModal  onClose={() => setShowModal(false)}/>}
+            
         </div>
 
 

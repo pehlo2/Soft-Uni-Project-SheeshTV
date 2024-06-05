@@ -56,7 +56,7 @@ width: 100%;
 }
 
 .profile-info {
-  background: rgb(45, 45, 45);
+  background: var(--inner-background-color);
   display: flex;
   justify-content: space-evenly;
   padding: 2em 0;
@@ -79,7 +79,7 @@ width: 100%;
 
 .buttons .message-button {
   background: rgba(64, 64, 64, 0.7);
-  border: 1px solid rgb(170, 170, 170);
+  border: 1px solid var(--border-color);
 
 }
 
@@ -87,7 +87,7 @@ width: 100%;
   text-decoration: none;
   text-align: center;
   color: white;
-  background: rgb(180, 122, 16);
+  background: var(--button-color);
   padding: 0.2em 1.5em;
   border-radius: 0.3em;
 }
@@ -101,12 +101,12 @@ width: 100%;
 
 .profile-stats p {
   font-size: 16px;
-  color: white;
+  color: var(--font-color);
   font-weight: bold;
 }
 
 .profile-description {
-  color: white;
+  color: var(--font-color);
   display: flex;
   align-items: center;
 }
@@ -124,7 +124,7 @@ width: 100%;
   background: transparent;
   padding: 0.5em 2em;
   border-radius: 0.3em;
-  border: 1px solid rgb(91, 91, 91);
+  border: 1px solid var(--border-color);
 }
 
 .followers {
@@ -132,23 +132,23 @@ width: 100%;
 }
 
 .followers::after {
-  background-color: rgb(255, 255, 255);
-  width: 3px;
+  background-color: var(--font-color);
+  width: 2px;
   height: 68%;
   top: 8px;
   right: -2em;
-  content: "";
+  content:" ";
   position: absolute;
 
 
 }
 
 .followers::before {
-  background-color: rgb(252, 252, 252);
+  background-color: var(--font-color);
   width: 2px;
   height: 68%;
   top: 8px;
   left: -2em;
-  content: "";
+  content:" ";
   position: absolute
 }

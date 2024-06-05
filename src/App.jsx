@@ -9,6 +9,7 @@ import Register from './components/register-form/Register'
 import NotFound from './components/not-found/Not-Found'
 import { useEffect, useState } from 'react'
 import Profile from './components/profile/Profile-page'
+import UploadVideo from './components/uploadVideo/Upload'
 
 
 
@@ -45,6 +46,7 @@ function App() {
           <Route path='/register' element={<Register></Register>} />
           <Route path='*' element={<NotFound></NotFound>} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/upload' element={<UploadVideo />} />
         </Routes>
       </main>
       <Footer />

@@ -1,13 +1,13 @@
 
 .followers-aside {
-    color: wheat;
+    color: var(--font-color);
     display: flex;
     flex: 0 1 30%;
     flex-direction: column;
-    border: 1px solid rgb(91, 91, 91);
+    border: 1px solid var(--border-color);
     align-items: center;
     border-radius: 0.4em;
-    background: rgb(45, 45, 45);
+    background: var(--inner-background-color);
     ;
     height: 635px;
     gap: 1em;
@@ -27,7 +27,7 @@
   
   .followers-box {
     display: flex;
-    border: 1px solid rgb(91, 91, 91);
+    border: 1px solid var(--border-color);
     justify-content: space-between;
     width: 100%;
     padding: 0.4em 2em;
@@ -53,6 +53,6 @@
   
   .remove-button a {
     text-decoration: none;
-    color: white;
+    color: var(--font-color);
   }
   

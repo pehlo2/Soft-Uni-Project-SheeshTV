@@ -15,14 +15,14 @@
   overflow: hidden;
   color: var(--body-color);
   background:var(--backround-color);
-  border:1px solid var(--border-color);
+  ;
 }
 
 .container button {
   border-radius: 20px;
   border: 1px solid orange;
   background-color: orange;
-  color: #ffffff;
+  color: var(--font-color);
   font-size: 12px;
   font-weight: bold;
   padding: 12px 45px;
@@ -44,11 +44,9 @@
 }
 
 .container input {
-  background-color: #eee;
-  border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
+ padding: 0.5em 0.5em;
   width: 100%;
+  font-size: 16px;
 }
 
 .form-container {
@@ -58,12 +56,12 @@
   justify-content: center;
   align-items: center;
   padding: 2em;
-  color: var(--body-color);
-  background:var(--backround-color);
+  color: var(--font-color);
+  background: var(--inner-background-color);
   ;
 }
 
-form {
+.form-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,7 +74,7 @@ form {
 }
 
 .form-container a {
-  color: #ffffff;
+  color: var(--font-color);
   font-size: 14px;
   text-decoration: none;
   margin: 15px 0;

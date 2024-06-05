@@ -1,0 +1,123 @@
+.blur {
+    background-color: rebeccapurple;
+}
+
+
+.container {
+    padding: 15em;
+    display: flex;
+    gap: 2em;
+    z-index: 2;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(57, 54, 54, 0.97);
+    overflow: hidden;
+    margin: 0 auto;
+    justify-content: center
+}
+
+
+.video {
+    flex: 1 1 60%;
+}
+
+.video-info{
+    font-size: 12px;
+
+}
+.profile-tab {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: var(--font-color);
+    padding: 0 0.5em;
+}
+
+.profile-info {
+    display: flex;
+    gap: 2em;
+}
+
+.profile-media img {
+    width: 60px;
+    height: 60px;
+    border-radius: 40%;
+    padding: 0.2em;
+}
+
+.profile-tab a {
+    text-decoration: none;
+    color: white;
+    background: orange;
+    font-size: 12px;
+    border-radius: 0.3em;
+    padding: 0.2em 0.5em;
+
+}
+
+.social-tab {
+    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    ;
+    padding: 0.5em 0;
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    color: var(--font-color);
+    align-items: center;
+}
+
+.social-tab a {
+
+    color: var(--font-color);
+    font-size: 18px;
+
+}
+
+.social-tab a:hover {
+
+    color: var(--button-color);
+   
+
+}
+
+.aside-section {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+gap: 1em;
+    border-radius: 0.4em;
+
+}
+
+.aside-info {
+    padding: 0.5em 1.5em;
+    color: var(--font-color);
+    display: flex;
+    gap: 0.2em;
+    flex-direction: column;
+    background-color: var(--inner-background-color);
+
+}
+
+.aside-inner {
+    flex-grow: 1;
+    background-color: var(--inner-background-color);
+    border-radius: 0.3em;
+    display: flex;
+    flex-direction: column;
+   overflow: hidden;
+}
+
+.comments {
+    font-size: 12px;
+    color: var(--font-color);
+    padding:0 2em;
+    background-color: var(--inner-background-color);
+    flex-grow: 1;
+}

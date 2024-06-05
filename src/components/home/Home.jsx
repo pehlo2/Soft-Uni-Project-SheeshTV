@@ -97,7 +97,7 @@ const Home = () => {
                         <img src="/images/6.jpg" alt="" />
                     </div>
                     <div className={styles['media']}>
-                        <img src="/images/4.png" alt="" />
+                        <img src="/images/10.png" alt="" />
                     </div>
                     <div className={styles['media']}>
                         <img src="/icons/twitch_4401442.png" alt="" />

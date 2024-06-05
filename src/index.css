@@ -1,29 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+@import url("https://use.fontawesome.com/releases/v6.5.0/css/all.css");
 
 
 
 :root {
-  --body-background: black;
-  --body-color: white;
-  --button-color: orange;
-  --border-color:white;
-  --form-color:rgb(55, 55, 55);
+  --body-background: #0B0B0B;
+  --font-color: white;
+  --inner-font-color:#BF9B68;
+  --button-color: #FFB74E;
+  --border-color:#323232;
+  --inner-background-color:#161618;
 
+  --smaller-text-color: #89898B;
 }
 
 [data-theme="light"] {
-  --body-background: white;
+  --body-background: rgb(255, 255, 255);
+  --font-color: black;
   --body-color: black;
-  --button-color: blue;
-  --border-color:black;
-  --form-color:rgb(185, 185, 185);
+  --button-color: rgb(1, 232, 244);
+  --border-color:rgb(187, 186, 186);
+  --form-color:rgb(35, 7, 7);
+  --inner-background-color:#cfebf0;
 }
 
 
 
 
-* {
+*, *::before,
+*::after{
   margin: 0;
   padding: 0;
   box-sizing: border-box;

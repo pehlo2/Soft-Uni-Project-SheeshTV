@@ -4,26 +4,25 @@
     display: flex;
     gap: 2em;
     align-items: center;
-    background: rgb(45, 45, 45);
+    background: var(--inner-background-color);
     border-radius: 0.4em;
-    border: 1px solid rgb(91, 91, 91);
+    border: 1px solid var(--border-color);
     padding: 0.5em 2em;
   }
   
-  .comments input {
+  .comments input { 
     width: 90%;
     padding: 0.4em 2em;
-    font-size: 18px;
-    background: rgb(45, 45, 45);
+    font-size: 14px;
+    background: var(--inner-background-color);
     color: rgb(153, 18, 18);
-    border: 1px solid rgb(91, 91, 91);
+    border: 1px solid var(--border-color);
   }
   
-  .comments a {
-    border: 1px solid rgb(91, 91, 91);
-    text-decoration: none;
+  .comments button {
+    border: 1px solid var(--border-color);
     background: transparent;
-    color: rgb(255, 255, 255);
+    color: var(--font-color);
     padding: 0.3em 2em;
     border-radius: 0.3em;
   }

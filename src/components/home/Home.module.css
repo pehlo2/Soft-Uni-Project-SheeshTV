@@ -30,6 +30,7 @@
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+    color: white
 }
 
 .top-welcome .container {
@@ -86,7 +87,7 @@ video {
 .top-welcome .review a {
     text-decoration: none;
     font-size: 26px;
-    color: white;
+    color: var(--font-color);;
     background: orange;
     padding: 0.5em 3em;
     border-radius: 0.4em;

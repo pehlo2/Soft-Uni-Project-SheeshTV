@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
-@import url("https://use.fontawesome.com/releases/v6.5.0/css/all.css");
 
 
 .overlay-panel,
@@ -33,7 +31,7 @@
   border-radius: 20px;
   border: 1px solid rgb(47, 122, 184);
   background-color: rgb(47, 122, 184);
-  color: #ffffff;
+  color: var(--font-color);
   font-size: 12px;
   font-weight: bold;
   padding: 12px 45px;
@@ -54,7 +52,7 @@
   border-color: #ffffff;
 }
 
-form {
+.form-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,8 +72,8 @@ form {
 .form-container {
   flex: 0 0 50%;
   padding: 2em;
-  background: rgb(32, 32, 32);
-  color: white;
+  background: var(--inner-background-color);
+  color:var(--font-color);
 }
 
 .form-container input {
