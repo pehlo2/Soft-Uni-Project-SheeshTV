@@ -21,11 +21,11 @@ export default function Register() {
 
   }
 
-  
+
   const submitHandler = async (e) => {
     e.preventDefault()
     let response = await request.post(endpoints.register ,formValues)
-    console.log(response);
+   
     navigate('/')
   }
 

@@ -1,33 +1,58 @@
 import { useState } from 'react';
 import styles from './Upload.module.css'
+import * as request from '../../lib/request'
+import { endpoints } from '../../lib/endpoints'
 
 const UploadVideo = () => {
 
-    const [formValue, setFormValues] = useState({
+    // const [formValue, setFormValues] = useState({
 
-        title: '',
-        description: '',
-        video: '',
-        game: ''
+    //     title: '',
+    //     description: '',
+    //     game: ''
 
-    })
+    // })
 
-    const changeHandler = (e) => {
-        setFormValues(state => ({ ...state, [e.target.name]: e.target.value }))
+    // const changeHandler = (e) => {
+    //     setFormValues(state => ({ ...state, [e.target.name]: e.target.value }))
 
-    }
-    const uploadSubmitHandler = (e) => {
+    // }
+
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [game, setGame] = useState('')
+    const [video, setVideo] = useState()
+
+
+
+
+
+    const uploadSubmitHandler = async (e) => {
+
         e.preventDefault()
-        console.log(formValue);
+        const formData = new FormData()
+        // for (const key in formValue) {
+        //     formData.append(key, formValue[key])
+        // }
+
+        formData.append('title', title)
+        formData.append('description', description)
+        formData.append('game', game)
+        formData.append('video', video)
+
+        await request.post(endpoints.upload, formData)
+
+
     }
 
     return (
+
         <div className={styles["container"]}>
             <form className={styles["upload"]} onSubmit={uploadSubmitHandler}>
-                <input type="text" name="title" placeholder='Title' onChange={changeHandler} value={formValue.title} />
-                <textarea name="description" id="description" placeholder='Description' onChange={changeHandler} value={formValue.description}></textarea>
+                <input type="text" name="title" placeholder='Title' onChange={e => setTitle(e.target.value)} value={title} />
+                <textarea name="description" id="description" placeholder='Description' onChange={e => setDescription(e.target.value)} value={description}></textarea>
 
-                <select name="game" id="game" onChange={changeHandler} value={formValue.game}> 
+                <select name="game" id="game" onChange={e => setGame(e.target.value)} value={game}>
                     <option value="Valorant">Valorant</option>
                     <option value="Counter Strike 2">Counter Strike 2</option>
                     <option value="League of Legends">League of Legends</option>
@@ -36,7 +61,7 @@ const UploadVideo = () => {
                     <option value="GTA V">GTA V</option>
                     <option value="Apex Legends">Apex Legends</option>
                 </select>
-                <input type="file" name="video" onChange={changeHandler} value={formValue.file} />
+                <input type="file" name="video" onChange={(e) => { setVideo(e.target.files[0]) }} />
                 <button>Submit</button>
             </form>
         </div>

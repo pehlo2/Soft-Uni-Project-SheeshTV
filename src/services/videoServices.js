@@ -3,9 +3,9 @@ import { endpoints } from '../lib/endpoints'
 
 
 
-export const upload = async (title, description, video, game) => {
+export const upload = async (formData) => {
 
-    const game = await request.post(endpoints.upload, { title, description, video, game })
+    const game = await request.post(endpoints.upload, formData)
 
     return game
 }
