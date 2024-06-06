@@ -10,6 +10,7 @@ import NotFound from './components/not-found/Not-Found'
 import { useEffect, useState } from 'react'
 import Profile from './components/profile/Profile-page'
 import UploadVideo from './components/uploadVideo/Upload'
+import VideoDashboard from './components/videos-dashboard/Videos-dashboard'
 
 
 
@@ -47,6 +48,7 @@ function App() {
           <Route path='*' element={<NotFound></NotFound>} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/upload' element={<UploadVideo />} />
+          <Route path='/dashboard' element={<VideoDashboard />} />
         </Routes>
       </main>
       <Footer />

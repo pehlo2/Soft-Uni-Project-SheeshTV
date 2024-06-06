@@ -23,6 +23,7 @@ export default function Navigation({
                 <li><Link to="/login">Login</Link></li>
                 <li><Link to="/profile">Profile</Link></li>
                 <li><Link to="/upload">Upload</Link></li>
+                <li><Link to="/dashboard">Dashboard</Link></li>
             </ul>
         </nav>
     </header>)

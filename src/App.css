@@ -10,3 +10,7 @@
   
     flex: 1;
 }
+
+.react-player__play-icon{
+    display: none !important; 
+}

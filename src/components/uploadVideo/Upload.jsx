@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './Upload.module.css'
-import * as request from '../../lib/request'
-import { endpoints } from '../../lib/endpoints'
+import * as videoServices from '../../services/videoServices'
+
 
 const UploadVideo = () => {
 
@@ -40,7 +40,7 @@ const UploadVideo = () => {
         formData.append('game', game)
         formData.append('video', video)
 
-        await request.post(endpoints.upload, formData)
+        await videoServices.upload(formData)
 
 
     }

@@ -9,3 +9,9 @@ export const upload = async (formData) => {
 
     return game
 }
+
+export const getAllvideos = async()=>{
+
+    const games = await request.get(endpoints.getAllVideos)
+    return games
+}
