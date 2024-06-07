@@ -1,29 +1,29 @@
 import { useRef, useState } from "react";
 import styles from "./Video-card.module.css"
 import ReactPlayer from "react-player";
-
+import VideoModal from "../video-modal/Video-modal";
 
 
 const VideoCard = ({
     video
 }) => {
     const [playing, setPlaying] = useState(false)
-
+    const [showModal, setShowModal] = useState(false);
     const playerRef = useRef(null);
 
 
 
     return (<div className={styles["video-card"]}>
         <div className={styles["media"]}
+            onClick={() => setShowModal(!showModal)}
             onMouseEnter={() => {
                 setPlaying(true);
                 playerRef.current.setState({ showPreview: false })
             }}
             onMouseLeave={() => { setPlaying(false) }}
         >
-
             < ReactPlayer
-                controls
+                onl
                 config={{
                     file: {
                         attributes: {
@@ -57,7 +57,7 @@ const VideoCard = ({
                 <p>{video.gameChoice}</p>
             </div>
         </div>
-
+        {showModal && <VideoModal onClose={() => setShowModal(false)} />}
     </div>
     )
 }
