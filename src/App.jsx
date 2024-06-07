@@ -11,18 +11,19 @@ import { useEffect, useState } from 'react'
 import Profile from './components/profile/Profile-page'
 import UploadVideo from './components/uploadVideo/Upload'
 import VideoDashboard from './components/videos-dashboard/Videos-dashboard'
+import AuthContext from './context/authContext'
 
 
 
 
 function App() {
 
-  const [auth,setAuth] = useState({})
+  const [auth, setAuth] = useState({})
 
-  const loginSubmitHandler = (values)=>{
+  const loginSubmitHandler = (values) => {
 
     // setAuth(values)
-   console.log(values);
+    console.log(values);
   }
 
 
@@ -48,22 +49,24 @@ function App() {
 
 
   return (
-    <div className='app' data-theme={theme}>
-      <Navigation toggleTheme={toggleTheme} />
-      <main className='main-app'>
-        <Routes>
-          <Route path='/' element={<Home></Home>} />
-          <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler}></Login>} />
-          <Route path='/register' element={<Register></Register>} />
-          <Route path='*' element={<NotFound></NotFound>} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/upload' element={<UploadVideo />} />
-          <Route path='/dashboard' element={<VideoDashboard />} />
-        </Routes>
-      </main>
-      <Footer />
+    <AuthContext.Provider value={{loginSubmitHandler}}>
+      <div className='app' data-theme={theme}>
+        <Navigation toggleTheme={toggleTheme} />
+        <main className='main-app'>
+          <Routes>
+            <Route path='/' element={<Home></Home>} />
+            <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler}></Login>} />
+            <Route path='/register' element={<Register></Register>} />
+            <Route path='*' element={<NotFound></NotFound>} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/upload' element={<UploadVideo />} />
+            <Route path='/dashboard' element={<VideoDashboard />} />
+          </Routes>
+        </main>
+        <Footer />
 
-    </div>
+      </div>
+    </AuthContext.Provider>
   )
 }
 

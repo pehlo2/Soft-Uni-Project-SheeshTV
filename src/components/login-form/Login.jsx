@@ -1,23 +1,28 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import loginCss from './Login.module.css'
 import { Link } from 'react-router-dom'
 import * as request from '../../lib/request'
 import { useNavigate } from 'react-router-dom'
 import { endpoints } from '../../lib/endpoints'
 import useForm from '../../hooks/useForm'
+import AuthContext from '../../context/authContext'
 
 const LoginFormKeys = {
     email: 'email',
     password: 'password'
 
 }
-export default function Login({ loginSubmitHandler }) {
+export default function Login() {
+
+
+    const {loginSubmitHandler } = useContext(AuthContext)
+
+
     const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
         [LoginFormKeys.email]:"",
         [LoginFormKeys.password]:""
     })
     // const navigate = useNavigate()
-
 
 
 
