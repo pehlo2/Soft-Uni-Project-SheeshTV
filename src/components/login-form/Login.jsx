@@ -4,31 +4,20 @@ import { Link } from 'react-router-dom'
 import * as request from '../../lib/request'
 import { useNavigate } from 'react-router-dom'
 import { endpoints } from '../../lib/endpoints'
+import useForm from '../../hooks/useForm'
 
-export default function () {
+const LoginFormKeys = {
+    email: 'email',
+    password: 'password'
 
-    const navigate = useNavigate()
-    const [formValues, setFormValues] = useState({
-        email: "",
-        password: ""
+}
+export default function Login({ loginSubmitHandler }) {
+    const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+        [LoginFormKeys.email]:"",
+        [LoginFormKeys.password]:""
     })
+    // const navigate = useNavigate()
 
-    const changeHandler = (e) => {
-        console.log(e.target.name);
-        console.log(e.target.value);
-        setFormValues(state => ({ ...state, [e.target.name]: e.target.value }))
-
-    }
-
-
-    const submitHandler = async (e) => {
-        e.preventDefault()
-        ///TO DO REQUEST
-        let user = await request.post(endpoints.login, formValues)
-        console.log(user);
-        navigate('/')
-
-    }
 
 
 
@@ -36,7 +25,7 @@ export default function () {
     return (
         <div className={loginCss["container"]} id="container">
             <div className={loginCss["form-container"]}>
-                <form action="#" onSubmit={submitHandler} >
+                <form action="#" onSubmit={onSubmit} >
                     <h1>Sign in</h1>
                     <div className={loginCss["social-container"]}>
                         <a href="#" className={loginCss["social"]}>
@@ -56,8 +45,8 @@ export default function () {
                         </a>
                     </div>
                     <span>or use your account</span>
-                    <input type="email" placeholder="Email" name='email' value={formValues.email} onChange={changeHandler} />
-                    <input type="password" placeholder="Password" name='password' value={formValues.password} onChange={changeHandler} />
+                    <input type="email" placeholder="Email" name={LoginFormKeys.email} value={values[LoginFormKeys.email]} onChange={onChange} />
+                    <input type="password" placeholder="Password" name={LoginFormKeys.password} value={values[LoginFormKeys.password]} onChange={onChange} />
                     <a href="#">Forgot your password?</a>
                     <button>Sign In</button>
                 </form>

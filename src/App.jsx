@@ -17,8 +17,18 @@ import VideoDashboard from './components/videos-dashboard/Videos-dashboard'
 
 function App() {
 
+  const [auth,setAuth] = useState({})
 
+  const loginSubmitHandler = (values)=>{
+
+    // setAuth(values)
+   console.log(values);
+  }
+
+
+  // THEME
   const [theme, setTheme] = useState('dark')
+
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -43,7 +53,7 @@ function App() {
       <main className='main-app'>
         <Routes>
           <Route path='/' element={<Home></Home>} />
-          <Route path='/login' element={<Login></Login>} />
+          <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler}></Login>} />
           <Route path='/register' element={<Register></Register>} />
           <Route path='*' element={<NotFound></NotFound>} />
           <Route path='/profile' element={<Profile />} />
