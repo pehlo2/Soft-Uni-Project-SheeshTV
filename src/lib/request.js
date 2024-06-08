@@ -5,9 +5,9 @@ async function request(method, endpoint, data) {
   const options = {
     method,
     headers: {},
+    credentials: 'include'
   };
   if (data instanceof FormData) {
-    console.log('yes');
     options.body = data
 
   }
@@ -15,18 +15,26 @@ async function request(method, endpoint, data) {
     options.headers["Content-Type"] = "application/json";
     options.body = JSON.stringify(data);
   }
-
+ 
 
   try {
-    console.log(options);
-    console.log(url + endpoint);
+
     const response = await fetch(url + endpoint, options);
+    if (response.status === 204) {
+      return {}
+    }
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw result
+    }
 
 
-    return await response.json();
+    return result;
+
   } catch (error) {
 
-    alert(error.message);
     throw error;
   }
 }

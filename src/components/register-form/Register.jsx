@@ -1,55 +1,30 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import registerCss from './Register.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import * as request from '../../lib/request'
 import { endpoints } from '../../lib/endpoints'
-
+import AuthContext from '../../context/authContext'
+import useForm from '../../hooks/useForm'
+const RegisterFormKeys = {
+  email: 'email',
+  password: 'password',
+  rePassword:'rePassword',
+  username:'username'
+}
 
 export default function Register() {
   const navigate = useNavigate()
-  const [formValues, setFormValues] = useState({
-    username: "",
-    email: "",
-    password: "",
-    rePassword: ""
+  const { registerSubmitHandler } = useContext(AuthContext)
 
+
+  const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
+    [RegisterFormKeys.email]: "",
+    [RegisterFormKeys.password]: "",
+    [RegisterFormKeys.rePassword]: "",
+    [RegisterFormKeys.username]: ""
   })
 
-  const changeHandler = (e) => {
 
-    setFormValues(state => ({ ...state, [e.target.name]: e.target.value }))
-
-  }
-
-
-  const submitHandler = async (e) => {
-    e.preventDefault()
-    let response = await request.post(endpoints.register ,formValues)
-   
-    navigate('/')
-  }
-
-
-  // const [usernameValue, setUsernameValue] = useState('')
-  // const [passwordValue, setPasswordValue] = useState('')
-  // const [ageValue, setAgeValue] = useState('')
-
-  // const usernameChangeHandler = (e) => {
-  //     setUsernameValue(e.target.value)
-  // }
-
-  // const passwordChangeHandler = (e) => {
-  //     setPasswordValue(e.target.value)
-  // }
-  // const ageChangeHandler = (e) => {
-  //     setAgeValue(e.target.value)
-  // }
-  // const resetHandler = () =>{
-  //     setUsernameValue('')
-  //     setPasswordValue('')
-  //     setAgeValue('')
-
-  // }
   return (
     <div className={registerCss["container"]} id="container">
       <div className={registerCss["overlay-container"]}>
@@ -66,7 +41,7 @@ export default function Register() {
       </div>
       <div className={registerCss["form-container"]}>
         {/*  */}
-        <form action="#" onSubmit={submitHandler}>
+        <form action="#" onSubmit={onSubmit}>
           <h1>Create Account</h1>
           <div className={registerCss["social-container"]}>
             <a href="#" className={registerCss["social"]}>
@@ -86,10 +61,10 @@ export default function Register() {
             </a>
           </div>
           <span>or use your email for registration</span>
-          <input type="text" name='username' placeholder="Username" value={formValues.username} onChange={changeHandler} />
-          <input type="email" name='email' placeholder="Email" value={formValues.email} onChange={changeHandler} />
-          <input type="password" name='password' placeholder="Password" value={formValues.password} onChange={changeHandler} />
-          <input type="password" name='rePassword' placeholder=" Repeat Password" value={formValues.rePassword} onChange={changeHandler} />
+          <input type="text" name={RegisterFormKeys.username} placeholder="Username" value={values[RegisterFormKeys.username]} onChange={onChange} />
+          <input type="email" name={RegisterFormKeys.email} placeholder="Email" value={values[RegisterFormKeys.email]} onChange={onChange} />
+          <input type="password" name={RegisterFormKeys.password} placeholder="Password" value={values[RegisterFormKeys.password]} onChange={onChange} />
+          <input type="password" name={RegisterFormKeys.rePassword} placeholder=" Repeat Password" value={values[RegisterFormKeys.rePassword]} onChange={onChange} />
           <button className={registerCss["submit-button"]}>Sign Up</button>
         </form>
       </div>

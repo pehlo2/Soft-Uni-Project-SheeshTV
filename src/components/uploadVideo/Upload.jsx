@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './Upload.module.css'
 import * as videoServices from '../../services/videoServices'
 import { endpoints } from '../../lib/endpoints';
+import AuthContext from '../../context/authContext';
 
 
 const UploadVideo = () => {
@@ -18,6 +19,7 @@ const UploadVideo = () => {
     //     setFormValues(state => ({ ...state, [e.target.name]: e.target.value }))
 
     // }
+    const {userId} = useContext(AuthContext)
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -35,6 +37,7 @@ const UploadVideo = () => {
         formData.append('title', title)
         formData.append('description', description)
         formData.append('game', game)
+        formData.append('userId', userId)
         formData.append('video', video)
 
         xhr.upload.addEventListener('progress', (event) => {

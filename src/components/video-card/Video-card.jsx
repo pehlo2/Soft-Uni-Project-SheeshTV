@@ -23,7 +23,6 @@ const VideoCard = ({
             onMouseLeave={() => { setPlaying(false) }}
         >
             < ReactPlayer
-                onl
                 config={{
                     file: {
                         attributes: {
