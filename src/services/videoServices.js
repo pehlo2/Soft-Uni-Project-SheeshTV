@@ -10,8 +10,21 @@ export const upload = async (formData) => {
     return game
 }
 
-export const getAllvideos = async()=>{
+export const getAllvideos = async () => {
 
     const games = await request.get(endpoints.getAllVideos)
     return games
+}
+
+export const getOneVideo = async (videoId) => {
+
+    const games = await request.get(`${endpoints.geOneVideo}/${videoId}`)
+    return games
+}
+
+export const getUserVideos = async () => {
+
+
+    const games = await request.get(endpoints.geUserVideos)
+    return games;
 }

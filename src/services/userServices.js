@@ -17,3 +17,8 @@ export const logout = async() => {
   await  request.get(endpoints.logout)
     
 }
+
+export const  getUser = async () =>{
+ let user =  await  request.get(endpoints.getUser)
+ return user;
+}

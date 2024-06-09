@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
 import styles from './Upload.module.css'
-import * as videoServices from '../../services/videoServices'
+
 import { endpoints } from '../../lib/endpoints';
 import AuthContext from '../../context/authContext';
+
 
 
 const UploadVideo = () => {
@@ -57,10 +58,7 @@ const UploadVideo = () => {
             setUploadProgress(0);
         });
      
-        xhr.upload.addEventListener('abort', () => {
-            console.error('Upload Aborted');
-            setUploadProgress(0);
-        });
+      
      
 
         xhr.open('POST', `http://localhost:3000${endpoints.upload}`);

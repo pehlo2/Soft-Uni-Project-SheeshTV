@@ -1,8 +1,7 @@
 import { useContext, useState } from 'react'
 import registerCss from './Register.module.css'
 import { Link, useNavigate } from 'react-router-dom'
-import * as request from '../../lib/request'
-import { endpoints } from '../../lib/endpoints'
+
 import AuthContext from '../../context/authContext'
 import useForm from '../../hooks/useForm'
 const RegisterFormKeys = {

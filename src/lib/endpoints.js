@@ -1,5 +1,6 @@
 export const endpoints = {
     // users
+    getUser:'/users/profile',
     register: "/users/register",
     login: "/users/login",
     logout: "/users/logout",
@@ -9,6 +10,8 @@ export const endpoints = {
     // videos
     upload: "/data/videos/upload",
     getAllVideos: "/data/videos/",
+    geOneVideo: "/data/videos/",
+    geUserVideos: "/data/videos/user-videos",
 
     //comments
 

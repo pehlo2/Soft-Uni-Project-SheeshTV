@@ -2,7 +2,7 @@
 import './App.css'
 import Navigation from './components/header/navigation/Navigation'
 import Footer from './components/footer/Footer'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, } from 'react-router-dom'
 import Home from './components/home/Home'
 import Login from './components/login-form/Login'
 import Register from './components/register-form/Register'
@@ -11,41 +11,13 @@ import { useEffect, useState } from 'react'
 import Profile from './components/profile/Profile-page'
 import UploadVideo from './components/uploadVideo/Upload'
 import VideoDashboard from './components/videos-dashboard/Videos-dashboard'
-import AuthContext from './context/authContext'
-import * as userService from './services/userServices'
+import { AuthProvider } from './context/authContext'
 import Logout from './components/logout/Logout'
 
 
 
 function App() {
-  const navigate = useNavigate()
-
-
-  const [auth, setAuth] = useState(() => {
-    return {}
-  })
   const [theme, setTheme] = useState('dark')
- 
-  const loginSubmitHandler = async (values) => {
-    const result = await userService.login(values)
-    console.log(result);
-    setAuth(result)
-    navigate('/')
-  }
-  const registerSubmitHandler = async (values) => {
-    const result = await userService.register(values)
-
-    setAuth(result)
-    navigate('/')
-  }
-
-  const logoutHandler = async () => {
-  
-    setAuth({})
-    navigate('/')
-  }
-  // THEME
-
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -64,19 +36,8 @@ function App() {
 
 
 
-  const values = {
-    logoutHandler,
-    registerSubmitHandler,
-    loginSubmitHandler,
-    username: auth.username,
-    email: auth.email,
-    userId:auth._id,
-    isAuthenticated: !!auth.accessToken
-  }
-
-
   return (
-    <AuthContext.Provider value={values}>
+    <AuthProvider >
       <div className='app' data-theme={theme}>
         <Navigation toggleTheme={toggleTheme} />
         <main className='main-app'>
@@ -94,7 +55,7 @@ function App() {
         <Footer />
 
       </div>
-    </AuthContext.Provider>
+    </AuthProvider>
   )
 }
 
