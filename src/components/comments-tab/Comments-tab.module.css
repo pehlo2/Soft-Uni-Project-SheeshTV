@@ -1,0 +1,7 @@
+.comments {
+    font-size: 12px;
+    color: var(--font-color);
+    padding:0 2em;
+    background-color: var(--inner-background-color);
+    flex-grow: 1;
+}
