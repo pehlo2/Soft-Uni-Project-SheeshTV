@@ -2,11 +2,13 @@ import styles from './Video-modal.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as videoServices from '../../services/videoServices'
 import ReactPlayer from 'react-player';
 import InputComments from '../comments-input/Coments-input';
 import CommentsTab from '../comments-tab/Comments-tab';
+import useComments from '../../hooks/useComments';
+import AuthContext from '../../context/authContext';
 
 
 
@@ -15,7 +17,7 @@ const VideoModal = ({
 }) => {
 
     const [video, setVideo] = useState({});
-
+  
 
     useEffect(() => {
         videoServices.getOneVideo(videoId).then(setVideo)
@@ -23,7 +25,7 @@ const VideoModal = ({
 
     }, [videoId])
 
-
+    
 
     return (
         <div className={styles["blur"]}>
@@ -73,8 +75,8 @@ const VideoModal = ({
                             </div>
                         </div>
                         <CommentsTab videoId={video._id}/>
-                   
                     </div>
+                       
                 </aside>
 
             </div>
@@ -83,3 +85,7 @@ const VideoModal = ({
 }
 
 export default VideoModal;
+
+
+
+  
