@@ -1,5 +1,5 @@
 
-import Comments from '../comments/Coments';
+import Comments from '../../../../comments-input/Coments-input';
 import styles from './Video.module.css'
 import { useState } from 'react';
 import VideoModal from '../../../../video-modal/Video-modal';

@@ -1,4 +1,4 @@
 import { createContext } from "react"
- const ProfileVideoContext = createContext()
+ const VideoContext = createContext()
 
- export default ProfileVideoContext;
+ export default VideoContext;

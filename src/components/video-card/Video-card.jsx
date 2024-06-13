@@ -1,19 +1,31 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import styles from "./Video-card.module.css"
 import ReactPlayer from "react-player";
 import VideoModal from "../video-modal/Video-modal";
+import { Link } from "react-router-dom";
+import VideoContext from "../../context/videoContext";
+
 
 
 const VideoCard = ({
-    video
+    videoUrl,
+    thumbnail,
+    title,
+    viewCount,
+    gameChoice,
+    _id
 }) => {
     const [playing, setPlaying] = useState(false)
     const [showModal, setShowModal] = useState(false);
     const playerRef = useRef(null);
-
-
-
-    return (<div className={styles["video-card"]}>
+  
+      
+  
+    return (
+    
+    
+        
+        <div className={styles["video-card"]}> 
         <div className={styles["media"]}
             onClick={() => setShowModal(!showModal)}
             onMouseEnter={() => {
@@ -23,6 +35,7 @@ const VideoCard = ({
             onMouseLeave={() => { setPlaying(false) }}
         >
             < ReactPlayer
+        
                 config={{
                     file: {
                         attributes: {
@@ -34,29 +47,31 @@ const VideoCard = ({
                 ref={playerRef}
                 muted={true}
                 playing={playing}
-                url={`http://localhost:3000/data/${video.videoUrl}`}
+                url={`http://localhost:3000/data/${videoUrl}`}
                 width='100%'
                 height='100%'
                 light={
                     <img className={styles["thumbnail"]}
-                        src={`http://localhost:3000/data/${video.thumbnail}`}
-                        alt={video.thumbnail} />
+                        src={`http://localhost:3000/data/${thumbnail}`}
+                        alt={thumbnail} />
                 }
+                
             />
 
-            {/* <img src={`http://localhost:3000/data/${video.thumbnail}`} alt="" /> */}
         </div>
+        
         <div className={styles["video-info"]}>
             <p>pehlo2</p>
-            <h3>{video.title}</h3>
+            <h3>{title}</h3>
 
             <div className={styles["video-stats"]}>
 
-                <p>{video.viewCount}</p>
-                <p>{video.gameChoice}</p>
+                <p>{viewCount}</p>
+                <p>{gameChoice}</p>
             </div>
         </div>
-        {showModal && <VideoModal onClose={() => setShowModal(false)} />}
+      
+        {showModal && <VideoModal onClose={() => setShowModal(false)} videoId={_id} videoUrl={videoUrl}/>}
     </div>
     )
 }

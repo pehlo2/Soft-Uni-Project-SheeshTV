@@ -2,17 +2,42 @@ import * as request from '../lib/request'
 import { endpoints } from '../lib/endpoints'
 
 
-export const videoComments = async () => {
-    const comments = await request.get(endpoints.videoComments)
-    return comments
+
+export const getAllVideoComments = async (videoId) => {
+    const query = new URLSearchParams({
+        where: `videoId="${videoId}"`,
+    });
+
+    const result = await request.get(`${endpoints.videoComments}?${query}`);
+    return result;
+};
+
+
+
+
+
+
+export const createComment = async (videoId, text, userId) => {
+
+    const newCommnet = await request.post(endpoints.createComment, {
+        videoId, text, userId
+
+    })
+    return newCommnet;
+}
+
+export const deleteComment = async (commentId) => {
+    await request.del(`${endpoints.videoComments}/${commentId}`)
+    
 
 }
 
-export const create = async (videoId, username, text) => {
 
-    const newCommnet = await request.post(endpoints.createComment, {
-        videoId, username, text
 
-    })
+
+export const editComment = async (videoId, username, text) => {
+
+    const newCommnet = await request.put(
+    )
     return newCommnet;
 }

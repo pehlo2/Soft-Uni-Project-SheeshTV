@@ -2,7 +2,7 @@
 import './App.css'
 import Navigation from './components/header/navigation/Navigation'
 import Footer from './components/footer/Footer'
-import { Routes, Route, } from 'react-router-dom'
+import { Routes, Route, useLocation, } from 'react-router-dom'
 import Home from './components/home/Home'
 import Login from './components/login-form/Login'
 import Register from './components/register-form/Register'
@@ -13,6 +13,7 @@ import UploadVideo from './components/uploadVideo/Upload'
 import VideoDashboard from './components/videos-dashboard/Videos-dashboard'
 import { AuthProvider } from './context/authContext'
 import Logout from './components/logout/Logout'
+import VideoDetails from './components/video-details-link/Video-details-link'
 
 
 
@@ -41,7 +42,7 @@ function App() {
       <div className='app' data-theme={theme}>
         <Navigation toggleTheme={toggleTheme} />
         <main className='main-app'>
-          <Routes>
+          <Routes >
             <Route path='/' element={<Home></Home>} />
             <Route path='/login' element={<Login></Login>} />
             <Route path='/register' element={<Register></Register>} />
@@ -49,11 +50,12 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/upload' element={<UploadVideo />} />
             <Route path='/dashboard' element={<VideoDashboard />} />
+            <Route path='/videos/:videoId' element={<VideoDetails />} />
             <Route path='/logout' element={<Logout />} />
+          
           </Routes>
         </main>
         <Footer />
-
       </div>
     </AuthProvider>
   )

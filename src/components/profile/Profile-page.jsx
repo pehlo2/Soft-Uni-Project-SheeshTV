@@ -22,8 +22,6 @@ const Profile = () => {
 
     }, [userId])
 
-
-
     return (
         <ProfileVideoContext.Provider value={{videos}}>
             <div className={styles["container"]}>

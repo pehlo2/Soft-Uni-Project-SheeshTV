@@ -4,12 +4,22 @@ import styles from './Comments-tab.module.css'
 
 import InputComments from '../comments-input/Coments-input';
 import useComments from '../../hooks/useComments';
+import { useContext } from 'react';
+import AuthContext from '../../context/authContext';
 
 const CommentsSection = ({
     videoId
 }) => {
    
-    const { comments,  deleteComment } = useComments(videoId);
+ 
+    const { userId } = useContext(AuthContext);
+    const { comments, deleteComment, text, addComment, handleCommentChange } = useComments(videoId);
+
+    const handleAddComment = async (e) => {
+        e.preventDefault();
+        await addComment(userId);
+    
+    };
 
 
     return (
@@ -29,9 +39,12 @@ const CommentsSection = ({
 
             </div>
 
-         <InputComments videoId={videoId}/>
+         <InputComments videoId={videoId} handleAddComment={handleAddComment} handleCommentChange={handleCommentChange} text={text} />
         </>
     )
 }
 
 export default CommentsSection;
+
+
+

@@ -6,21 +6,17 @@ import useComments from '../../hooks/useComments';
 
 
 const InputComments = ({
-    videoId
+    handleAddComment,
+    handleCommentChange,
+    text,
 }) => {
 
-    const {  userId } = useContext(AuthContext);
-    const {  text, addComment,handleCommentChange } = useComments(videoId);
 
-    const handleAddComment = async (e) => {
-        e.preventDefault();
-        await addComment(userId);
-    };
-    
+
     return (
-        <form className={styles["comments"]} >
+        <form className={styles["comments"]} onSubmit={handleAddComment}>
             <input type="text" placeholder="Be first to comment" name='comment' value={text} onChange={handleCommentChange} />
-            <button className='button' onClick={handleAddComment}>Send</button>
+            <button className='button'>Send</button>
         </form>
 
     )

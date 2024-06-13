@@ -10,7 +10,7 @@ export const endpoints = {
     // videos
     upload: "/data/videos/upload",
     getAllVideos: "/data/videos/",
-    geOneVideo: "/data/videos/",
+    geOneVideo: "/data/videos",
     geUserVideos: "/data/videos/user-videos",
 
     //comments
@@ -18,7 +18,8 @@ export const endpoints = {
     createComment: "/comments",
     videoComments: "/comments",
     getOneComment: "/comments/:commentId",
-
+    deleteComment: "/comments/:commentId",
+    
 
 
 
