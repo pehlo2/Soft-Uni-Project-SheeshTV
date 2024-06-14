@@ -1,17 +1,16 @@
-import { useEffect, useReducer, useState } from "react"
-import reducer from "../components/comments-tab/commentReducer"
-import * as  commentsServices from '.././services/commentService'
+import { useEffect, useReducer, useState } from "react";
+import reducer from "../components/comments-tab/commentReducer";
+import * as commentsServices from '../services/commentService';
 
 export default function useComments(videoId) {
-
- 
-    const [comments, dispatch] = useReducer(reducer, [])
+    const [comments, dispatch] = useReducer(reducer, []);
     const [text, setText] = useState('');
+    const [editingText, setEditingText] = useState('');
+    const [editingCommentId, setEditingCommentId] = useState(null); 
 
     useEffect(() => {
         if (!videoId) {
-            return
-
+            return;
         }
         commentsServices.getAllVideoComments(videoId).then((result) => {
             dispatch({
@@ -35,23 +34,47 @@ export default function useComments(videoId) {
             control: 'ADD_COMMENT',
             comment: newComment
         });
-        setText('')
+        setText('');
     };
-    
-    
 
+    const editComment = async (commentId, text) => {
+        const editedComment = await commentsServices.editComment(commentId, text);
+        dispatch({
+            control: 'EDIT_COMMENT',
+            comment: editedComment, text
+        });
+       
+    };
 
     const handleCommentChange = (e) => {
         setText(e.target.value);
     };
 
+    const handleEditingChange = (e) => {
+        setEditingText(e.target.value); 
+    };
+
+    const startEditing = (commentId, currentText) => {
+        setEditingCommentId(commentId);
+        setEditingText(currentText);
+    };
+
+    const cancelEditing = () => {
+        setEditingCommentId(null);
+        setEditingText('');
+    };
+
     return {
         comments,
         text,
+        editingText,
+        editingCommentId,
         addComment,
         deleteComment,
         handleCommentChange,
+        handleEditingChange,
+        startEditing,
+        cancelEditing,
+        editComment
     }
-
 }
-

@@ -35,9 +35,8 @@ export const deleteComment = async (commentId) => {
 
 
 
-export const editComment = async (videoId, username, text) => {
+export const editComment = async (commentId, text) => {
 
-    const newCommnet = await request.put(
-    )
+    const newCommnet = await request.put(`${endpoints.videoComments}/${commentId}`,{text})
     return newCommnet;
 }

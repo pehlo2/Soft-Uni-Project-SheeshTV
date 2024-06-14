@@ -15,7 +15,14 @@ async function request(method, endpoint, data) {
     options.headers["Content-Type"] = "application/json";
     options.body = JSON.stringify(data);
   }
- 
+  const token = localStorage.getItem('accessToken');
+
+  if (token) {
+      options.headers = {
+          ...options.headers,
+          'X-Authorization': token
+      };
+  }
 
   try {
 

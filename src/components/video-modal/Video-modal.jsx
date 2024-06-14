@@ -9,6 +9,7 @@ import InputComments from '../comments-input/Coments-input';
 import CommentsTab from '../comments-tab/Comments-tab';
 import useComments from '../../hooks/useComments';
 import AuthContext from '../../context/authContext';
+import CommnentsProvider from '../../context/commentsContext';
 
 
 
@@ -17,25 +18,25 @@ const VideoModal = ({
 }) => {
 
     const [video, setVideo] = useState({});
-  
+
 
     useEffect(() => {
         videoServices.getOneVideo(videoId).then(setVideo)
-        
+
 
     }, [videoId])
 
-    
+
 
     return (
         <div className={styles["blur"]}>
             <div className={styles["container"]} onClick={onClose}  >
                 {/* <div className={styles["container"]} onClick={onClose} > */}
                 < ReactPlayer
-                onClick={(e)=>{e.stopPropagation()}}
+                    onClick={(e) => { e.stopPropagation() }}
                     url={`http://localhost:3000/data/${videoUrl}`}
                     config={{
-                        file: { 
+                        file: {
                             attributes: {
                                 disablePictureInPicture: true, controlsList: "nodownload noplaybackrate",
                             },
@@ -48,7 +49,7 @@ const VideoModal = ({
                     playing={true}
 
                 />
-                <aside className={styles["aside-section"]} onClick={(e)=>{e.stopPropagation()}}>
+                <aside className={styles["aside-section"]} onClick={(e) => { e.stopPropagation() }}>
                     <div className={styles["aside-inner"]}>
                         <div className={styles["aside-info"]}>
                             <div className={styles["profile-tab"]}>
@@ -74,9 +75,11 @@ const VideoModal = ({
                                 <a href=""><FontAwesomeIcon icon={faLink} /></a>
                             </div>
                         </div>
-                        <CommentsTab videoId={video._id}/>
+                        <CommnentsProvider videoId={video._id}>
+                            <CommentsTab videoId={video._id} />
+                        </CommnentsProvider>
                     </div>
-                       
+
                 </aside>
 
             </div>
@@ -88,4 +91,3 @@ export default VideoModal;
 
 
 
-  
