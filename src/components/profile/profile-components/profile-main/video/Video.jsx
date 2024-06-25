@@ -8,7 +8,6 @@ import ReactPlayer from 'react-player';
 const Video = ({video}) => {
      const [showModal, setShowModal] = useState(false);
    
-    console.log(video);
     return (
         <div className={styles["video"]}>
             <div className={styles["video-wrapper"]}>

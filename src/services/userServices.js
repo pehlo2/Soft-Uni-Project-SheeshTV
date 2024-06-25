@@ -18,7 +18,7 @@ export const logout = async() => {
     
 }
 
-export const  getUser = async () =>{
- let user =  await  request.get(endpoints.getUser)
+export const  getUser = async (profileId) =>{
+ let user =  await  request.get(`${endpoints.getOneUser}/${profileId}`)
  return user;
 }

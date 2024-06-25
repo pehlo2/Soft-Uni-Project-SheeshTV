@@ -6,6 +6,7 @@ export default function Footer() {
     return (
         <footer>
             <div className={styles.container}>
+                <div className={styles["footer-list"]}>
                 <ul>
                     <h3>SheeshTV</h3>
                     <li>Discord</li>
@@ -27,6 +28,8 @@ export default function Footer() {
                     <li>Support</li>
                     <li>Dashboard</li>
                 </ul>
+                </div>
+            
                 <div className={styles.connections}>
                     <img src="/icons/128px-Facebook_Logo_2023.png" alt="" />
                     <img src="/icons/256px-Instagram_icon.png" alt="" />

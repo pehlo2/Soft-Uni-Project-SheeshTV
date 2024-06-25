@@ -1,18 +1,27 @@
- import styles from  './Profile-header.module.css'
+import { useEffect, useState } from 'react'
+import styles from './Profile-header.module.css'
+import { useParams } from 'react-router-dom'
+import * as userServices from '../../../../services/userServices'
 const ProfileHeader = () => {
+    const [profile, setProfile] = useState({})
+    const { profileId } = useParams()
+    useEffect(() => {
 
+        userServices.getUser(profileId).then(setProfile)
+
+    }, [profileId])
     return (
         <header>
             <div className={styles["profile-wrapper"]}>
                 <div className={styles["profile"]}>
                     <div className={styles["profile-main"]}>
                         <div className={styles["media"]}>
-                            <img src="/images/8.jpg" alt="" />
+                            <img src={profile.avatar} alt="" />
                         </div>
                         <div className={styles["content"]}>
-                            <h3>Pehlo</h3>
+                            <h3>{profile.username}</h3>
                             <p>Last Played Valorant 10 hours ago</p>
-                            <p>Joined March 2023</p>
+                            <p>{profile.createdAt}</p>
                             <div className={styles["buttons"]}>
                                 <a href="">Follow</a>
                                 <a href="" className={styles["message-button"]}>Message</a>
@@ -41,7 +50,7 @@ const ProfileHeader = () => {
                         </div>
                     </div>
                     <div className={styles["profile-description"]}>
-                        <p> Ascendant Chamber main and always looking to friends to paly with.</p>
+                        <p> {profile.description}</p>
                     </div>
                 </div>
             </div>

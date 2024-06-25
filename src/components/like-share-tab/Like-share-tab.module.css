@@ -1,0 +1,26 @@
+
+.social-tab {
+    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    ;
+    padding: 0.5em 0;
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    color: var(--font-color);
+    align-items: center;
+}
+
+.social-tab a {
+
+    color: var(--font-color);
+    font-size: 18px;
+
+}
+
+.social-tab a:hover {
+
+    color: var(--button-color);
+   
+
+}

@@ -6,14 +6,16 @@ footer {
 
 footer .container {
     display: flex;
-    justify-content: space-around;
     padding: 2em;
     align-items: center;
     flex-wrap: wrap;
+    gap: 10em;
+    justify-content: center;
+   
 }
 
 footer .container ul {
-   
+
     display: flex;
     flex-direction: column;
     gap: 0.5em;
@@ -29,4 +31,21 @@ footer .connections {
 
 footer .connections img {
     width: 50px;
+}
+
+.footer-list {
+    display: flex;
+    gap: 10em;
+}
+
+@media (max-width:900px){
+    footer .container{
+        flex-direction: column;
+        gap: 2em;
+
+    }
+    .footer-list{
+        gap: 6em;
+    }
+   
 }

@@ -3,30 +3,26 @@ import VideoCard from '../video-card/Video-card';
 // import * as videoServices from '../../services/videoServices'
 // import { endpoints } from '../lib/endpoints'
 import * as videoServices from '../../services/videoServices'
-import {useEffect, useState } from 'react';
+import {useContext, useEffect, useState } from 'react';
+import VideoContext from '../../context/videoContext';
 
 
 
 const VideoDashboard = () => {
-    const [videos, setVideos] = useState([])
+    // const [videos, setVideos] = useState([])
 
-    useEffect(() => {
-        videoServices.getAllvideos().then(videos => setVideos(videos)).catch(err => {
-            console.log(err);
-        })
-    }, [])
-
-
+     const {videos} = useContext(VideoContext)
 
     return (
         
             <div className={styles["container"]}>
+                 {videos.length === 0 && (
+                    <h2>No Videos</h2>
+                )}
                 {videos.map(video => (
                     <VideoCard key={video._id} {...video} />
                 ))}
-                {videos.length === 0 && (
-                    <h2>No Videos</h2>
-                )}
+               
             </div>
       
     )

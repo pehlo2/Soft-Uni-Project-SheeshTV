@@ -5,13 +5,15 @@ export const endpoints = {
     login: "/users/login",
     logout: "/users/logout",
     getAllUsers: "/users/",
-    getOneUser: "/users/profile",
+    getOneUser: "/users",
 
     // videos
     upload: "/data/videos/upload",
     getAllVideos: "/data/videos/",
     geOneVideo: "/data/videos",
     geUserVideos: "/data/videos/user-videos",
+   
+
 
     //comments
 

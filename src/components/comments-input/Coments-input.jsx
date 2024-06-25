@@ -10,21 +10,21 @@ const InputComments = ({
     videoId
 }) => {
 
-    const {  userId } = useContext(AuthContext);
+  
     const { text, addComment, handleCommentChange } = useCommentsContext();
 
     const handleAddComment = async (e) => {
         e.preventDefault();
         if(text.trim() !== ''){
 
-            await addComment(userId);
+            await addComment();
         }
         
     };
     
     return (
         <form className={styles["comments"]} onSubmit={handleAddComment}>
-            <input type="text" placeholder="Be first to comment" name='comment' value={text} onChange={handleCommentChange} />
+            <input type="text" placeholder="Add comment..." name='comment' value={text} onChange={handleCommentChange} />
             <button className='button'>Send</button>
         </form>
 

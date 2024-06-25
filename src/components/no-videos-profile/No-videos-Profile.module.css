@@ -1,0 +1,65 @@
+/*  */
+.no-video{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .no-video h1{
+   color: wheat;
+  }
+  .no-videos-wrapper {
+    
+    display: flex;
+    gap: 3em;
+    flex: 0 1 70%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .find-friends-box,
+  .share-video-box {
+    text-align: center;
+    border: 1px solid rgb(91, 91, 91);
+    background: rgb(45, 45, 45);
+    border-radius: 0.3em;
+    height: 300px;
+    flex: 1 1 50%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 4em;
+  }
+  
+  .no-videos-wrapper button {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0.5em 2em;
+    color: orange;
+    border: 1px solid rgb(91, 91, 91);
+    background-color: rgb(45, 45, 45);
+    border-radius: 0.3em;
+  }
+  .find-friends-box h3,
+  .share-video-box h3 {
+  
+    font-size: 22px;
+  }
+  .find-friends-box p,
+  .share-video-box p {
+  font-size: 18px;
+    color: rgb(158, 158, 158);
+  }
+  .find-friends-box i,
+  .share-video-box i {
+  font-size: 32px;
+    color: rgb(255, 255, 255);
+  }
+  .video-box>h1{
+    color: rgb(188, 188, 188);
+    border-bottom: 1px solid rgb(91, 91, 91);
+    line-height: 2;
+  }

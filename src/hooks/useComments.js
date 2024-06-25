@@ -1,13 +1,14 @@
-import { useEffect, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import reducer from "../components/comments-tab/commentReducer";
 import * as commentsServices from '../services/commentService';
+import AuthContext from "../context/authContext";
 
 export default function useComments(videoId) {
     const [comments, dispatch] = useReducer(reducer, []);
     const [text, setText] = useState('');
     const [editingText, setEditingText] = useState('');
-    const [editingCommentId, setEditingCommentId] = useState(null); 
-
+    const [editingCommentId, setEditingCommentId] = useState(null);
+    const { userId, username, avatar } = useContext(AuthContext)
     useEffect(() => {
         if (!videoId) {
             return;
@@ -28,12 +29,30 @@ export default function useComments(videoId) {
         });
     };
 
-    const addComment = async (userId) => {
+    const addComment = async () => {
         const newComment = await commentsServices.createComment(videoId, text, userId);
-        dispatch({
-            control: 'ADD_COMMENT',
-            comment: newComment
-        });
+     
+
+        const comment = {
+            _id: newComment._id,
+            author: {
+                _id: userId,
+                username,
+                // created_at:newComment.createdAt,
+                avatar
+
+            },
+            text: text,
+        }
+
+        if (newComment) {
+            dispatch({
+                control: 'ADD_COMMENT',
+                comment: comment
+            });
+
+        }
+       
         setText('');
     };
 
@@ -43,7 +62,7 @@ export default function useComments(videoId) {
             control: 'EDIT_COMMENT',
             comment: editedComment, text
         });
-       
+
     };
 
     const handleCommentChange = (e) => {
@@ -51,7 +70,7 @@ export default function useComments(videoId) {
     };
 
     const handleEditingChange = (e) => {
-        setEditingText(e.target.value); 
+        setEditingText(e.target.value);
     };
 
     const startEditing = (commentId, currentText) => {

@@ -13,6 +13,7 @@ export const upload = async (formData) => {
 export const getAllvideos = async () => {
 
     const games = await request.get(endpoints.getAllVideos)
+    console.log(games);
     return games
 }
 
@@ -28,3 +29,18 @@ export const getUserVideos = async () => {
     const games = await request.get(endpoints.geUserVideos)
     return games;
 }
+
+export const likeVideo = async (videoId ,userId) =>{
+
+   const likedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/like`,{userId})
+ 
+
+   return likedVideo
+} 
+
+export const dislikeVideo = async (videoId ,userId) =>{
+
+    const dislikedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/dislike`,{userId})
+  
+    return dislikedVideo
+ } 

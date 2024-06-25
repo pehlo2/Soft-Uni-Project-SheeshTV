@@ -15,11 +15,11 @@
     background: orange;
     padding: 0.5em 3em;
     border-radius: 0.4em;
-  }
+}
 
 /*  */
 .top-welcome {
-   
+
     width: 100%;
     min-height: 640px;
     position: relative;
@@ -70,7 +70,7 @@
     width: 100%;
     height: 100%;
   } */
-  .top-welcome video {
+.top-welcome video {
     width: 100%;
     height: 100%;
     max-width: 100%;
@@ -87,7 +87,8 @@
 .top-welcome .review a {
     text-decoration: none;
     font-size: 26px;
-    color: var(--font-color);;
+    color: var(--font-color);
+    ;
     background: orange;
     padding: 0.5em 3em;
     border-radius: 0.4em;
@@ -96,7 +97,7 @@
 /*  */
 
 
-.chat-content  {
+.chat-content {
     display: flex;
     flex-direction: column;
     gap: 2em;
@@ -135,7 +136,7 @@
 }
 
 .share-images {
-   
+
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
@@ -152,7 +153,7 @@
 .share-images img {
     width: 100%;
     height: 100%;
-   
+
     border-radius: 50%;
 }
 
@@ -178,4 +179,32 @@
 
 .friends-content p {
     font-size: 26px;
+}
+
+
+@media (max-width: 1600px) {
+
+    .chat-content p,
+    .share-content p,
+    .friends-content p {
+
+        font-size: 20px;
+    }
+    .top-welcome .inner .content{
+        font-size: 60px;
+    }
+}
+
+@media (max-width: 900px) {
+    .chat-content,.friends-content,.share-content{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .share-images{
+        padding: 3em;
+    }
+    .friends-media img {
+        padding: 2em;
+    }
 }

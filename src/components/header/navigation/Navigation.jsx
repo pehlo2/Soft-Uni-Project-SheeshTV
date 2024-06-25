@@ -9,7 +9,7 @@ export default function Navigation({
     toggleTheme
 }) {
 
-    const { username, isAuthenticated } = useContext(AuthContext)
+    const {userId, username, isAuthenticated } = useContext(AuthContext)
 
     return (<header className={styles["main-header"]}>
         <div className={styles["logo"]}>
@@ -23,14 +23,10 @@ export default function Navigation({
                 < DarkMode toggleTheme={toggleTheme} />
 
 
-
-
-
-
                 {isAuthenticated && (
                     <>
 
-                        <li><Link to="/profile">{username}</Link></li>
+                        <li><Link to={`/users/${userId}`}>{username}</Link></li>
 
                     </>
 

@@ -39,7 +39,8 @@ export const AuthProvider = ({ children }) => {
     username: auth.username,
     email: auth.email,
     userId: auth._id,
-    isAuthenticated: !!auth.accessToken
+    isAuthenticated: !!auth.accessToken,
+    avatar: auth.avatar
     
   }
 

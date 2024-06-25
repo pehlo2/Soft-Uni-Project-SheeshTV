@@ -6,29 +6,19 @@ import * as videoServices from '../../services/videoServices'
 import { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../context/authContext';
 import ProfileVideoContext from '../../context/videoContext';
+import { useParams } from 'react-router-dom';
 
 
 const Profile = () => {
     const { userId } = useContext(AuthContext)
-
-    const [videos, setVideos] = useState([])
-
-    useEffect(() => {
-        videoServices.getUserVideos(userId).then(userVideos => {
-
-            setVideos(userVideos)
-        }
-        )
-
-    }, [userId])
+    const id = useParams()
 
     return (
-        <ProfileVideoContext.Provider value={{videos}}>
-            <div className={styles["container"]}>
-                <ProfileHeader></ProfileHeader>
-                <ProfileMain />
-            </div>
-        </ProfileVideoContext.Provider>
+        <div className={styles["container"]}>
+            <ProfileHeader></ProfileHeader>
+            <ProfileMain />
+        </div>
+
     )
 }
 
