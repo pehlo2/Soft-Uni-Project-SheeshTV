@@ -12,6 +12,8 @@ export const endpoints = {
     getAllVideos: "/data/videos/",
     geOneVideo: "/data/videos",
     geUserVideos: "/data/videos/user-videos",
+    delete:'/data/videos/',
+    edit:'/data/videos/',
    
 
 
@@ -22,10 +24,6 @@ export const endpoints = {
     getOneComment: "/comments/:commentId",
     deleteComment: "/comments/:commentId",
     
-
-
-
-
 
 
 }

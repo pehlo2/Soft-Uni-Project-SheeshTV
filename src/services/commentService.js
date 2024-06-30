@@ -4,13 +4,13 @@ import { endpoints } from '../lib/endpoints'
 
 
 export const getAllVideoComments = async (videoId) => {
-   debugger
+ 
     const query = new URLSearchParams({
         where: `videoId="${videoId}"`,
     });
-    console.log(query);
+   
     const result = await request.get(`${endpoints.videoComments}?${query}`);
-    console.log(result);
+   
     return result;
 };
 

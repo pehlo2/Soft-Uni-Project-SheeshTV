@@ -30,13 +30,13 @@ async function request(method, endpoint, data) {
     if (response.status === 204) {
       return {}
     }
-    
-    const result = await response.json();
-
-
     if (!response.ok) {
       throw result
     }
+
+    const result = await response.json();
+
+
 
 
     return result;
