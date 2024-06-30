@@ -25,7 +25,7 @@ const CommentsSection = ({ videoId }) => {
         await editComment(commentId, editingText);
         cancelEditing();
     };
-   console.log(comments);
+  
     return (
         <>
             <div className={styles["comments"]}>
