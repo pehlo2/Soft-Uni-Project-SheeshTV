@@ -3,25 +3,15 @@ import styles from './Upload.module.css'
 
 import { endpoints } from '../../lib/endpoints';
 import AuthContext from '../../context/authContext';
+import UserVideosContext from '../../context/userVideoContext';
 
 
 
 const UploadVideo = () => {
 
-    // const [formValue, setFormValues] = useState({
-
-    //     title: '',
-    //     description: '',
-    //     game: ''
-
-    // })
-
-    // const changeHandler = (e) => {
-    //     setFormValues(state => ({ ...state, [e.target.name]: e.target.value }))
-
-    // }
+  
     const {userId} = useContext(AuthContext)
-
+    // const { addVideo } = useContext(UserVideosContext);
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [game, setGame] = useState('')
@@ -42,7 +32,6 @@ const UploadVideo = () => {
         formData.append('video', video)
 
         xhr.upload.addEventListener('progress', (event) => {
-            console.log(event.loaded, event.total);
             if (event.lengthComputable) {
                 const percentComplete = (event.loaded / event.total) * 100;
                 setUploadProgress(percentComplete);
@@ -59,28 +48,10 @@ const UploadVideo = () => {
         });
      
       
-     
-
         xhr.open('POST', `http://localhost:3000${endpoints.upload}`);
         xhr.send(formData);
     };
-    // const uploadSubmitHandler = async (e) => {
-
-    //     e.preventDefault()
-    //     const formData = new FormData()
-    //     // for (const key in formValue) {
-    //     //     formData.append(key, formValue[key])
-    //     // }
-
-    //     formData.append('title', title)
-    //     formData.append('description', description)
-    //     formData.append('game', game)
-    //     formData.append('video', video)
-
-    //     await videoServices.upload(formData)
-
-
-    // }
+   
 
     return (
 

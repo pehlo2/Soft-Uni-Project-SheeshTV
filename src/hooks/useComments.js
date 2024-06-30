@@ -1,5 +1,5 @@
 import { useContext, useEffect, useReducer, useState } from "react";
-import reducer from "../components/comments-tab/commentReducer";
+import reducer from "../reducers/commentReducer";
 import * as commentsServices from '../services/commentService';
 import AuthContext from "../context/authContext";
 
@@ -22,7 +22,7 @@ export default function useComments(videoId) {
     }, [videoId]);
 
     const deleteComment = async (commentId) => {
-        await commentsServices.deleteComment(commentId);
+       commentsServices.deleteComment(commentId);
         dispatch({
             control: 'REMOVE_COMMENT',
             comment: commentId

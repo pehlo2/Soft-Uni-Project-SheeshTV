@@ -13,6 +13,7 @@ import UploadVideo from './components/uploadVideo/Upload'
 import VideoDashboard from './components/videos-dashboard/Videos-dashboard'
 import { AuthProvider } from './context/authContext'
 import { VideoProvider } from './context/videoContext'
+import { UserVideosProvider } from './context/userVideoContext'
 
 import Logout from './components/logout/Logout'
 import VideoDetails from './components/video-details-link/Video-details-link'
@@ -45,24 +46,22 @@ function App() {
 
       <div className='app' data-theme={theme}>
         <Navigation toggleTheme={toggleTheme} />
-
         <VideoProvider>
-
-          <main className='main-app'>
-            <Routes >
-              <Route path='/' element={<Home></Home>} />
-              <Route path='/login' element={<Login></Login>} />
-              <Route path='/register' element={<Register></Register>} />
-              <Route path='*' element={<NotFound></NotFound>} />
-              <Route path='/users/:profileId' element={<Profile />} />
-              <Route path='/upload' element={<UploadVideo />} />
-              <Route path='/dashboard' element={<VideoDashboard />} />
-              <Route path='/videos/:videoId' element={<VideoDetails />} />
-              <Route path='/logout' element={<Logout />} />
-
-            </Routes>
-          </main>
-
+         
+            <main className='main-app'>
+              <Routes >
+                <Route path='/' element={<Home></Home>} />
+                <Route path='/login' element={<Login></Login>} />
+                <Route path='/register' element={<Register></Register>} />
+                <Route path='*' element={<NotFound></NotFound>} />
+                <Route path='/users/:profileId' element={<Profile />} />
+                <Route path='/upload' element={<UploadVideo />} />
+                <Route path='/dashboard' element={<VideoDashboard />} />
+                <Route path='/videos/:videoId' element={<VideoDetails />} />
+                <Route path='/logout' element={<Logout />} />
+              </Routes>
+            </main>
+         
         </VideoProvider>
         <Footer />
       </div>

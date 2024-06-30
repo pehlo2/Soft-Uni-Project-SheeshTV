@@ -3,17 +3,53 @@ import { endpoints } from '../lib/endpoints'
 
 
 
-export const upload = async (formData) => {
+export const upload = (videoData, setUploadProgress) => {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
 
-    const game = await request.post(endpoints.upload, formData)
+        xhr.upload.addEventListener('progress', (event) => {
+            if (event.lengthComputable) {
+                const percentComplete = (event.loaded / event.total) * 100;
+                setUploadProgress(percentComplete);
+            }
+        });
 
-    return game
-}
+        xhr.upload.addEventListener('load', () => {
+            console.log('Upload complete');
+            setUploadProgress(100);
+            resolve(JSON.parse(xhr.responseText));
+        });
+
+        xhr.upload.addEventListener('error', () => {
+            console.log('Upload failed');
+            setUploadProgress(0);
+            reject(new Error('Upload failed'));
+        });
+
+        xhr.open('POST', `http://localhost:3000${endpoints.upload}`);
+        xhr.send(videoData);
+    });
+};
+
+
+export const editVideo = async (videoId, title, description) => {
+    const video = await request.put(`${endpoints.edit}/${videoId}/edit`, { title, description })
+    return video
+};
+
+
+
+
+export const removeVideo = async (videoId) => {
+    await request.del(`${endpoints.delete}/${videoId}/delete`)
+
+};
+
 
 export const getAllvideos = async () => {
 
     const games = await request.get(endpoints.getAllVideos)
-    console.log(games);
+
     return games
 }
 
@@ -23,24 +59,61 @@ export const getOneVideo = async (videoId) => {
     return games
 }
 
-export const getUserVideos = async () => {
+
+export const getUserVideos = async (profileId) => {
+
+    const query = new URLSearchParams({
+        where: `profileId="${profileId}"`,
+    });
 
 
-    const games = await request.get(endpoints.geUserVideos)
-    return games;
+    const videos = await request.get(`${endpoints.geUserVideos}?${query}`)
+    return videos;
 }
 
-export const likeVideo = async (videoId ,userId) =>{
 
-   const likedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/like`,{userId})
- 
 
-   return likedVideo
-} 
 
-export const dislikeVideo = async (videoId ,userId) =>{
+// export const getAllVideoComments = async (videoId) => {
 
-    const dislikedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/dislike`,{userId})
-  
+//     const query = new URLSearchParams({
+//         where: `videoId="${videoId}"`,
+//     });
+
+//     const result = await request.get(`${endpoints.videoComments}?${query}`);
+
+//     return result;
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const likeVideo = async (videoId, userId) => {
+
+    const likedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/like`, { userId })
+
+
+    return likedVideo
+}
+
+export const dislikeVideo = async (videoId, userId) => {
+
+    const dislikedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/dislike`, { userId })
+
     return dislikedVideo
- } 
+} 
