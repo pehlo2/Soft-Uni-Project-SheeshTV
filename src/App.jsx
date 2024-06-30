@@ -13,10 +13,11 @@ import UploadVideo from './components/uploadVideo/Upload'
 import VideoDashboard from './components/videos-dashboard/Videos-dashboard'
 import { AuthProvider } from './context/authContext'
 import { VideoProvider } from './context/videoContext'
-import { UserVideosProvider } from './context/userVideoContext'
+
 
 import Logout from './components/logout/Logout'
-import VideoDetails from './components/video-details-link/Video-details-link'
+import VideoDetailsLink from './components/video-details-link/Video-details-link'
+
 
 
 
@@ -57,7 +58,7 @@ function App() {
                 <Route path='/users/:profileId' element={<Profile />} />
                 <Route path='/upload' element={<UploadVideo />} />
                 <Route path='/dashboard' element={<VideoDashboard />} />
-                <Route path='/videos/:videoId' element={<VideoDetails />} />
+                <Route path='/videos/:videoId' element={<VideoDetailsLink />} />
                 <Route path='/logout' element={<Logout />} />
               </Routes>
             </main>

@@ -38,7 +38,7 @@ const ProfileHeader = () => {
                     <div className={styles["profile-stats"]}>
                         <div className={styles["clips"]}>
                             <p>412</p>
-                            <p>Clips</p>
+                            <p>Videos</p>
                         </div>
                         <div className={styles["followers"]}>
                             <p>52</p>

@@ -14,7 +14,7 @@ export const NovideoProfile = () => {
                     <i className={styles["fa-solid fa-user-plus"]}></i>
                     <h3>Find your friends</h3>
                     <p>Invite friends to SheeshTv and start connecting</p>
-                    <button>Share</button>
+                    <button>Find friens</button>
                 </div>
                 <div className={styles["share-video-box"]}>
 
@@ -22,7 +22,7 @@ export const NovideoProfile = () => {
                     <h3>Start Sharing</h3>
                     <p>
                         Play a game and clip a moment to share with your friends</p>
-                    <button>Follow</button>
+                    <button>Upload</button>
                 </div>
 
             </div>
