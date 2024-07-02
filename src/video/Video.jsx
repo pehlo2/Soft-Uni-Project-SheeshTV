@@ -7,11 +7,17 @@ import ReactPlayer from 'react-player';
 import UserVideosContext from '../context/userVideoContext';
 
 
-const Video = ({ video }) => {
+const Video = ({ video ,onDelete}) => {
     const [showModal, setShowModal] = useState(false);
 
-    const { deleteVideo, editVideo } = useContext(UserVideosContext)
-
+    // const { deleteVideo } = useContext(UserVideosContext)
+       const deleteVideoHandler = async ()=>{
+        const confirmation = window.confirm('Are you sure you want to delete this game?');
+        if (confirmation) {
+            await onDelete(video._id);
+            navigate(`/users/${video.owner}`);
+        }
+       }
     return (
         <div className={styles["video"]}>
             <div className={styles["video-wrapper"]}>
@@ -21,7 +27,7 @@ const Video = ({ video }) => {
                     <a href="">Follow</a>
                     <div className={styles["video-crud"]}>
                         
-                        <button onClick={()=> deleteVideo(video._id)}>delete</button>
+                        <button onClick={deleteVideoHandler}>delete</button>
 
                     </div>
                 </div>

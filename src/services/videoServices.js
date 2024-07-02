@@ -5,6 +5,7 @@ import { endpoints } from '../lib/endpoints'
 
 export const upload = (videoData, setUploadProgress) => {
     return new Promise((resolve, reject) => {
+        
         const xhr = new XMLHttpRequest();
 
         xhr.upload.addEventListener('progress', (event) => {

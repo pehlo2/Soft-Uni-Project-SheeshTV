@@ -23,13 +23,14 @@ const UploadVideo = () => {
         e.preventDefault()
         if (!video) return;
 
-        const xhr = new XMLHttpRequest();
         const formData = new FormData();
         formData.append('title', title)
         formData.append('description', description)
         formData.append('game', game)
         formData.append('userId', userId)
         formData.append('video', video)
+        
+        const xhr = new XMLHttpRequest();
 
         xhr.upload.addEventListener('progress', (event) => {
             if (event.lengthComputable) {
