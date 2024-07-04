@@ -52,6 +52,7 @@ function App() {
             <main className='main-app'>
               <Routes >
                 <Route path='/' element={<Home></Home>} />
+                <Route path='/discover' element={} />
                 <Route path='/login' element={<Login></Login>} />
                 <Route path='/register' element={<Register></Register>} />
                 <Route path='*' element={<NotFound></NotFound>} />

@@ -6,9 +6,10 @@ const userVideoReducer = (state, action) => {
             case 'ADD_VIDEO':
                 return [...state, action.video];
             case 'EDIT_VIDEO':
-                return state.map(video => video._id === action.videoId ? action.payload : video);
+                return state.map(video => video._id === action.videoId ? action.video : video);
             case 'DELETE_VIDEO':
                 return state.filter(video => video._id !== action.videoId);
+             
             // case 'LIKE_VIDEO':
             //     return state.map(video =>
             //         video._id === action.videoId
