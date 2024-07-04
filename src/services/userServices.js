@@ -22,3 +22,8 @@ export const  getUser = async (profileId) =>{
  let user =  await  request.get(`${endpoints.getOneUser}/${profileId}`)
  return user;
 }
+
+export const  getAllNotFollowedUser = async () =>{
+  let users =  await  request.get(endpoints.getAllNotFollowedUsers)
+  return users;
+ }

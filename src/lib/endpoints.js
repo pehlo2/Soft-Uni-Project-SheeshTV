@@ -4,7 +4,7 @@ export const endpoints = {
     register: "/users/register",
     login: "/users/login",
     logout: "/users/logout",
-    getAllUsers: "/users/",
+    getAllNotFollowedUsers: "/users",
     getOneUser: "/users",
 
     // videos
