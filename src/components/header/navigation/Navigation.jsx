@@ -34,6 +34,7 @@ export default function Navigation({
 
                 )}
                 <li><Link to="/upload">Upload</Link></li>
+                <li><Link to="/discover">Discover</Link></li>
                 <li><Link to="/logout">Logout</Link></li>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/register">Register</Link></li>

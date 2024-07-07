@@ -1,0 +1,16 @@
+import styles from './Unfollow-button.module.css'
+import * as usersServices from '../../services/userServices'
+
+const UnFollowButton = ({userToUnfollowId})=>{
+    
+    const unFollowUserHandler = async(e)=>{
+        e.preventDefault()
+        await usersServices.unFollowUser(userToUnfollowId)
+    }
+    
+    return(
+       <button className={styles["unfollow-button"]} onClick={unFollowUserHandler}>Unfollow</button>
+    )
+}
+
+export default UnFollowButton;
