@@ -8,15 +8,16 @@ import CommentsTab from '../comments-tab/Comments-tab';
 import CommnentsProvider from '../../context/commentsContext';
 import LikeShareTab from '../like-share-tab/Like-share-tab'
 import AuthContext from '../../context/authContext';
+import FollowButton from '../follow-button/Follow-button';
 
 
 
 const VideoModal = ({
     onClose, videoId, videoData
 }) => {
-    const {userId} = useContext(AuthContext)
+    const { userId } = useContext(AuthContext)
     const [video, setVideo] = useState(videoData);
-    
+
     const [isLiked, setIsLiked] = useState(video.likes.includes(userId))
 
     useEffect(() => {
@@ -24,8 +25,8 @@ const VideoModal = ({
 
     }, [videoId])
 
-    console.log(video);
- 
+
+
     return (
         <div className={styles["blur"]}>
             <div className={styles["container"]} onClick={onClose}  >
@@ -57,17 +58,22 @@ const VideoModal = ({
                                     </div>
                                     <div>
                                         <h4>{video.owner.username}</h4>
-                                        <p>{video.gameChoice}</p>
+
+                                        <div className={styles["game-choice"]}>
+                                            <img src={`/gamesIcons/${video.gameChoice}.png`} alt="" />
+                                            <p>  {video.gameChoice}
+                                            </p>
+                                        </div>
                                     </div>
 
                                 </div>
-                                <a href="">Follow</a>
+                                < FollowButton userToFollowId={video.owner._id} />
                             </div>
                             <div className={styles["video-info"]}>
                                 <h3>{video.title}</h3>
                                 <p>{video.desctription}</p>
                             </div>
-                           < LikeShareTab video={video} isLiked={isLiked} setIsLiked={setIsLiked}/>
+                            < LikeShareTab video={video} isLiked={isLiked} setIsLiked={setIsLiked} />
                         </div>
                         <CommnentsProvider videoId={video._id} >
                             <CommentsTab videoId={video._id} />

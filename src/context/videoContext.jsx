@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react"
+import { createContext, useContext, useEffect, useReducer, useState } from "react"
 import videoReducer from "../reducers/videoReducer";
 
 import * as videoServices from "../services/videoServices"
@@ -15,12 +15,13 @@ export const VideoProvider = ({
 
     const [videos, dispatch] = useReducer(videoReducer, [])
     const { userId } = useContext(AuthContext)
+    const [gameChoice ,setGameChoice] =useState('')
 
 
     useEffect(() => {
 
 
-        videoServices.getAllvideos().then(
+        videoServices.getAllvideos(gameChoice).then(
             result => {
 
                 dispatch({
@@ -31,7 +32,7 @@ export const VideoProvider = ({
             }
         )
 
-    }, [userId])
+    }, [gameChoice,userId])
 
 
 
@@ -63,12 +64,28 @@ export const VideoProvider = ({
 
 
     }
+
+    const filterVideosByGameChoice =(gameChoice)=>{
+        debugger
+        setGameChoice(gameChoice)
+
+    }
+
+
+
+
+
+
+
+
+
     return (
         <VideoContext.Provider
             value={{
                 videos,
                 likeVideo,
                 dislikeVideo,
+                filterVideosByGameChoice
             }}
 
         >

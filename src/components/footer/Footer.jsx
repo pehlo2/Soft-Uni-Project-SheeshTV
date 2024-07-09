@@ -34,6 +34,7 @@ export default function Footer() {
                     <img src="/icons/128px-Facebook_Logo_2023.png" alt="" />
                     <img src="/icons/256px-Instagram_icon.png" alt="" />
                     <img src="/icons/Github-desktop-logo-symbol.svg" alt="" />
+                   
                 </div>
             </div>
         </footer>

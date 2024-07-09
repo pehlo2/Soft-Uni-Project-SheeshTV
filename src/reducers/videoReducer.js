@@ -1,5 +1,5 @@
 const videoReducer = (state, action) => {
-debugger
+
     switch (action?.control) {
         case 'GET_ALL_VIDEOS':
             return [...action.video];
@@ -21,9 +21,14 @@ debugger
                     ? { ...video, likes: video.likes.filter(id => id !== action.userId) }
                     : video
             );
+        case 'FILTER_VIDEO_BY_GAME_CHOICE':
+            console.log(state);
+            return state.filter(video => video.gameChoice === action.gameChoice);
+        
         default:
             return state;
     }
 }
 
 export default videoReducer;
+

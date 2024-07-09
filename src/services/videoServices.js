@@ -49,9 +49,11 @@ export const removeVideo = async (videoId) => {
 };
 
 
-export const getAllvideos = async () => {
-
-    const games = await request.get(endpoints.getAllVideos)
+export const getAllvideos = async (gameChoice) => {
+    const query = new URLSearchParams({
+                where: `gameChoice="${gameChoice}"`,
+            });
+    const games = await request.get(`${endpoints.getAllVideos}?${query}`)
 
     return games
 }

@@ -1,0 +1,33 @@
+.game-choice-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3em;
+    color: white;
+
+}
+
+.game-choice-bar input {
+    display: none;
+}
+
+.game-choice-bar label {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    padding: 0.2em 0.7em;
+    border: 1px solid rgb(40, 40, 40);
+    background-color: rgb(43, 42, 42);
+    cursor: pointer;
+    border-radius: 0.5em;
+    user-select: none;
+}
+
+.game-choice-bar img {
+    width: 24px;
+}
+.game-choice-bar span {
+   font-size: 14px;
+}
+.custom-radio:checked+.custom-radio-label {
+    background-color: rgb(122, 122, 122);
+}

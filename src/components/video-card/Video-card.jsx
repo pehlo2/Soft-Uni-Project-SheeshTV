@@ -11,7 +11,7 @@ const VideoCard = ({
     title,
     viewCount,
     gameChoice,
-    _id,likes,owner
+    _id, likes, owner
 }) => {
     const [playing, setPlaying] = useState(false)
     const [showModal, setShowModal] = useState(false);
@@ -59,13 +59,21 @@ const VideoCard = ({
             </div>
 
             <div className={styles["video-info"]}>
-                <p>pehlo2</p>
-                <h3>{title}</h3>
+                <div className={styles["owner-info"]}>
+                <img src={owner.avatar} alt="" />
+                <p>{owner.username}</p>
+                </div>
+                <h5>{title}</h5>
 
                 <div className={styles["video-stats"]}>
 
-                    <p>{viewCount}</p>
-                    <p>{gameChoice}</p>
+                    <p><span>{viewCount}</span> views</p>
+                    <div className={styles["game-choice"]}>
+                        <img src={`gamesIcons/${gameChoice}.png`} alt="" />
+                        <p> {gameChoice}
+                        </p>
+                    </div>
+
                 </div>
             </div>
 
@@ -75,7 +83,7 @@ const VideoCard = ({
                 title,
                 viewCount,
                 gameChoice,
-                _id,likes,owner
+                _id, likes, owner
             }} />}
         </div>
     )

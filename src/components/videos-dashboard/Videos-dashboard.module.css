@@ -1,9 +1,19 @@
-.container{
+.container {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5em;
+    gap: 3em;
+    padding-bottom: 5em;
+}
 
-display: flex;
-justify-content: center;
-align-items: center;
-padding-top: 10em;
-flex-wrap: wrap;
-gap:  3em;
+.video-wrapper {
+    width: 1400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1em;
 }
