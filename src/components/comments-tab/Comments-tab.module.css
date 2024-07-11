@@ -28,4 +28,11 @@
 .comments .edit{
     color: rgb(255, 217, 0);
  }
- 
+ .user-info{
+    display: flex;
+    gap:0.1em
+ }
+ .user-info img{
+    width: 24px;
+    height: 24px;
+ }

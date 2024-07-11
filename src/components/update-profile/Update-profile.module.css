@@ -1,0 +1,45 @@
+.blur {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 3;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(57, 54, 54, 0.9);
+
+
+}
+
+
+.profile-edit {
+    width: 25%;
+    height: 40%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(84, 84, 84);
+    border-radius: 0.7em;
+
+}
+
+.profile-edit img {
+    width: 200px;
+
+}
+
+.profile-edit form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+
+}

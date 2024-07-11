@@ -25,15 +25,19 @@ const CommentsSection = ({ videoId }) => {
         await editComment(commentId, editingText);
         cancelEditing();
     };
-  
+
     return (
         <>
             <div className={styles["comments"]}>
                 {comments.map(comment =>
-                                   
+
                 (
                     <div className={styles["user-comment"]} key={comment._id}>
-                        <h4>{comment.author.username}</h4>
+                        <div className={styles["user-info"]}>
+                            <img src={comment.author.avatar} alt="" />
+                            <h4>{comment.author.username}</h4>
+                        </div>
+
                         {editingCommentId === comment._id ? (
                             <form onSubmit={(e) => handleEditSubmit(e, comment._id)}>
                                 <input

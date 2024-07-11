@@ -15,8 +15,7 @@ const DiscoverCreators = () => {
     },[])
 
 
-       
-       console.log(creators);
+
      
     return (
         <div className={styles["container"]}>
