@@ -1,22 +1,28 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useForm from "../../hooks/useForm";
 import styles from "./Edit-Video.module.css"
-import * as  videoServices  from "../../services/videoServices"
+import * as  videoServices from "../../services/videoServices"
+import { useNavigate } from "react-router-dom";
+import UserVideosContext from "../../context/userVideoContext";
 
-const EditVideo = ({title,
+
+
+
+
+
+
+const EditVideo = ({ title,
     description,
     gameChoice,
-    videoUrl,_id}) => {
+    videoUrl, _id }) => {
+    
+    const { editVideo } = useContext(UserVideosContext)
 
-    console.log(title,
-        description,
-        gameChoice,
-        videoUrl);
+    const EditSubmitHandler = async () => {
 
-    const EditSubmitHandler = async (e) => {
-      
         if (!videoUrl) { return };
-        await videoServices.editVideo(_id, values);
+        await editVideo(_id, values);
+
 
     };
 
@@ -26,7 +32,6 @@ const EditVideo = ({title,
         gameChoice: gameChoice,
     });
 
-    console.log(values);
    
 
     return (
