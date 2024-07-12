@@ -11,8 +11,6 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = usePersistedState('user',{})
 
 
-
-
   const loginSubmitHandler = async (values) => {
     const result = await userService.login(values)
     localStorage.setItem('accessToken', result.accessToken);

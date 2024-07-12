@@ -12,7 +12,7 @@ export const useVideoActions = (profileId) => {
 
     }, [profileId])
 
-    const addVideo = async (formData) => {
+    const addVideo = async (formData ,setUploadProgress) => {
         const newVideo = await videoServices.upload(formData, setUploadProgress)
         setVideos((videos) => [...videos, newVideo])
 

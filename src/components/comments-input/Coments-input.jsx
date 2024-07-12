@@ -7,7 +7,6 @@ import CommentsContext, { useCommentsContext } from '../../context/commentsConte
 
 
 const InputComments = ({
-    videoId
 }) => {
 
   

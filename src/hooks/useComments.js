@@ -31,8 +31,8 @@ export default function useComments(videoId) {
 
     const addComment = async () => {
         const newComment = await commentsServices.createComment(videoId, text, userId);
-     
-
+      
+    
         const comment = {
             _id: newComment._id,
             author: {
@@ -44,6 +44,7 @@ export default function useComments(videoId) {
             },
             text: text,
         }
+       
 
         if (newComment) {
             dispatch({

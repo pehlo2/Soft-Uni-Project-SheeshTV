@@ -12,17 +12,14 @@ import { UserVideosProvider } from '../../context/userVideoContext';
 
 const Profile = () => {
     const { userId } = useContext(AuthContext)
-    const { profileId} = useParams()
+    const { profileId } = useParams()
 
-  
+
     return (
         <div className={styles["container"]}>
             <UserVideosProvider profileId={profileId} >
-
-            <ProfileHeader></ProfileHeader>
-            <ProfileMain/>
-
-
+                <ProfileHeader></ProfileHeader>
+                <ProfileMain />
             </UserVideosProvider>
         </div>
 

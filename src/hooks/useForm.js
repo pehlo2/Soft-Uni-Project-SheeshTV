@@ -4,7 +4,6 @@ export default function useForm(submitHandler, initialValues) {
     let [values, setValues] = useState(initialValues)
 
 
-
     const onChange = (e) => {
         setValues(state => ({
             ...state,
@@ -12,8 +11,8 @@ export default function useForm(submitHandler, initialValues) {
         }))
         ///NA inoputa na koisi steni mu novoto value
     }
-    console.log(values);
-
+    
+    
 
     const onSubmit = (e) => {
         e.preventDefault()

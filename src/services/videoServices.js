@@ -4,6 +4,7 @@ import { endpoints } from '../lib/endpoints'
 
 
 export const upload = (videoData, setUploadProgress) => {
+    console.log(videoData);
     return new Promise((resolve, reject) => {
 
         const xhr = new XMLHttpRequest();
@@ -34,8 +35,6 @@ export const upload = (videoData, setUploadProgress) => {
 
 
 export const editVideo = async (videoId,videoData) => {
-
-   
     const video = await request.put(`${endpoints.edit}/${videoId}/edit`, videoData)
     return video
 };

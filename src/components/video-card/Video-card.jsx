@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import styles from "./Video-card.module.css"
 import ReactPlayer from "react-player";
 import VideoModal from "../video-modal/Video-modal";
+import timeDifferenceToString from "../../utils/timeDifferenceToString";
 
 
 
@@ -11,7 +12,7 @@ const VideoCard = ({
     title,
     viewCount,
     gameChoice,
-    _id, likes, owner
+    _id, likes, owner,created_at
 }) => {
     const [playing, setPlaying] = useState(false)
     const [showModal, setShowModal] = useState(false);
@@ -68,6 +69,7 @@ const VideoCard = ({
                 <div className={styles["video-stats"]}>
 
                     <p><span>{viewCount}</span> views</p>
+                    <p>{timeDifferenceToString(created_at)} ago</p>
                     <div className={styles["game-choice"]}>
                         <img src={`gamesIcons/${gameChoice}.png`} alt="" />
                         <p> {gameChoice}

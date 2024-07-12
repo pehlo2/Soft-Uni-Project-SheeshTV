@@ -18,12 +18,32 @@ export const logout = async() => {
     
 }
 
+
 export const  getUser = async (profileId) =>{
- let user =  await  request.get(`${endpoints.getOneUser}/${profileId}`)
+const user =  await  request.get(`${endpoints.getOneUser}/${profileId}`)
  return user;
 }
 
 export const  getAllNotFollowedUser = async () =>{
-  let users =  await  request.get(endpoints.getAllNotFollowedUsers)
+ const users =  await  request.get(endpoints.getAllNotFollowedUsers)
   return users;
  }
+
+export const followUser = async(userToFollowId)=>{
+
+  const followedUser = await request.post(endpoints.followUser,{userToFollowId})
+   return followedUser
+
+}
+export const unFollowUser = async(userToUnfollowId)=>{
+  const followedUser = await request.post(endpoints.unFollowUser,{userToUnfollowId})
+   return followedUser
+
+}
+
+
+export const updateProfile = async(userData,userId) =>{
+  console.log(userData);
+  const updatedUser = await request.put(`${endpoints.updateProfile}/${userId}/update`,userData)
+   return updatedUser
+}

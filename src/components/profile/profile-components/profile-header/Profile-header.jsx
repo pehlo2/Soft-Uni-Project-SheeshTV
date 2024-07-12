@@ -1,15 +1,34 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from './Profile-header.module.css'
 import { useParams } from 'react-router-dom'
 import * as userServices from '../../../../services/userServices'
+import FollowButton from '../../../follow-button/Follow-button'
+import UpdateProfileModal from '../../../update-profile/Update-profile'
+import UserVideosContext from '../../../../context/userVideoContext'
 const ProfileHeader = () => {
     const [profile, setProfile] = useState({})
+    const [showProfileEdit,setShowProfileEdit] =useState(false)
+    const {changeOwnerVideoAvatar} = useContext(UserVideosContext)
+
     const { profileId } = useParams()
+
     useEffect(() => {
 
         userServices.getUser(profileId).then(setProfile)
 
     }, [profileId])
+ 
+
+    const handleUpdateProfile = async() => {
+       await userServices.getUser(profileId).then(profile=>{
+        setProfile(profile),
+        changeOwnerVideoAvatar(profile)
+
+       })
+       
+      }
+      
+      //TOO DO : SEND USERData to update profile
     return (
         <header>
             <div className={styles["profile-wrapper"]}>
@@ -23,13 +42,14 @@ const ProfileHeader = () => {
                             <p>Last Played Valorant 10 hours ago</p>
                             <p>{profile.createdAt}</p>
                             <div className={styles["buttons"]}>
-                                <a href="">Follow</a>
+                           < FollowButton userToFollowId={profile._id}/>
                                 <a href="" className={styles["message-button"]}>Message</a>
                             </div>
 
                         </div>
                     </div>
                     <div className={styles["profile-links"]}>
+                        <button onClick={() => setShowProfileEdit(!showProfileEdit)} >EDIT PROFILE</button>
                         <a href="">Copy Profile link </a>
                     </div>
                 </div>
@@ -54,6 +74,7 @@ const ProfileHeader = () => {
                     </div>
                 </div>
             </div>
+            {showProfileEdit && <UpdateProfileModal profile={profile} closeEdit={() => setShowProfileEdit(false)} onUpdate={handleUpdateProfile}/>}
         </header>
 
     )

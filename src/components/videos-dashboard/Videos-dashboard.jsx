@@ -13,7 +13,7 @@ const VideoDashboard = () => {
     // const [videos, setVideos] = useState([])
 
     const { videos } = useContext(VideoContext)
-
+      console.log(videos);
     return (
 
         <div className={styles["container"]}>
