@@ -24,10 +24,34 @@ const user =  await  request.get(`${endpoints.getOneUser}/${profileId}`)
  return user;
 }
 
-export const  getAllNotFollowedUser = async () =>{
- const users =  await  request.get(endpoints.getAllNotFollowedUsers)
+export const  getAllNotFollowedUser = async (searchValue) =>{
+
+  const query = new URLSearchParams({
+    search: `${searchValue}`,
+});
+
+ const users =  await  request.get(`${endpoints.getAllNotFollowedUsers}?${query}`)
   return users;
+
+
+ 
+
+
+
+
+
+
+
  }
+
+
+
+
+
+
+
+
+
 
 export const followUser = async(userToFollowId)=>{
 

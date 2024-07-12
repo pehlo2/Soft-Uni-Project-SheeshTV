@@ -50,7 +50,7 @@ export const removeVideo = async (videoId) => {
 
 export const getAllvideos = async (gameChoice) => {
     const query = new URLSearchParams({
-                where: `gameChoice="${gameChoice}"`,
+                where: `gameChoice=${gameChoice}`,
             });
     const games = await request.get(`${endpoints.getAllVideos}?${query}`)
 
@@ -67,43 +67,13 @@ export const getOneVideo = async (videoId) => {
 export const getUserVideos = async (profileId) => {
 
     const query = new URLSearchParams({
-        where: `profileId="${profileId}"`,
+        where: `profileId=${profileId}`,
     });
 
 
     const videos = await request.get(`${endpoints.geUserVideos}?${query}`)
     return videos;
 }
-
-
-
-
-// export const getAllVideoComments = async (videoId) => {
-
-//     const query = new URLSearchParams({
-//         where: `videoId="${videoId}"`,
-//     });
-
-//     const result = await request.get(`${endpoints.videoComments}?${query}`);
-
-//     return result;
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
