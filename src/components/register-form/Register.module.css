@@ -89,7 +89,7 @@
 .overlay-container {
   flex: 0 0 50%;
   padding: 2em;
-  background: url("../../../public/images/crash\(2\).webp");
+  background: url("/images/crash\(2\).webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
