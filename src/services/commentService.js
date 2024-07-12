@@ -19,10 +19,10 @@ export const getAllVideoComments = async (videoId) => {
 
 
 
-export const createComment = async (videoId, text, userId) => {
+export const createComment = async (videoId, text, userId,avatar) => {
 
     const newCommnet = await request.post(endpoints.createComment, {
-        videoId, text, userId
+        videoId, text, userId,avatar
 
     })
     return newCommnet;
