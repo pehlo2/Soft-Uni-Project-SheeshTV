@@ -17,6 +17,7 @@ import { VideoProvider } from './context/videoContext'
 
 import Logout from './components/logout/Logout'
 import VideoDetailsLink from './components/video-details-link/Video-details-link'
+import DiscoverCreators from './components/discover-creators/Discover-creators'
 
 
 
@@ -52,7 +53,7 @@ function App() {
             <main className='main-app'>
               <Routes >
                 <Route path='/' element={<Home></Home>} />
-                <Route path='/discover' element={} />
+                <Route path='/discover' element={<DiscoverCreators/>} />
                 <Route path='/login' element={<Login></Login>} />
                 <Route path='/register' element={<Register></Register>} />
                 <Route path='*' element={<NotFound></NotFound>} />
