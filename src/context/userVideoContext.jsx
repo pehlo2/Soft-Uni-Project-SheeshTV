@@ -28,6 +28,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   }, [userId])
 
   const addVideo = async (formData) => {
+    console.log(formData);
     const newVideo = await videoServices.upload(formData, setUploadProgress)
 
     dispatch({
@@ -61,8 +62,20 @@ export const UserVideosProvider = ({ children, profileId }) => {
     }
   };
 
+  const changeOwnerVideoAvatar = (userData) => {
+    
+    try {
+      dispatch({
+        control: 'CHANGE_OWNER_VIDEOS_AVATAR',
+        userData: userData,
+    
+      });
+    } catch (err) {
+
+    }
+  };
   return (
-    <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo }}>
+    <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo ,changeOwnerVideoAvatar}}>
       {children}
     </UserVideosContext.Provider>
   );

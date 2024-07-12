@@ -4,13 +4,16 @@ import styles from './Upload.module.css'
 import { endpoints } from '../../lib/endpoints';
 import AuthContext from '../../context/authContext';
 import UserVideosContext from '../../context/userVideoContext';
+import { useVideoActions } from '../../hooks/useVideoActions';
+import { Link } from 'react-router-dom';
 
 
 
 const UploadVideo = () => {
-
-  
+    
+    
     const {userId} = useContext(AuthContext)
+    const {addVideo} = useVideoActions(userId);
     // const { addVideo } = useContext(UserVideosContext);
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -19,7 +22,7 @@ const UploadVideo = () => {
 
     const [uploadProgress, setUploadProgress] = useState(0);
 
-    const uploadSubmitHandler = (e) => {
+    const uploadSubmitHandler = async(e) => {
         e.preventDefault()
         if (!video) return;
 
@@ -29,28 +32,9 @@ const UploadVideo = () => {
         formData.append('game', game)
         formData.append('userId', userId)
         formData.append('video', video)
-        
-        const xhr = new XMLHttpRequest();
-
-        xhr.upload.addEventListener('progress', (event) => {
-            if (event.lengthComputable) {
-                const percentComplete = (event.loaded / event.total) * 100;
-                setUploadProgress(percentComplete);
-            }
-        });
-
-        xhr.upload.addEventListener('load', () => {
-            console.log('Upload complete');
-            setUploadProgress(100);
-        });
-        xhr.upload.addEventListener('error', () => {
-            console.error('Upload failed');
-            setUploadProgress(0);
-        });
-     
-      
-        xhr.open('POST', `http://localhost:3000${endpoints.upload}`);
-        xhr.send(formData);
+       
+        await addVideo(formData,setUploadProgress)
+       
     };
    
 
@@ -89,7 +73,7 @@ const UploadVideo = () => {
 
 
                 {uploadProgress > 0 && (<p>{Math.round(uploadProgress)}%</p>)}
-                {uploadProgress == 100 && (<a>Go to Video Page</a>)}
+                {uploadProgress == 100 && (<Link to={`/users/${userId}`}>Go to Video Page</Link>)}
                 {uploadProgress === 0 && (<button>Submit</button>)}
 
 
