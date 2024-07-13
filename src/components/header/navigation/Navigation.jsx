@@ -3,25 +3,28 @@ import { Link } from 'react-router-dom'
 import DarkMode from '../../dark-mode/DarkMode'
 import { useContext } from 'react'
 import AuthContext from '../../../context/authContext'
+import SearchBar from '../../search-bar/Search-bar'
+
+
 
 
 export default function Navigation({
     toggleTheme
 }) {
 
-    const {userId, username, isAuthenticated } = useContext(AuthContext)
+    const { userId, username, isAuthenticated } = useContext(AuthContext)
 
     return (<header className={styles["main-header"]}>
         <div className={styles["logo"]}>
             <p>SheeshTV</p>
         </div>
         <div className={styles["search"]}>
-            <input type={styles["search"]} />
+            < SearchBar/>
         </div>
+
         <nav>
             <ul>
                 < DarkMode toggleTheme={toggleTheme} />
-
 
                 {isAuthenticated && (
                     <>

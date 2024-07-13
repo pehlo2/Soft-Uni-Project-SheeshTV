@@ -48,10 +48,14 @@ export const removeVideo = async (videoId) => {
 };
 
 
-export const getAllvideos = async (gameChoice) => {
+export const getAllvideos = async (gameChoice ,searchQuery) => {
     const query = new URLSearchParams({
                 where: `gameChoice=${gameChoice}`,
+                search: `${searchQuery}`
             });
+
+   
+
     const games = await request.get(`${endpoints.getAllVideos}?${query}`)
 
     return games

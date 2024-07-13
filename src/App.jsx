@@ -45,30 +45,29 @@ function App() {
 
   return (
     <AuthProvider >
+      <VideoProvider>
+        <div className='app' data-theme={theme}>
+          <Navigation toggleTheme={toggleTheme} />
 
-      <div className='app' data-theme={theme}>
-        <Navigation toggleTheme={toggleTheme} />
-        <VideoProvider>
-         
-            <main className='main-app'>
-              <Routes >
-                <Route path='/' element={<Home></Home>} />
-                <Route path='/discover' element={<DiscoverCreators/>} />
-                <Route path='/login' element={<Login></Login>} />
-                <Route path='/register' element={<Register></Register>} />
-                <Route path='*' element={<NotFound></NotFound>} />
-                <Route path='/users/:profileId' element={<Profile />} />
-                <Route path='/upload' element={<UploadVideo />} />
-                <Route path='/dashboard' element={<VideoDashboard />} />
-                <Route path='/videos/:videoId' element={<VideoDetailsLink />} />
-                <Route path='/logout' element={<Logout />} />
-              </Routes>
-            </main>
-         
-        </VideoProvider>
-        <Footer />
-      </div>
+          <main className='main-app'>
+            <Routes >
+              <Route path='/' element={<Home></Home>} />
+              <Route path='/discover' element={<DiscoverCreators />} />
+              <Route path='/login' element={<Login></Login>} />
+              <Route path='/register' element={<Register></Register>} />
+              <Route path='*' element={<NotFound></NotFound>} />
+              <Route path='/users/:profileId' element={<Profile />} />
+              <Route path='/upload' element={<UploadVideo />} />
+              <Route path='/dashboard' element={<VideoDashboard />} />
+              <Route path='/videos/:videoId' element={<VideoDetailsLink />} />
+              <Route path='/logout' element={<Logout />} />
+            </Routes>
+          </main>
 
+          <Footer />
+        </div>
+
+      </VideoProvider>
     </AuthProvider>
   )
 }
