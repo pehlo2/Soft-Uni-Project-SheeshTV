@@ -5,6 +5,7 @@ import * as userServices from '../../../../services/userServices'
 import FollowButton from '../../../follow-button/Follow-button'
 import UpdateProfileModal from '../../../update-profile/Update-profile'
 import UserVideosContext from '../../../../context/userVideoContext'
+import { copyProfileLink } from '../../../../utils/copyProfileLink'
 const ProfileHeader = () => {
     const [profile, setProfile] = useState({})
     const [showProfileEdit, setShowProfileEdit] = useState(false)
@@ -28,7 +29,7 @@ const ProfileHeader = () => {
 
     }
 
-    //TOO DO : SEND USERData to update profile
+
     return (
         <header>
             <div className={styles["profile-wrapper"]}>
@@ -50,7 +51,7 @@ const ProfileHeader = () => {
                     </div>
                     <div className={styles["profile-links"]}>
                         <button onClick={() => setShowProfileEdit(!showProfileEdit)} >EDIT PROFILE</button>
-                        <a href="">Copy Profile link </a>
+                        <a onClick={()=> copyProfileLink(profile._id)}>Copy Profile link </a>
                     </div>
                 </div>
                 <div className={styles["profile-info"]}>
