@@ -5,10 +5,11 @@ import ReactPlayer from 'react-player';
 
 import CommentsTab from '../comments-tab/Comments-tab';
 
-import CommnentsProvider from '../../context/commentsContext';
+// import CommnentsProvider from '../../context/commentsContext';
 import LikeShareTab from '../like-share-tab/Like-share-tab'
 import AuthContext from '../../context/authContext';
 import FollowButton from '../follow-button/Follow-button';
+import { CommnentsProvider } from '../../context/commentsContext';
 
 
 

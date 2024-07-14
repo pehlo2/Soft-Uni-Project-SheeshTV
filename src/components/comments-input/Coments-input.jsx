@@ -1,8 +1,9 @@
 
 import styles from './Coments-input.module.css'
-import { useCommentsContext } from '../../context/commentsContext';
-import { useState } from 'react';
+
+import { useContext, useState } from 'react';
 import { object, string } from 'yup';
+import CommentsContext from '../../context/commentsContext';
 
 
 
@@ -11,7 +12,7 @@ const InputComments = ({
 }) => {
 
 
-    const { text, addComment, handleCommentChange } = useCommentsContext();
+    const { text, addComment, handleCommentChange } = useContext(CommentsContext);
     const [validationErrors, setValidationErrors] = useState({})
     const commentSchema = object({
         text: string().required().min(1)

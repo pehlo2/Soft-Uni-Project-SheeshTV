@@ -1,16 +1,16 @@
 import styles from './Comments-tab.module.css';
 import InputComments from '../comments-input/Coments-input';
-import { useCommentsContext } from '../../context/commentsContext';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFile, faFileEdit, faPenSquare } from '@fortawesome/free-solid-svg-icons';
+import { faFileEdit } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
-import { faCheckToSlot } from '@fortawesome/free-solid-svg-icons/faCheckToSlot';
+
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faBan } from '@fortawesome/free-solid-svg-icons/faBan';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { object, string } from 'yup';
 
-
+import CommentsContext from '../../context/commentsContext';
 
 const CommentsSection = ({ videoId }) => {
     const {
@@ -22,7 +22,7 @@ const CommentsSection = ({ videoId }) => {
         editingCommentId,
         startEditing,
         cancelEditing
-    } = useCommentsContext();
+    } =useContext(CommentsContext);
 
 
     const [validationErrors, setValidationErrors] = useState({})

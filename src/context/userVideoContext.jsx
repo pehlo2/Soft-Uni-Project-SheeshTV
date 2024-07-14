@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import userVideoReducer from "../reducers/userVideoReducer";
 import AuthContext from "./authContext";
 import * as videoServices from "../services/videoServices";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const UserVideosContext = createContext();
 
