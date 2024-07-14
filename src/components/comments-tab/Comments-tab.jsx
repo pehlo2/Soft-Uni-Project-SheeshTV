@@ -11,6 +11,7 @@ import { useContext, useState } from 'react';
 import { object, string } from 'yup';
 
 import CommentsContext from '../../context/commentsContext';
+import timeDifferenceToString from '../../utils/timeDifferenceToString';
 
 const CommentsSection = ({ videoId }) => {
     const {
@@ -87,7 +88,7 @@ const CommentsSection = ({ videoId }) => {
                         ) : (
                             <>
                                 <p>{comment.text}</p>
-                                <p>{comment.createdAt}</p>
+                                <p>{timeDifferenceToString(comment.createdAt)}</p>
                                 <button onClick={() => deleteComment(comment._id)} className={styles['delete']}><FontAwesomeIcon icon={faXmark} /></button>
                                 <button onClick={() => startEditing(comment._id, comment.text)} className={styles['edit']}><FontAwesomeIcon icon={faFileEdit} /></button>
                             </>
