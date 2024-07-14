@@ -15,13 +15,14 @@ export const VideoProvider = ({
 
     const [videos, dispatch] = useReducer(videoReducer, [])
     const { userId } = useContext(AuthContext)
-    const [gameChoice ,setGameChoice] =useState('')
+    const [gameChoice, setGameChoice] = useState('')
+    const [searchQuery, setSearchQuery] = useState('')
 
 
     useEffect(() => {
 
 
-        videoServices.getAllvideos(gameChoice).then(
+        videoServices.getAllvideos(gameChoice, searchQuery).then(
             result => {
 
                 dispatch({
@@ -32,7 +33,7 @@ export const VideoProvider = ({
             }
         )
 
-    }, [gameChoice,userId])
+    }, [userId, gameChoice, searchQuery])
 
 
 
@@ -65,13 +66,17 @@ export const VideoProvider = ({
 
     }
 
-    const filterVideosByGameChoice =(gameChoice)=>{
-        debugger
+    const filterVideosByGameChoice = (gameChoice) => {
         setGameChoice(gameChoice)
-
+        if(!gameChoice){
+            setSearchQuery('')
+        }
     }
 
+    const filterVideosBySearchQuery = (searchQuery) => {
+        setSearchQuery(searchQuery)
 
+    }
 
 
 
@@ -85,7 +90,8 @@ export const VideoProvider = ({
                 videos,
                 likeVideo,
                 dislikeVideo,
-                filterVideosByGameChoice
+                filterVideosByGameChoice,
+                filterVideosBySearchQuery
             }}
 
         >

@@ -14,12 +14,7 @@ const ProfileMain = () => {
   const { userId } = useContext(AuthContext)
   const  {profileId} = useParams()
   const { videos } = useContext(UserVideosContext)
-  // const {
-  //   videos,
-  //   deleteVideo,
-  // } = useVideoActions(profileId);
-
-
+ 
   return (
 
     <main className={styles["main-profile"]}>
