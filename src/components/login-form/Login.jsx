@@ -1,11 +1,10 @@
 import { useContext, useState } from 'react'
 import loginCss from './Login.module.css'
 import { Link } from 'react-router-dom'
-import * as request from '../../lib/request'
-import { useNavigate } from 'react-router-dom'
-import { endpoints } from '../../lib/endpoints'
 import useForm from '../../hooks/useForm'
 import AuthContext from '../../context/authContext'
+import { object, string, number } from 'yup';
+
 
 const LoginFormKeys = {
     email: 'email',
@@ -15,18 +14,24 @@ const LoginFormKeys = {
 export default function Login() {
 
 
-    const {loginSubmitHandler} = useContext(AuthContext)
+    const { loginSubmitHandler } = useContext(AuthContext)
 
 
-    const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
-        [LoginFormKeys.email]:"",
-        [LoginFormKeys.password]:""
+    const loginSchema = object({
+        email: string().required('Email is required').email('Invalid email format'),
+        password: string().required('Password is required').min(6, 'Password must be at least 8 characters')
     })
-    // const navigate = useNavigate()
 
 
+    const { values, onChange, onSubmit ,validationErrors } = useForm(loginSubmitHandler, {
+        [LoginFormKeys.email]: "",
+        [LoginFormKeys.password]: ""
+    }, loginSchema)
 
 
+    console.log(validationErrors);
+
+      
     return (
         <div className={loginCss["container"]} id="container">
             <div className={loginCss["form-container"]}>
