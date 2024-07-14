@@ -43,3 +43,14 @@
     gap: 0.1em;
 
 }
+
+.input-field {
+    width: 100%;
+  
+  }
+  
+  .input-field p {
+    color: red;
+    font-size: 12px;
+  
+  }

@@ -23,7 +23,7 @@ const Video = ({ video }) => {
 
         }
     }
-       console.log(video);
+      
     return (
         <div className={styles["video"]}>
             <div className={styles["video-wrapper"]}>

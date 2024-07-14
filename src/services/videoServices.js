@@ -19,7 +19,7 @@ export const upload = (videoData, setUploadProgress) => {
         xhr.upload.addEventListener('load', () => {
             console.log('Upload complete');
             setUploadProgress(100);
-            resolve(JSON.parse(xhr.responseText));
+            // resolve(JSON.parse(xhr.responseText));
         });
 
         xhr.upload.addEventListener('error', () => {

@@ -1,12 +1,9 @@
 import { useContext, useState } from 'react';
 import styles from './Upload.module.css'
-
-import { endpoints } from '../../lib/endpoints';
 import AuthContext from '../../context/authContext';
-import UserVideosContext from '../../context/userVideoContext';
 import { useVideoActions } from '../../hooks/useVideoActions';
 import { Link } from 'react-router-dom';
-import { mixed } from 'yup';
+import { mixed, object, string } from 'yup';
 
 
 
@@ -15,30 +12,17 @@ const UploadVideo = () => {
 
     const { userId } = useContext(AuthContext)
     const { addVideo } = useVideoActions(userId);
-    // const { addVideo } = useContext(UserVideosContext);
+
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [game, setGame] = useState('')
+    const [gameChoice, setGameChoice] = useState('')
     const [video, setVideo] = useState()
 
     const [uploadProgress, setUploadProgress] = useState(0);
 
-    const uploadSubmitHandler = async (e) => {
-        e.preventDefault()
-        if (!video) return;
+    const [validationErrors, setValidationErrors] = useState({})
 
-        const formData = new FormData();
-        formData.append('title', title)
-        formData.append('description', description)
-        formData.append('game', game)
-        formData.append('userId', userId)
-        formData.append('video', video)
 
-        await addVideo(formData, setUploadProgress)
-
-    };
-
-    
     const uploadVideoSchema = object({
         title: string().required('title is required').min(6, 'Title must be at least 6 characters'),
         description: string().required('description is required').min(6, 'description must be at least 6 characters'),
@@ -55,25 +39,76 @@ const UploadVideo = () => {
         video: mixed().required('Video file is required')
     })
 
+    const uploadSubmitHandler = async (e) => {
+        e.preventDefault()
 
+
+        const formData = new FormData();
+        formData.append('title', title)
+        formData.append('description', description)
+        formData.append('gameChoice', gameChoice)
+        formData.append('userId', userId)
+        formData.append('video', video)
+
+        try {
+
+            await uploadVideoSchema.validate({ title, description, gameChoice, video }, { abortEarly: false });
+            setValidationErrors({});
+            await addVideo(formData, setUploadProgress)
+        } catch (err) {
+            console.log(err.inner);
+            const newError = {}
+            err.inner.forEach(err => {
+                newError[err.path] = err.message
+
+            });
+            setValidationErrors(newError)
+
+        }
+
+    };
+
+
+
+
+  
 
     return (
 
         <div className={styles["container"]}>
             <form className={styles["upload"]} onSubmit={uploadSubmitHandler}>
-                <input type="text" name="title" placeholder='Title' onChange={e => setTitle(e.target.value)} value={title} />
-                <textarea name="description" id="description" placeholder='Description' onChange={e => setDescription(e.target.value)} value={description}></textarea>
+                <div className={styles["input-field"]}>
 
-                <select name="game" id="game" onChange={e => setGame(e.currentTarget.value)} value={game}>
-                    <option value="Valorant">Valorant</option>
-                    <option value="Counter Strike 2">Counter Strike 2</option>
-                    <option value="League of Legends">League of Legends</option>
-                    <option value="Minecraft">Minecraft</option>
-                    <option value="Fortnite">Fortnite</option>
-                    <option value="GTA V">GTA V</option>
-                    <option value="Apex Legends">Apex Legends</option>
-                </select>
-                <input type="file" name="video" onChange={(e) => { setVideo(e.target.files[0]) }} />
+                    <input type="text" name="title" placeholder='Title' onChange={e => setTitle(e.target.value)} value={title} />
+                    {validationErrors.title && <p className='error'>{validationErrors.title}</p>}
+
+                </div>
+                <div className={styles["input-field"]}>
+
+                    <textarea name="description" id="description" placeholder='Description' onChange={e => setDescription(e.target.value)} value={description}></textarea>
+                    {validationErrors.description && <p className='error'>{validationErrors.description}</p>}
+                </div>
+                <div className={styles["input-field"]}>
+                    <select name="gameChoice" id="gameChoice" onChange={e => setGameChoice(e.currentTarget.value)} value={gameChoice}>
+                        <option value="Valorant">Valorant</option>
+                        <option value="Counter Strike 2">Counter Strike 2</option>
+                        <option value="League of Legends">League of Legends</option>
+                        <option value="Minecraft">Minecraft</option>
+                        <option value="Fortnite">Fortnite</option>
+                        <option value="GTA V">GTA V</option>
+                        <option value="Apex Legends">Apex Legends</option>
+                    </select>
+                    {validationErrors.gameChoice && <p className='error'>{validationErrors.gameChoice}</p>}
+
+                </div>
+                <div className={styles["input-field"]}>
+                    <input type="file" name="video" onChange={(e) => { setVideo(e.target.files[0]) }} />
+                    {validationErrors.video && <p className='error'>{validationErrors.video}</p>}
+                </div>
+
+
+
+
 
 
                 {uploadProgress > 0 && (

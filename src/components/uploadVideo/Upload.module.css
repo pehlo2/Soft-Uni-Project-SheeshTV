@@ -20,3 +20,12 @@
     border-radius: 0.5em;
     overflow: hidden
 }
+.container .input-field{
+    width: 100%;
+   
+  }
+  .container .input-field p{
+    color: red;
+    font-size: 12px;
+    
+  }

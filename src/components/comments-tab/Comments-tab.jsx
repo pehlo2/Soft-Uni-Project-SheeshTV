@@ -7,6 +7,10 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
 import { faCheckToSlot } from '@fortawesome/free-solid-svg-icons/faCheckToSlot';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faBan } from '@fortawesome/free-solid-svg-icons/faBan';
+import { useState } from 'react';
+import { object, string } from 'yup';
+
+
 
 const CommentsSection = ({ videoId }) => {
     const {
@@ -20,11 +24,42 @@ const CommentsSection = ({ videoId }) => {
         cancelEditing
     } = useCommentsContext();
 
+
+    const [validationErrors, setValidationErrors] = useState({})
+    const commentSchema = object({
+        editingText: string().required().min(1)
+    });
+
     const handleEditSubmit = async (e, commentId) => {
         e.preventDefault();
-        await editComment(commentId, editingText);
-        cancelEditing();
+
+        try {
+        console.log(editingText);
+            await commentSchema.validate({
+                editingText
+            }, { abortEarly: false });
+
+            setValidationErrors({});
+            await editComment(commentId, editingText);
+            cancelEditing();
+
+        } catch (err) {
+
+            const newError = {}
+            err.inner.forEach(err => {
+                newError[err.path] = err.message
+
+            });
+            setValidationErrors(newError)
+
+        }
+
+
     };
+
+    console.log(validationErrors);
+
+
 
     return (
         <>
@@ -44,6 +79,7 @@ const CommentsSection = ({ videoId }) => {
                                     type="text"
                                     value={editingText}
                                     onChange={handleEditingChange}
+                                    className={validationErrors.editingText ? styles["error-border"] : ""}
                                 />
                                 <button type="submit" className={styles['check']}><FontAwesomeIcon icon={faCheck} /></button>
                                 <button type="button" onClick={cancelEditing} className={styles['cancel']}><FontAwesomeIcon icon={faBan} /></button>

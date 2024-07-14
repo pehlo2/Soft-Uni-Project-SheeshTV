@@ -8,10 +8,10 @@
 :root {
   --body-background: #0B0B0B;
   --font-color: white;
-  --inner-font-color:#BF9B68;
+  --inner-font-color: #BF9B68;
   --button-color: #FFB74E;
-  --border-color:#323232;
-  --inner-background-color:#161618;
+  --border-color: #323232;
+  --inner-background-color: #161618;
 
   --smaller-text-color: #89898B;
 }
@@ -21,16 +21,17 @@
   --font-color: black;
   --body-color: black;
   --button-color: rgb(1, 232, 244);
-  --border-color:rgb(187, 186, 186);
-  --form-color:rgb(35, 7, 7);
-  --inner-background-color:#cfebf0;
+  --border-color: rgb(187, 186, 186);
+  --form-color: rgb(35, 7, 7);
+  --inner-background-color: #cfebf0;
 }
 
 
 
 
-*, *::before,
-*::after{
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -50,7 +51,7 @@ html {
   transition: all .5s;
 } */
 
-.app{
+.app {
   background: var(--body-background);
   color: var(--body-color);
   display: flex;
@@ -58,3 +59,4 @@ html {
   justify-content: center;
 
 }
+
