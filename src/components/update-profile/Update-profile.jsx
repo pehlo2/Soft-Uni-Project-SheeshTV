@@ -40,11 +40,11 @@ const UpdateProfileModal = ({ profile , closeEdit,onUpdate }) => {
         formData.append('username', username)
         formData.append('description', description)
         formData.append('avatarToDelete',profile.avatar)
-
        await  userServices.updateProfile(formData,userId)
        closeEdit()
        onUpdate()
     }
+
 
 
     return (

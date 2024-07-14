@@ -48,7 +48,15 @@
   width: 100%;
   font-size: 16px;
 }
-
+.container .input-field{
+  width: 100%;
+ 
+}
+.container .input-field p{
+  color: red;
+  font-size: 12px;
+  
+}
 .form-container {
   flex: 0 1 50%;
   display: flex;
@@ -97,7 +105,7 @@
   justify-content: center;
   align-items: center;
   padding: 2em;
-  background: url("../../../public/images/vortex.webp");
+  background: url("/images/vortex.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -1,11 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext,} from "react";
 import useForm from "../../hooks/useForm";
 import styles from "./Edit-Video.module.css"
-import * as  videoServices from "../../services/videoServices"
-import { useNavigate } from "react-router-dom";
+
 import UserVideosContext from "../../context/userVideoContext";
 
-
+import { object, string} from 'yup';
 
 
 
@@ -15,7 +14,7 @@ const EditVideo = ({ title,
     description,
     gameChoice,
     videoUrl, _id }) => {
-    
+
     const { editVideo } = useContext(UserVideosContext)
 
     const EditSubmitHandler = async () => {
@@ -25,14 +24,29 @@ const EditVideo = ({ title,
 
 
     };
+    const editVideoSchema = object({
+        title: string().required('title is required').min(6, 'Title must be at least 6 characters'),
+        description: string().required('description is required').min(6, 'description must be at least 6 characters'),
+        gameChoice: string().oneOf([
+            "Valorant",
+            "Counter Strike 2",
+            "League of Legends",
+            "Minecraft",
+            "Fortnite",
+            "GTA V",
+            "Apex Legends"
+        ], 'Invalid game choice')
+            .required('Game choice is is required')
+    })
 
-    const { values, onChange, onSubmit } = useForm(EditSubmitHandler, {
+
+    const { values, onChange, onSubmit, validationErrors } = useForm(EditSubmitHandler, {
         title: title,
         description: description,
         gameChoice: gameChoice,
-    });
+    }, editVideoSchema);
 
-   
+    console.log(validationErrors);
 
     return (
         <div className={styles["container"]}>

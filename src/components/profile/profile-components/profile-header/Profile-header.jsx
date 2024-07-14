@@ -7,8 +7,8 @@ import UpdateProfileModal from '../../../update-profile/Update-profile'
 import UserVideosContext from '../../../../context/userVideoContext'
 const ProfileHeader = () => {
     const [profile, setProfile] = useState({})
-    const [showProfileEdit,setShowProfileEdit] =useState(false)
-    const {changeOwnerVideoAvatar} = useContext(UserVideosContext)
+    const [showProfileEdit, setShowProfileEdit] = useState(false)
+    const { changeOwnerVideoAvatar } = useContext(UserVideosContext)
 
     const { profileId } = useParams()
 
@@ -17,18 +17,18 @@ const ProfileHeader = () => {
         userServices.getUser(profileId).then(setProfile)
 
     }, [profileId])
- 
 
-    const handleUpdateProfile = async() => {
-       await userServices.getUser(profileId).then(profile=>{
-        setProfile(profile),
-        changeOwnerVideoAvatar(profile)
 
-       })
-       
-      }
-      
-      //TOO DO : SEND USERData to update profile
+    const handleUpdateProfile = async () => {
+        await userServices.getUser(profileId).then(profile => {
+            setProfile(profile),
+                changeOwnerVideoAvatar(profile)
+
+        })
+
+    }
+
+    //TOO DO : SEND USERData to update profile
     return (
         <header>
             <div className={styles["profile-wrapper"]}>
@@ -42,7 +42,7 @@ const ProfileHeader = () => {
                             <p>Last Played Valorant 10 hours ago</p>
                             <p>{profile.createdAt}</p>
                             <div className={styles["buttons"]}>
-                           < FollowButton userToFollowId={profile._id}/>
+                                < FollowButton userToFollowId={profile._id} />
                                 <a href="" className={styles["message-button"]}>Message</a>
                             </div>
 
@@ -74,7 +74,7 @@ const ProfileHeader = () => {
                     </div>
                 </div>
             </div>
-            {showProfileEdit && <UpdateProfileModal profile={profile} closeEdit={() => setShowProfileEdit(false)} onUpdate={handleUpdateProfile}/>}
+            {showProfileEdit && <UpdateProfileModal profile={profile} closeEdit={() => setShowProfileEdit(false)} onUpdate={handleUpdateProfile} />}
         </header>
 
     )

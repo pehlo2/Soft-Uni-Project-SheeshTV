@@ -19,7 +19,6 @@ const GameChoiceBar = () => {
     });
 
     const handleRadioChange = (e) => {
-
         onChange(e);
         gameChoiceHandler({ gameChoice: e.target.value });
     };

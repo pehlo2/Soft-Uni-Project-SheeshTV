@@ -6,14 +6,15 @@ import AuthContext from '../../context/authContext';
 import UserVideosContext from '../../context/userVideoContext';
 import { useVideoActions } from '../../hooks/useVideoActions';
 import { Link } from 'react-router-dom';
+import { mixed } from 'yup';
 
 
 
 const UploadVideo = () => {
-    
-    
-    const {userId} = useContext(AuthContext)
-    const {addVideo} = useVideoActions(userId);
+
+
+    const { userId } = useContext(AuthContext)
+    const { addVideo } = useVideoActions(userId);
     // const { addVideo } = useContext(UserVideosContext);
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -22,7 +23,7 @@ const UploadVideo = () => {
 
     const [uploadProgress, setUploadProgress] = useState(0);
 
-    const uploadSubmitHandler = async(e) => {
+    const uploadSubmitHandler = async (e) => {
         e.preventDefault()
         if (!video) return;
 
@@ -32,11 +33,29 @@ const UploadVideo = () => {
         formData.append('game', game)
         formData.append('userId', userId)
         formData.append('video', video)
-       
-        await addVideo(formData,setUploadProgress)
-       
+
+        await addVideo(formData, setUploadProgress)
+
     };
-   
+
+    
+    const uploadVideoSchema = object({
+        title: string().required('title is required').min(6, 'Title must be at least 6 characters'),
+        description: string().required('description is required').min(6, 'description must be at least 6 characters'),
+        gameChoice: string().oneOf([
+            "Valorant",
+            "Counter Strike 2",
+            "League of Legends",
+            "Minecraft",
+            "Fortnite",
+            "GTA V",
+            "Apex Legends"
+        ], 'Invalid game choice')
+            .required('Game choice is is required'),
+        video: mixed().required('Video file is required')
+    })
+
+
 
     return (
 

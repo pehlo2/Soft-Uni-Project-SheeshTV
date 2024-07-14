@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react'
-import loginCss from './Login.module.css'
+import { useContext } from 'react'
+import styles from './Login.module.css'
 import { Link } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import AuthContext from '../../context/authContext'
-import { object, string, number } from 'yup';
+import { object, string } from 'yup';
 
 
 const LoginFormKeys = {
@@ -18,56 +18,59 @@ export default function Login() {
 
 
     const loginSchema = object({
-        email: string().required('Email is required').email('Invalid email format'),
-        password: string().required('Password is required').min(6, 'Password must be at least 8 characters')
+        email: string().required('* Email is required').email('* Invalid email format'),
+        password: string().required('* Password is required').min(6, '* Password must be at least 8 characters')
     })
 
 
-    const { values, onChange, onSubmit ,validationErrors } = useForm(loginSubmitHandler, {
+    const { values, onChange, onSubmit, validationErrors } = useForm(loginSubmitHandler, {
         [LoginFormKeys.email]: "",
         [LoginFormKeys.password]: ""
     }, loginSchema)
 
-
-    console.log(validationErrors);
-
-      
     return (
-        <div className={loginCss["container"]} id="container">
-            <div className={loginCss["form-container"]}>
+        <div className={styles["container"]} id="container">
+            <div className={styles["form-container"]}>
                 <form action="#" onSubmit={onSubmit} >
                     <h1>Sign in</h1>
-                    <div className={loginCss["social-container"]}>
-                        <a href="#" className={loginCss["social"]}>
-                            <div className={loginCss["media"]}>
+                    <div className={styles["social-container"]}>
+                        <a href="#" className={styles["social"]}>
+                            <div className={styles["media"]}>
                                 <img src="icons/128px-Facebook_Logo_2023.png" alt="" />
                             </div>
                         </a>
-                        <a href="#" className={loginCss["social"]}>
-                            <div className={loginCss["media"]}>
+                        <a href="#" className={styles["social"]}>
+                            <div className={styles["media"]}>
                                 <img src="icons/Logo-google-icon-PNG.png" alt="" />
                             </div>
                         </a>
-                        <a href="#" className={loginCss["social"]}>
-                            <div className={loginCss["media"]}>
+                        <a href="#" className={styles["social"]}>
+                            <div className={styles["media"]}>
                                 <img src="icons/twitter_3670151.png" alt="" />
                             </div>
                         </a>
                     </div>
                     <span>or use your account</span>
-                    <input type="email" placeholder="Email" name={LoginFormKeys.email} value={values[LoginFormKeys.email]} onChange={onChange} />
-                    <input type="password" placeholder="Password" name={LoginFormKeys.password} value={values[LoginFormKeys.password]} onChange={onChange} />
+                    <div className={styles["input-field"]}>
+                        <input type="email" placeholder="Email" name={LoginFormKeys.email} value={values[LoginFormKeys.email]} onChange={onChange} />
+                        {validationErrors.email && <p className='error'>{validationErrors.email}</p>}
+                    </div>
+                    <div className={styles["input-field"]}>
+                        <input type="password" placeholder="Password" name={LoginFormKeys.password} value={values[LoginFormKeys.password]} onChange={onChange} />
+                        {validationErrors.password && <p className='error'>{validationErrors.password}</p>}
+                    </div>
+
                     <a href="#">Forgot your password?</a>
                     <button>Sign In</button>
                 </form>
             </div>
-            <div className={loginCss["overlay-container"]}>
-                <div className={loginCss["overlay"]}>
-                    <div className={loginCss["overlay-panel"]}>
+            <div className={styles["overlay-container"]}>
+                <div className={styles["overlay"]}>
+                    <div className={styles["overlay-panel"]}>
                         <h1>Hello, Friend!</h1>
                         <p>Enter your personal details and start journey with us</p>
                         <Link to="/register">
-                            <button className={loginCss["ghost"]} id="signUp">
+                            <button className={styles["ghost"]} id="signUp">
                                 Sign Up
                             </button>
                         </Link>

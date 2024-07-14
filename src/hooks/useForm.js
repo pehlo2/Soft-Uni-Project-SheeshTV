@@ -19,7 +19,7 @@ export default function useForm(submitHandler, initialValues, validationForm) {
             setValidationErrors({});
             return true;
         } catch (err) {
-            console.log(err.inner);
+            
             const newError = {}
             err.inner.forEach(err => {
                 newError[err.path] = err.message
@@ -27,7 +27,6 @@ export default function useForm(submitHandler, initialValues, validationForm) {
             });
             setValidationErrors(newError)
             return false
-         
 
         }
 
