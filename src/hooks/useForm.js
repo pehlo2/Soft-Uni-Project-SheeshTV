@@ -14,12 +14,15 @@ export default function useForm(submitHandler, initialValues, validationForm) {
 
     const validate = async () => {
         try {
+            if (validationForm) {
+                await validationForm.validate(values, { abortEarly: false });
+                setValidationErrors({});
+                return true;
+            }
+            return true
 
-            await validationForm.validate(values, { abortEarly: false });
-            setValidationErrors({});
-            return true;
         } catch (err) {
-            
+
             const newError = {}
             err.inner.forEach(err => {
                 newError[err.path] = err.message

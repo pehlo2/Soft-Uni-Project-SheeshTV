@@ -17,9 +17,7 @@ const UploadVideo = () => {
     const [description, setDescription] = useState('')
     const [gameChoice, setGameChoice] = useState('')
     const [video, setVideo] = useState()
-
     const [uploadProgress, setUploadProgress] = useState(0);
-
     const [validationErrors, setValidationErrors] = useState({})
 
 
@@ -56,7 +54,6 @@ const UploadVideo = () => {
             setValidationErrors({});
             await addVideo(formData, setUploadProgress)
         } catch (err) {
-            console.log(err.inner);
             const newError = {}
             err.inner.forEach(err => {
                 newError[err.path] = err.message
@@ -71,8 +68,6 @@ const UploadVideo = () => {
 
 
 
-  
-
     return (
 
         <div className={styles["container"]}>
@@ -81,15 +76,14 @@ const UploadVideo = () => {
 
                     <input type="text" name="title" placeholder='Title' onChange={e => setTitle(e.target.value)} value={title} />
                     {validationErrors.title && <p className='error'>{validationErrors.title}</p>}
-
                 </div>
                 <div className={styles["input-field"]}>
-
                     <textarea name="description" id="description" placeholder='Description' onChange={e => setDescription(e.target.value)} value={description}></textarea>
                     {validationErrors.description && <p className='error'>{validationErrors.description}</p>}
                 </div>
                 <div className={styles["input-field"]}>
                     <select name="gameChoice" id="gameChoice" onChange={e => setGameChoice(e.currentTarget.value)} value={gameChoice}>
+                        <option value=""></option>
                         <option value="Valorant">Valorant</option>
                         <option value="Counter Strike 2">Counter Strike 2</option>
                         <option value="League of Legends">League of Legends</option>
