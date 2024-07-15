@@ -5,6 +5,7 @@ import VideoContext from '../../context/videoContext';
 
 const GameChoiceBar = () => {
 
+
     const { filterVideosByGameChoice } = useContext(VideoContext)
 
 
@@ -26,7 +27,7 @@ const GameChoiceBar = () => {
 
         <form className={styles["game-choice-bar"]} onSubmit={onSubmit}>
 
-            <input type="radio" id="all" name="gameChoice" value="" className={styles['custom-radio']} onChange={handleRadioChange} defaultChecked />
+            <input type="radio" id="all" name="gameChoice" value="all" className={styles['custom-radio']} onChange={handleRadioChange} defaultChecked/>
             <label htmlFor="all" className={styles['custom-radio-label']}>All</label>
 
             <input type="radio" id="valorant" name="gameChoice" value="Valorant" className={styles['custom-radio']} onChange={handleRadioChange} />

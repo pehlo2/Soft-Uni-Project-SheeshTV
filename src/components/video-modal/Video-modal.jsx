@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player';
 
 import CommentsTab from '../comments-tab/Comments-tab';
 
-// import CommnentsProvider from '../../context/commentsContext';
+
 import LikeShareTab from '../like-share-tab/Like-share-tab'
 import AuthContext from '../../context/authContext';
 import FollowButton from '../follow-button/Follow-button';
@@ -34,7 +34,7 @@ const VideoModal = ({
                 {/* <div className={styles["container"]} onClick={onClose} > */}
                 < ReactPlayer
                     onClick={(e) => { e.stopPropagation() }}
-                    url={`http://localhost:3000/data/${video.videoUrl}`}
+                    url={video.videoUrl}
                     config={{
                         file: {
                             attributes: {

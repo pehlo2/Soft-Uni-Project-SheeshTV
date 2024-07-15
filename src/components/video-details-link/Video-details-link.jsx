@@ -1,34 +1,39 @@
-import styles from './Video-details-links.module.css'
+import styles from './Video-details-links.module.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faLink } from '@fortawesome/free-solid-svg-icons/faLink';
-import {  useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import * as videoServices from '../../services/videoServices'
+import { useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import * as videoServices from '../../services/videoServices';
 import ReactPlayer from 'react-player';
-import InputComments from '../comments-input/Coments-input';
 
+import { CommnentsProvider } from '../../context/commentsContext';
+import CommentsTab from '../comments-tab/Comments-tab';
+import AuthContext from '../../context/authContext';
+import LikeShareTab from '../like-share-tab/Like-share-tab';
 
-const VideoDetails = ({
-}) => {
+const VideoDetails = () => {
     const navigate = useNavigate();
-    const [video, setVideo] = useState({})
-    const { videoId } = useParams()
+    const { userId } = useContext(AuthContext);
+    const [video, setVideo] = useState({});
+    const { videoId } = useParams();
+    const [isLiked, setIsLiked] = useState(false);
+
     useEffect(() => {
-        videoServices.getOneVideo(videoId).then(setVideo)
+        videoServices.getOneVideo(videoId)
+            .then(setVideo)
+            .catch(console.error);
+    }, [videoId]);
 
-    }, [videoId])
+    useEffect(() => {
+        if (video.likes && userId) {
+            setIsLiked(video.likes.includes(userId));
+        }
+    }, [video.likes, userId]);
 
-console.log(video);
-  
     return (
-        <div className={styles["blur"]} >
-            <div className={styles["container"]}   onClick={() => { navigate('/dashboard') }} >
-                {/* <div className={styles["container"]} onClick={onClose} > */}
-                < ReactPlayer
-              
-                onClick={e => e.stopPropagation()}
+        <div className={styles["blur"]}>
+            <div className={styles["container"]} onClick={() => { navigate('/dashboard') }}>
+                <ReactPlayer
+                    onClick={e => e.stopPropagation()}
                     controls={true}
                     config={{
                         file: {
@@ -38,12 +43,11 @@ console.log(video);
                         },
                     }}
                     className={styles['video']}
-                    url={`http://localhost:3000/data/${video.videoUrl}`}
+                    url={video.videoUrl}
                     width='100%'
                     height='100%'
-
                 />
-                <aside className={styles["aside-section"]}  onClick={e => e.stopPropagation()}>
+                <aside className={styles["aside-section"]} onClick={e => e.stopPropagation()}>
                     <div className={styles["aside-inner"]}>
                         <div className={styles["aside-info"]}>
                             <div className={styles["profile-tab"]}>
@@ -52,7 +56,7 @@ console.log(video);
                                         <img src="/images/8.jpg" alt="" />
                                     </div>
                                     <div>
-                                        <h4>{video.owner}</h4>
+                                        <h4>{video.owner?.username}</h4>
                                         <p>{video.gameChoice}</p>
                                     </div>
                                 </div>
@@ -60,48 +64,18 @@ console.log(video);
                             </div>
                             <div className={styles["video-info"]}>
                                 <h3>{video.title}</h3>
-                                <p>{video.desctription}</p>
+                                <p>{video.description}</p>
                             </div>
-                            <div className={styles["social-tab"]}>
-                                <a href=""><FontAwesomeIcon icon={faHeart} /></a>
-                                <a href=""><FontAwesomeIcon icon={faComment} /></a>
-                                <a href=""><FontAwesomeIcon icon={faLink} /></a>
-                            </div>
+                            <LikeShareTab video={video} isLiked={isLiked} setIsLiked={setIsLiked} />
                         </div>
-
-                        <div className={styles["comments"]}>
-                            <div className="user-comment">
-                                <h4>Pehlo</h4>
-                                <p>commets :Ebalo si maikata bahti proto</p>
-                                <p>2min ago</p>
-                            </div>
-                            <div className="user-comment">
-                                <h4>Pehlo</h4>
-                                <p>commets :Ebalo si maikata bahti proto</p>
-                                <p>2min ago</p>
-                            </div>
-                            <div className="user-comment">
-                                <h4>Pehlo</h4>
-                                <p>commets :Ebalo si maikata bahti proto</p>
-                                <p>2min ago</p>
-                            </div>
-
-                            <div className="user-comment">
-                                <h4>Pehlo</h4>
-                                <p>commets :Ebalo si maikata bahti proto</p>
-                                <p>2min ago</p>
-                            </div>
-
-
-
-                        </div>
+                        <CommnentsProvider videoId={video._id}>
+                            <CommentsTab videoId={video._id} />
+                        </CommnentsProvider>
                     </div>
-                    < InputComments/>
                 </aside>
-
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default VideoDetails;
