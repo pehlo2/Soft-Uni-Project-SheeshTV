@@ -18,7 +18,6 @@ const DiscoverCreators = () => {
 
     }, [searchValue])
 
-
     const onSearch = (searchValue) => {
         setSearchValue(searchValue)
     }

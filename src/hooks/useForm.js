@@ -40,9 +40,7 @@ export default function useForm(submitHandler, initialValues, validationForm) {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-
         const isValidValid = await validate();
-        console.log(isValidValid);
         if (isValidValid) {
             submitHandler(values)
         }

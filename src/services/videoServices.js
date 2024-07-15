@@ -54,8 +54,6 @@ export const getAllvideos = async (gameChoice ,searchQuery) => {
                 search: `${searchQuery}`
             });
 
-   
-
     const games = await request.get(`${endpoints.getAllVideos}?${query}`)
 
     return games
