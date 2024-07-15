@@ -10,7 +10,6 @@ const ProfileHeader = () => {
     const [profile, setProfile] = useState({})
     const [showProfileEdit, setShowProfileEdit] = useState(false)
     const { changeOwnerVideoAvatar } = useContext(UserVideosContext)
-
     const { profileId } = useParams()
 
     useEffect(() => {
@@ -51,7 +50,7 @@ const ProfileHeader = () => {
                     </div>
                     <div className={styles["profile-links"]}>
                         <button onClick={() => setShowProfileEdit(!showProfileEdit)} >EDIT PROFILE</button>
-                        <a onClick={()=> copyProfileLink(profile._id)}>Copy Profile link </a>
+                        <a onClick={() => copyProfileLink(profile._id)}>Copy Profile link </a>
                     </div>
                 </div>
                 <div className={styles["profile-info"]}>
