@@ -6,12 +6,11 @@ import { Link } from "react-router-dom";
 
 
 const CreatorCard = ({username,avatar,_id}) => {
-
-
+   
+    const avatarUrl = encodeURI(avatar.replace(/\\/g, '/'));
     return (
-        <div className={styles["creator-card"]} style={{ backgroundImage: `url(${avatar})` }}>
+        <div className={styles["creator-card"]} style={{ backgroundImage: `url('${avatarUrl}')` }}>
             <div className={styles["blur-background"]}>
-
             </div>
             <div className={styles["media"]}>
                 <img src={avatar} alt={avatar} />

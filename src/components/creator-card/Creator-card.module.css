@@ -37,3 +37,7 @@
 .media img {
     width: 100px;
 }
+.content a{
+ text-decoration: none;
+ color: white;
+}
