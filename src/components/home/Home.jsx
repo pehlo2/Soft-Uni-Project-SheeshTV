@@ -1,8 +1,12 @@
+import { useContext } from 'react'
+import AuthContext from '../../context/authContext'
 import styles from './Home.module.css'
 import SectionComponent from './Section-component'
+import Notifications from '../notifications/Notifications'
 
 
 const Home = () => {
+    const { userId } = useContext(AuthContext)
     return (
         <>
 
@@ -33,7 +37,8 @@ const Home = () => {
             </section>
 
 
-
+         
+            <Notifications  userId={userId}/>
             <SectionComponent >
 
                 <div className={styles['chat-review']}>

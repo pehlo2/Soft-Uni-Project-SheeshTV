@@ -6,16 +6,20 @@ import * as videoServices from '../../services/videoServices'
 import { useContext, useEffect, useState } from 'react';
 import VideoContext from '../../context/videoContext';
 import GameChoiceBar from '../game-choice-bar/Game-choice-bar';
+import Notifications from '../notifications/Notifications';
+import AuthContext from '../../context/authContext';
 
 
 
 const VideoDashboard = () => {
     // const [videos, setVideos] = useState([])
-
+  
     const { videos } = useContext(VideoContext)
     return (
 
         <div className={styles["container"]}>
+
+            
             <GameChoiceBar />
             <div className={styles["video-wrapper"]}>
                 {videos.length === 0 && (

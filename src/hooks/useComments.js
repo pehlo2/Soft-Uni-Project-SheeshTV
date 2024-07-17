@@ -1,22 +1,9 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
-
+import { useContext, useEffect, useReducer, useState } from "react";
 import reducer from "../reducers/commentReducer";
-import AuthContext from "./authContext";
 import * as commentsServices from '../services/commentService';
+import AuthContext from "../context/authContext";
 
-import io from 'socket.io-client'
-const socket = io.connect('http://localhost:5000');
-
-
-
-
-
-const CommentsContext = createContext();
-export default CommentsContext;
-
-export const CommnentsProvider = ({ children, videoId }) => {
-
-
+export default function useComments(videoId) {
     const [comments, dispatch] = useReducer(reducer, []);
     const [text, setText] = useState('');
     const [editingText, setEditingText] = useState('');
@@ -35,20 +22,17 @@ export const CommnentsProvider = ({ children, videoId }) => {
     }, [videoId]);
 
     const deleteComment = async (commentId) => {
-        commentsServices.deleteComment(commentId);
+       commentsServices.deleteComment(commentId);
         dispatch({
             control: 'REMOVE_COMMENT',
             comment: commentId
         });
     };
 
-    const addComment = async (type) => {
-        console.log(type);
-        const newComment = await commentsServices.createComment(videoId, text, userId, username, type);
-
-
-
-
+    const addComment = async () => {
+        const newComment = await commentsServices.createComment(videoId, text, userId);
+      
+    
         const comment = {
             _id: newComment._id,
             author: {
@@ -59,9 +43,8 @@ export const CommnentsProvider = ({ children, videoId }) => {
 
             },
             text: text,
-            type: type
         }
-
+       
 
         if (newComment) {
             dispatch({
@@ -70,7 +53,7 @@ export const CommnentsProvider = ({ children, videoId }) => {
             });
 
         }
-
+       
         setText('');
     };
 
@@ -101,24 +84,17 @@ export const CommnentsProvider = ({ children, videoId }) => {
         setEditingText('');
     };
 
-
-    return (
-        <CommentsContext.Provider value={{
-            comments, text,
-            editingText,
-            editingCommentId,
-            addComment,
-            deleteComment,
-            handleCommentChange,
-            handleEditingChange,
-            startEditing,
-            cancelEditing,
-            editComment
-        }}>
-            {children}
-        </CommentsContext.Provider>
-
-    )
+    return {
+        comments,
+        text,
+        editingText,
+        editingCommentId,
+        addComment,
+        deleteComment,
+        handleCommentChange,
+        handleEditingChange,
+        startEditing,
+        cancelEditing,
+        editComment
+    }
 }
-
-// export default  CommnentsProvider;

@@ -21,8 +21,6 @@ import DiscoverCreators from './components/discover-creators/Discover-creators'
 
 
 
-
-
 function App() {
   const [theme, setTheme] = useState('dark')
 
@@ -40,6 +38,9 @@ function App() {
     localTheme && setTheme(localTheme);
 
   }, []);
+
+  
+
 
 
 

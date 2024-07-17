@@ -34,23 +34,9 @@ export const  getAllNotFollowedUser = async (searchValue) =>{
   return users;
 
 
- 
-
-
-
-
-
 
 
  }
-
-
-
-
-
-
-
-
 
 
 export const followUser = async(userToFollowId)=>{

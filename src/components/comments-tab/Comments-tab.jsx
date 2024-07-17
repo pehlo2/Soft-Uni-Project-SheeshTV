@@ -58,9 +58,6 @@ const CommentsSection = ({ videoId }) => {
 
     };
 
-    console.log(validationErrors);
-
-
 
     return (
         <>

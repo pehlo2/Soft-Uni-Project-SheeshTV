@@ -26,7 +26,8 @@ export const endpoints = {
     videoComments: "/comments",
     getOneComment: "/comments/:commentId",
     deleteComment: "/comments/:commentId",
-
+// 
+    notifications: "/notifications"
 
 
 }

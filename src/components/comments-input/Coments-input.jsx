@@ -6,8 +6,6 @@ import { object, string } from 'yup';
 import CommentsContext from '../../context/commentsContext';
 
 
-
-
 const InputComments = ({
 }) => {
 
@@ -18,6 +16,9 @@ const InputComments = ({
         text: string().required().min(1)
     });
 
+
+
+
     const handleAddComment = async (e) => {
         e.preventDefault();
 
@@ -27,11 +28,14 @@ const InputComments = ({
                 text
             }, { abortEarly: false });
             setValidationErrors({});
-            await addComment();
+            await addComment('commented');
 
 
+
+
+           
         } catch (err) {
-
+            console.log(err);
             const newError = {}
             err.inner.forEach(err => {
                 newError[err.path] = err.message
