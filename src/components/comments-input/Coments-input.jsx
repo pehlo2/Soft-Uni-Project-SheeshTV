@@ -28,7 +28,7 @@ const InputComments = ({
                 text
             }, { abortEarly: false });
             setValidationErrors({});
-            await addComment('commented');
+            await addComment();
 
 
 

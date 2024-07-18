@@ -42,12 +42,9 @@ export const CommnentsProvider = ({ children, videoId }) => {
         });
     };
 
-    const addComment = async (type) => {
-        console.log(type);
-        const newComment = await commentsServices.createComment(videoId, text, userId, username, type);
-
-
-
+    const addComment = async () => {
+     
+        const newComment = await commentsServices.createComment(videoId, text, userId, username);
 
         const comment = {
             _id: newComment._id,
@@ -59,7 +56,6 @@ export const CommnentsProvider = ({ children, videoId }) => {
 
             },
             text: text,
-            type: type
         }
 
 

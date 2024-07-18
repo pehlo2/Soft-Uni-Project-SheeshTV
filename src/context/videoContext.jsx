@@ -11,9 +11,14 @@ export default VideoContext;
 export const VideoProvider = ({ children }) => {
     const [videos, dispatch] = useReducer(videoReducer, []);
     const { userId } = useContext(AuthContext);
+    const { username } = useContext(AuthContext);
     const [gameChoice, setGameChoice] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const location = useLocation()
+
+
+
+
     useEffect(() => {
         videoServices.getAllvideos(gameChoice, searchQuery).then(result => {
             dispatch({
@@ -38,7 +43,8 @@ export const VideoProvider = ({ children }) => {
 
 
     const likeVideo = async (videoId, userId) => {
-        await videoServices.likeVideo(videoId, userId).then(() => {
+        await videoServices.likeVideo(videoId, userId ).then(() => {
+
             dispatch({
                 control: 'LIKE_VIDEO',
                 videoId, userId

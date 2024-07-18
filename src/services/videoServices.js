@@ -34,7 +34,7 @@ export const upload = (videoData, setUploadProgress) => {
 };
 
 
-export const editVideo = async (videoId,videoData) => {
+export const editVideo = async (videoId, videoData) => {
     const video = await request.put(`${endpoints.edit}/${videoId}/edit`, videoData)
     return video
 };
@@ -48,11 +48,11 @@ export const removeVideo = async (videoId) => {
 };
 
 
-export const getAllvideos = async (gameChoice ,searchQuery) => {
+export const getAllvideos = async (gameChoice, searchQuery) => {
     const query = new URLSearchParams({
-                where: `gameChoice=${gameChoice}`,
-                search: `${searchQuery}`
-            });
+        where: `gameChoice=${gameChoice}`,
+        search: `${searchQuery}`
+    });
 
     const games = await request.get(`${endpoints.getAllVideos}?${query}`)
 
@@ -81,8 +81,7 @@ export const getUserVideos = async (profileId) => {
 
 export const likeVideo = async (videoId, userId) => {
 
-    const likedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/like`, { userId })
-
+    const likedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/like`, { userId})
 
     return likedVideo
 }

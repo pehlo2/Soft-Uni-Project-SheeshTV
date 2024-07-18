@@ -15,10 +15,13 @@ const LikeShareTab = ({ video, isLiked, setIsLiked }) => {
 
     const { likeVideo, dislikeVideo } = useContext(VideoContext)
 
-
+   
     const handleLike = () => {
         likeVideo(video._id, userId)
         setIsLiked(true)
+
+
+
     }
 
     const handleDisLike = () => {
