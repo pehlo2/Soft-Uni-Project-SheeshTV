@@ -1,11 +1,13 @@
 import styles from './Navigation.module.css'
 import { Link } from 'react-router-dom'
 import DarkMode from '../../dark-mode/DarkMode'
-import { useContext } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import AuthContext from '../../../context/authContext'
 import SearchBar from '../../search-bar/Search-bar'
 
 
+
+import NotificationsBell from '../../notification-bell/Notification-bell'
 
 
 export default function Navigation({
@@ -13,40 +15,43 @@ export default function Navigation({
 }) {
 
     const { userId, username, isAuthenticated } = useContext(AuthContext)
+   
 
-    return (<header className={styles["main-header"]}>
-        <div className={styles["logo"]}>
-            <p>SheeshTV</p>
-        </div>
-        <div className={styles["search"]}>
-            < SearchBar/>
-        </div>
+    return (
+        <header className={styles["main-header"]} >
+            <div className={styles["logo"]}>
+                <p>SheeshTV</p>
+            </div>
+            <div className={styles["search"]}>
+                < SearchBar />
+            </div>
 
-        <nav>
-            <ul>
-                < DarkMode toggleTheme={toggleTheme} />
+            <nav>
+                <ul>
+                    < DarkMode toggleTheme={toggleTheme} />
 
-                {isAuthenticated && (
-                    <>
+                    {isAuthenticated && (
+                        <>
+                            <li><Link to={`/users/${userId}`}>{username}</Link></li>
+                        </>
+                    )}
+                   <NotificationsBell/>
+                    <li><Link to="/upload">Upload</Link></li>
+                    <li><Link to="/discover">Discover</Link></li>
+                    <li><Link to="/logout">Logout</Link></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/register">Register</Link></li>
+                    <li><Link to="/login">Login</Link></li>
+                    <li><Link to="/dashboard">Dashboard</Link></li>
+                </ul>
+            </nav>
 
-                        <li><Link to={`/users/${userId}`}>{username}</Link></li>
-
-                    </>
+        </header>
 
 
-
-                )}
-                <li><Link to="/upload">Upload</Link></li>
-                <li><Link to="/discover">Discover</Link></li>
-                <li><Link to="/logout">Logout</Link></li>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/register">Register</Link></li>
-                <li><Link to="/login">Login</Link></li>
-                <li><Link to="/dashboard">Dashboard</Link></li>
-            </ul>
-        </nav>
-    </header>)
+    )
 }
+
 
 
 

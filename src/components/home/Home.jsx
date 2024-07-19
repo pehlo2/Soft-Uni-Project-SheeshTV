@@ -38,7 +38,7 @@ const Home = () => {
 
 
          
-            <Notifications  userId={userId}/>
+         
             <SectionComponent >
 
                 <div className={styles['chat-review']}>

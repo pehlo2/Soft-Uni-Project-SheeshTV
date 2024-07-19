@@ -4,13 +4,6 @@ import reducer from "../reducers/commentReducer";
 import AuthContext from "./authContext";
 import * as commentsServices from '../services/commentService';
 
-import io from 'socket.io-client'
-const socket = io.connect('http://localhost:5000');
-
-
-
-
-
 const CommentsContext = createContext();
 export default CommentsContext;
 

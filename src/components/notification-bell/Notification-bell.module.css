@@ -1,0 +1,5 @@
+.bell {
+    position: relative;
+    cursor: pointer;
+    color: var(--font-color);
+  }

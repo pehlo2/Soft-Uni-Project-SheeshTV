@@ -8,12 +8,15 @@
 :root {
   --body-background: #0B0B0B;
   --font-color: white;
+  --font-color-read: rgb(168, 168, 168);
+  --smaller-text-color: #89898B;
   --inner-font-color: #BF9B68;
   --button-color: #FFB74E;
   --border-color: #323232;
   --inner-background-color: #161618;
-
-  --smaller-text-color: #89898B;
+  --second-background-color: #232323;
+  --hover-background-color: #414141;
+  --font-background-un-read:#2f2f2f;
 }
 
 [data-theme="light"] {
@@ -23,6 +26,7 @@
   --button-color: rgb(1, 232, 244);
   --border-color: rgb(187, 186, 186);
   --form-color: rgb(35, 7, 7);
+  --second-background-color: #8e8e8e;
   --inner-background-color: #cfebf0;
 }
 
