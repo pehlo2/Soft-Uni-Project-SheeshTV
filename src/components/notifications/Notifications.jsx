@@ -54,9 +54,9 @@ const Notifications = ({ userId }) => {
 
 
   const notificationTypes = {
-    liked: (notification) => <><span className={styles['authorName']}>{notification.author}</span> liked your  {<Link to={`/videos/${notification.videoId}`}>Video</Link>}.</>,
-    commented: (notification) => <> <span className={styles['authorName']}>{notification.author}</span> commented '{notification.text}' on your {<Link to={`/videos/${notification.videoId}`}>Video</Link>}.</>,
-    followed: (notification) => <><span className={styles['authorName']}>{notification.author}</span> started following you.</>
+    liked: (notification) => <><span className={styles['authorName']}>{notification.authorName}</span> liked your  {<Link to={`/videos/${notification.videoId}`}>Video</Link>}.</>,
+    commented: (notification) => <> <span className={styles['authorName']}>{notification.authorName}</span> commented '{notification.text}' on your {<Link to={`/videos/${notification.videoId}`}>Video</Link>}.</>,
+    followed: (notification) => <><span className={styles['authorName']}>{notification.authorName}</span> started following you.</>
   };
 
 
@@ -74,8 +74,10 @@ const Notifications = ({ userId }) => {
         )}
 
         {notifications.map((notification) => (
-          <div key={notification._id} className={`${notification.read ? styles['notification-read'] : styles['notification-unread']}`} onClick={() => markAsReadHandler(notification._id)}>
-            <p >{notificationTypes[notification.type](notification)}</p>
+          <div key={notification._id} className={`${notification.read ? styles['notification-read'] : styles['notification-unread']}`} >
+            <div onClick={() => markAsReadHandler(notification._id)}>
+              <div>{notificationTypes[notification.type](notification)}</div>
+            </div>
             <a onClick={() => deleteNotificationsReadHandler(notification._id)}>x</a>
           </div>
 
