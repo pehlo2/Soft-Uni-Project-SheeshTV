@@ -17,6 +17,8 @@
   --second-background-color: #232323;
   --hover-background-color: #414141;
   --font-background-un-read:#2f2f2f;
+  --blur-color: rgba(57, 54, 54, 0.9);
+  --button-backgorund-color: rgb(44, 44, 44);
 }
 
 [data-theme="light"] {
