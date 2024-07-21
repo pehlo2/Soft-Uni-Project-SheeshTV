@@ -9,6 +9,12 @@ export const getNotifications = async (userId) => {
     return notifications;
 }
 
+export const getUnreadNotificationCount = async (userId) => {
+    const notifications = await request.get(`${endpoints.notifications}/${userId}/unread-count`)
+    return notifications;
+};
+
+
 
 export const  deleteNotifications = async (notificationId) => {
 

@@ -4,6 +4,9 @@ import * as userServices from '../../services/userServices'
 import AuthContext from "../../context/authContext";
 
 import { object, string } from 'yup';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose, faCross, faUpload } from "@fortawesome/free-solid-svg-icons";
+import CloseModalButton from "../close-modal-button/Close-modal-button";
 const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
 
 
@@ -89,31 +92,47 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
 
     return (
         <div className={styles["blur"]} onClick={closeEdit}>
+
             <div className={styles["profile-edit"]} onClick={(e) => e.stopPropagation()} >
-                <img src={avatarPreview} alt="" />
+                <h2>Edit Profile</h2>
                 <form onSubmit={updateProfileSubmitHandler}>
-                    <div className={styles["input-field"]}>
-                        <input type="file" name="avatar" id="avatar" onChange={handleAvatarChangeAndPreview} />
-                    </div>
+                    <div className={styles["avatar-header"]}>
+                        <img  className={styles["header-image"]} src="/images/header.jpg" alt="" />
 
-
-                    <div className={styles["input-field"]}>
-                        <input type="email" name="email" id="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-                        {validationErrors.email && <p className='error'>{validationErrors.email}</p>}
-                    </div>
-                    <div className={styles["input-field"]}>
-                        <input type="text" name="username" id="username" value={username} onChange={(e) => { setUsername(e.target.value) }} />
-                        {validationErrors.username && <p className='error'>{validationErrors.username}</p>}
-                    </div>
-                    <div className={styles["input-field"]}>
-                        <input type="text" name="description" id="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />
-                        {validationErrors.description && <p className='error'>{validationErrors.description}</p>}
+                        <div className={styles["upload-avatar"]}>
+                            <div className={styles["media"]}>
+                                <img src={avatarPreview} alt="" />
+                            </div>
+                            <div className={styles["input-field"]}>
+                                <input type="file" name="avatar" id="avatar" onChange={handleAvatarChangeAndPreview} className={styles["upload-icon"]} accept=".svg,.jpeg,.jpg ,.png" />
+                                <label htmlFor="avatar"><FontAwesomeIcon icon={faUpload} /></label>
+                            </div>
+                        </div>
 
                     </div>
 
+                    <div className={styles["input-fields-wrapper"]}>
+                        <div className={styles["input-fields"]}>
+                            {validationErrors.email && <p className={styles['error']}>{validationErrors.email}</p>}
+                            <input type="email" name="email" id="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                            <label htmlFor="email">Email</label>
+                        </div>
+                        <div className={styles["input-fields"]}>
+                            {validationErrors.username && <p className={styles['error']}>{validationErrors.username}</p>}
+                            <input type="text" name="username" id="username" value={username} onChange={(e) => { setUsername(e.target.value) }} />
+                            <label htmlFor="username">Username</label>
+                        </div>
+                        <div className={styles["input-fields"]}>
+                            {validationErrors.description && <p className={styles['error']}>{validationErrors.description}</p>}
+                            <textarea type="text" name="description" id="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />
+                            <label htmlFor="description">Bio</label>
 
-                    <button>Update</button>
+                        </div>
+                    </div>
+
+                    <button className={styles["sumbit-button"]}>Update</button>
                 </form>
+                <CloseModalButton onClose={closeEdit}/>
             </div>
         </div>
     )
