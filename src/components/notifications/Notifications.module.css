@@ -1,59 +1,68 @@
-.notification-wrapper{
+.notification-wrapper {
     background-color: var(--second-background-color);
     position: absolute;
     top: 30px;
-    left: -7px;
+    left: -8px;
     z-index: 1000;
-    width: 500px;
+    width: 400px;
     border-radius: 0.7em;
-    padding: 1em 0 0 0  ;
+    padding: 0.5em 0 0 0;
     user-select: none;
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.5em;
     overflow: hidden;
 }
-.notification-wrapper h2 ,.notification-wrapper h3{
+
+.notification-wrapper h4,
+.notification-wrapper h3 {
     text-align: center;
     color: var(--font-color);
 }
-.notification-top{
+
+.notification-top {
     display: flex;
-   justify-content: space-around;
-  
+    justify-content: space-around;
+
 }
 
-.notification-unread{
-  
+.notification-unread {
+    font-size: 14px;
     background-color: var(--font-background-un-read);
-    border: var( --border-color);
+    border: var(--border-color);
     color: var(--font-color);
     display: flex;
     flex-direction: row;
-    justify-content: space-between ;
+    justify-content: space-between;
     padding: 1em 1em;
-    gap :1em;
-    border-top: 1px solid var( --border-color);
+    gap: 1em;
+    border-top: 1px solid var(--border-color);
+  
 }
 
-.notification-read{
+.notification-read {
+    font-size: 14px;
     color: var(--font-color-read);
     display: flex;
     flex-direction: row;
-    justify-content: space-between ;
+    justify-content: space-between;
     padding: 1em 1em;
-    gap :1em;
-    border-top: 1px solid var( --border-color);
+    gap: 1em;
+    border-top: 1px solid var(--border-color);
+  
 }
-.notification-read:hover,.notification-unread:hover{
+
+.notification-read:hover,
+.notification-unread:hover {
     background: var(--hover-background-color);
 
 }
 
-.notification div a{
+.notification div a {
     font-weight: bold;
 }
-.authorName{
+
+.authorName {
     font-weight: bold;
     color: var(--font-color);
 }
@@ -63,20 +72,26 @@
     content: "";
     position: absolute;
     top: -6px;
-    left: 5px;
+    left: 6px;
     border-width: 0 10px 10px 10px;
     border-style: solid;
-    border-color: transparent transparent var(--second-background-color) transparent;
-  }
+    border-color: transparent transparent  var(--second-background-color) transparent;
+    z-index: 999; 
+}
 
-  .no-notifications {
-   display: flex;
-   justify-content: center;
-   flex-direction: column;
-   gap: 1em;
-   padding-bottom: 1em;
-  }
-  .bell{
+.no-notifications {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    padding-bottom: 1em;
+}
+
+.bell {
     font-size: 60px;
     text-align: center;
-  }
+}
+
+.notification-info {
+    width: 100%;
+}

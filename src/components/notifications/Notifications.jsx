@@ -1,55 +1,17 @@
-import io from 'socket.io-client';
-import { useEffect, useState } from 'react';
-import * as notificationService from '../../services/notificationsService'
+
+
 import styles from './Notifications.module.css'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
-
-const socket = io('http://localhost:5000');
-
-const Notifications = ({ userId }) => {
-
-  const [notifications, setNotifications] = useState([]);
+import CloseModalButton from '../close-modal-button/Close-modal-button';
 
 
-  useEffect(() => {
-
-
-    notificationService.getNotifications(userId).then(setNotifications)
-
-
-    socket.emit('register', userId);
-
-    socket.on('notification', (data) => {
-      setNotifications((prevNotifications) => [data, ...prevNotifications]);
-    });
-
-    return () => {
-      socket.off('notification');
-    };
-  }, [userId]);
-
-
-
-  const deleteNotificationsReadHandler = async (notificationId) => {
-    notificationService.deleteNotifications(notificationId)
-
-    setNotifications((prevNotifications) =>
-      prevNotifications.filter((notification) => notification._id !== notificationId)
-    );
-  };
-
-
-  const markAsReadHandler = async (notificationId) => {
-    notificationService.markAsRead(notificationId)
-
-    setNotifications((prevNotifications) =>
-      prevNotifications.map((notification) =>
-        notification._id === notificationId ? { ...notification, read: true } : notification
-      )
-    );
-  };
+const Notifications = ({ userId,
+  onClose,
+  notifications,
+  markAsReadHandler,
+  deleteNotificationsReadHandler }) => {
 
 
 
@@ -63,27 +25,28 @@ const Notifications = ({ userId }) => {
 
   return (
     <div className={styles['notification-wrapper']} >
-      <h2>Notifications</h2>
+      <h4>Notifications</h4>
       <div className={styles['notification-container']}>
         {notifications.length === 0 && (
           <div className={styles['no-notifications']}>
             <FontAwesomeIcon icon={faBell} className={styles['bell']}></FontAwesomeIcon>
-            <h3>You have no notifications</h3>
+            <h4>You have no notifications</h4>
           </div>
 
         )}
 
         {notifications.map((notification) => (
           <div key={notification._id} className={`${notification.read ? styles['notification-read'] : styles['notification-unread']}`} >
-            <div onClick={() => markAsReadHandler(notification._id)}>
+            <div onClick={() => markAsReadHandler(notification._id)} className={styles['notification-info']}>
               <div>{notificationTypes[notification.type](notification)}</div>
             </div>
-            <a onClick={() => deleteNotificationsReadHandler(notification._id)}>x</a>
+            <div>
+              <a onClick={() => deleteNotificationsReadHandler(notification._id)}>x</a>
+            </div>
           </div>
 
         ))}
       </div>
-
     </div>
   );
 };

@@ -40,7 +40,7 @@
 }
 
 .top-welcome .inner {
-    z-index: 312523;
+    z-index:4;
     display: flex;
     gap: 2em;
     justify-content: center;
