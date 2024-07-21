@@ -1,0 +1,14 @@
+
+.close-button {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 14px;
+    border: none;
+    background-color: var(--hover-background-color);
+    text-align: center;
+    cursor: pointer;
+  }
