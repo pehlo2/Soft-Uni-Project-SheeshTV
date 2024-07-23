@@ -12,15 +12,15 @@ export default function timeDifferenceToString(createdAt) {
     let timeDiffStr = "";
 
     if (days > 0) {
-        timeDiffStr = `${days} days`;
+        timeDiffStr = `${days} days ago`;
     } else if (hours > 0) {
-        timeDiffStr = `${hours} hours`;
+        timeDiffStr = `${hours} hours ago`;
     } else if (minutes > 0) {
-        timeDiffStr = `${minutes} minutes`;
+        timeDiffStr = `${minutes} minutes ago`;
     } else if (isNaN(seconds)) {
         timeDiffStr = `Just now`;
     } else {
-        timeDiffStr = `${seconds} second`;
+        timeDiffStr = `${seconds} second ago`;
     }
 
     return timeDiffStr;
