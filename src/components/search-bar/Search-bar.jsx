@@ -4,6 +4,7 @@ import useForm from '../../hooks/useForm'
 import { useContext } from 'react'
 import VideoContext from '../../context/videoContext';
 import { useNavigate } from 'react-router-dom';
+import styles from './Search-bar.module.css'
 const SearchBar = () => {
         const navigate =  useNavigate()
 
@@ -29,8 +30,8 @@ const SearchBar = () => {
 
     return (
 
-        <form className="search-bar" onSubmit={onSubmit}>
-            <input type="search" name='search' placeholder="search" onChange={onChange} value={values.search} />
+        <form className={styles["search-bar"]} onSubmit={onSubmit}>
+            <input type="search" name='search' placeholder="Search" onChange={onChange} value={values.search} />
             <button><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
         </form>
     )

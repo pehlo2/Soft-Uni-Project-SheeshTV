@@ -6,9 +6,16 @@ import FollowButton from '../../../follow-button/Follow-button'
 import UpdateProfileModal from '../../../update-profile/Update-profile'
 import UserVideosContext from '../../../../context/userVideoContext'
 import { copyProfileLink } from '../../../../utils/copyProfileLink'
+import VideoCount from '../../../video-count/Video-count'
+import FollowersModal from '../../../follower-modal/Followers-modal'
+import timeDifferenceToString from '../../../../utils/timeDifferenceToString'
+
+
+
 const ProfileHeader = () => {
     const [profile, setProfile] = useState({})
     const [showProfileEdit, setShowProfileEdit] = useState(false)
+    const [showFollowModal, setShowFollowModal] = useState(false)
     const { changeOwnerVideoAvatar } = useContext(UserVideosContext)
     const { profileId } = useParams()
 
@@ -39,11 +46,9 @@ const ProfileHeader = () => {
                         </div>
                         <div className={styles["content"]}>
                             <h3>{profile.username}</h3>
-                            <p>Last Played Valorant 10 hours ago</p>
-                            <p>{profile.createdAt}</p>
+                            <p>{timeDifferenceToString(profile.createdAt)}</p>
                             <div className={styles["buttons"]}>
                                 < FollowButton userToFollowId={profile._id} />
-                                <a href="" className={styles["message-button"]}>Message</a>
                             </div>
 
                         </div>
@@ -56,11 +61,8 @@ const ProfileHeader = () => {
                 <div className={styles["profile-info"]}>
 
                     <div className={styles["profile-stats"]}>
-                        <div className={styles["clips"]}>
-                            <p>412</p>
-                            <p>Videos</p>
-                        </div>
-                        <div className={styles["followers"]}>
+                        <VideoCount userId={profileId} />
+                        <div className={styles["followers"]} onClick={() => { setShowFollowModal(true) }}>
                             <p>52</p>
                             <p>Followers</p>
                         </div>
@@ -75,6 +77,7 @@ const ProfileHeader = () => {
                 </div>
             </div>
             {showProfileEdit && <UpdateProfileModal profile={profile} closeEdit={() => setShowProfileEdit(false)} onUpdate={handleUpdateProfile} />}
+            {showFollowModal && <FollowersModal closeFollowersModal={() => setShowFollowModal(false)} />}
         </header>
 
     )

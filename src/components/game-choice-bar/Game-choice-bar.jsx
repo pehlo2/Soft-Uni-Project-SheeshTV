@@ -6,9 +6,9 @@ import VideoContext from '../../context/videoContext';
 const GameChoiceBar = () => {
 
 
-    const { filterVideosByGameChoice } = useContext(VideoContext)
+    const { filterVideosByGameChoice ,gameChoice} = useContext(VideoContext)
 
-
+   console.log(gameChoice);
     const gameChoiceHandler = (values) => {
 
         filterVideosByGameChoice(values.gameChoice)
@@ -27,10 +27,10 @@ const GameChoiceBar = () => {
 
         <form className={styles["game-choice-bar"]} onSubmit={onSubmit}>
 
-            <input type="radio" id="all" name="gameChoice" value="all" className={styles['custom-radio']} onChange={handleRadioChange} defaultChecked/>
+            <input type="radio" id="all" name="gameChoice" value="" className={styles['custom-radio']} onChange={handleRadioChange} checked={gameChoice === ""}/>
             <label htmlFor="all" className={styles['custom-radio-label']}>All</label>
 
-            <input type="radio" id="valorant" name="gameChoice" value="Valorant" className={styles['custom-radio']} onChange={handleRadioChange} />
+            <input type="radio" id="valorant" name="gameChoice" value="Valorant" className={styles['custom-radio']} onChange={handleRadioChange}  />
             <label htmlFor="valorant" className={styles['custom-radio-label']}><img src="/gamesIcons/Valorant.png" alt="" /><span>Valorant</span></label>
 
             <input type="radio" id="counter-strike" name="gameChoice" value="Counter Strike 2" className={styles['custom-radio']} onChange={handleRadioChange} />

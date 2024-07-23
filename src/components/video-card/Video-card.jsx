@@ -3,6 +3,9 @@ import styles from "./Video-card.module.css"
 import ReactPlayer from "react-player";
 import VideoModal from "../video-modal/Video-modal";
 import timeDifferenceToString from "../../utils/timeDifferenceToString";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 
 
@@ -12,12 +15,11 @@ const VideoCard = ({
     title,
     viewCount,
     gameChoice,
-    _id, likes, owner,created_at
+    _id, likes, owner, created_at
 }) => {
     const [playing, setPlaying] = useState(false)
     const [showModal, setShowModal] = useState(false);
     const playerRef = useRef(null);
-
 
 
     return (
@@ -61,22 +63,29 @@ const VideoCard = ({
 
             <div className={styles["video-info"]}>
                 <div className={styles["owner-info"]}>
-                <img src={owner.avatar} alt="" />
-                <p>{owner.username}</p>
+                    <img src={owner.avatar} alt="" />
                 </div>
-                <h5>{title}</h5>
 
                 <div className={styles["video-stats"]}>
-
-                    <p><span>{viewCount}</span> views</p>
-                    <p>{timeDifferenceToString(created_at)} ago</p>
-                    <div className={styles["game-choice"]}>
-                        <img src={`gamesIcons/${gameChoice}.png`} alt="" />
-                        <p> {gameChoice}
-                        </p>
+                    <div className={styles["top-info"]}>
+                        <h4>{title}</h4>
+                        <div className={styles["game-choice"]}>
+                            <img src={`gamesIcons/${gameChoice}.png`} alt="" />
+                            {/* <p> {gameChoice}
+                        </p> */}
+                        </div>
+                    </div>
+                    <div className={styles["top-bottom"]}>
+                        <p><Link to={`/users/${owner._id}`}>{owner.username}</Link></p>
+                        <div className={styles["view-date"]}>
+                            <p><span>{viewCount}</span> views</p>
+                            <FontAwesomeIcon icon={faCircle} />
+                            <p>{timeDifferenceToString(created_at)} ago</p>
+                        </div>
                     </div>
 
                 </div>
+
             </div>
 
             {showModal && <VideoModal onClose={() => setShowModal(false)} videoId={_id} videoData={{
