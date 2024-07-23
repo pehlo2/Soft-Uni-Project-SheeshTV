@@ -11,40 +11,56 @@ export default VideoContext;
 export const VideoProvider = ({ children }) => {
     const [videos, dispatch] = useReducer(videoReducer, []);
     const { userId } = useContext(AuthContext);
-    const { username } = useContext(AuthContext);
     const [gameChoice, setGameChoice] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
+    const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
     const location = useLocation()
-
-
-
-
+   console.log(page);
     useEffect(() => {
-        videoServices.getAllvideos(gameChoice, searchQuery).then(result => {
-            dispatch({
-                control: 'GET_ALL_VIDEOS',
-                video: result,
-            });
-        });
-
-    }, [userId, gameChoice, searchQuery]);
-
+        videoServices.resetVideos()
+    }, []);
 
     useEffect(() => {
         return () => {
-            
             setGameChoice('');
         };
     }, [location]);
 
+    useEffect(() => {
+        setIsLoading(true)
 
+        videoServices.getAllvideos(gameChoice, searchQuery, page).then(result => {
 
+            dispatch({
+                control: 'GET_ALL_VIDEOS',
+                videos: result,
+            });
+            setIsLoading(false)
 
+        });
+    }, [userId, gameChoice, searchQuery, page]);
 
+    const handleScroll = () => {
+        if (videoServices.reqVideos === false) {
+            window.removeEventListener("scroll", handleScroll);
+            return
+        }
+        const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+        console.log(scrollTop + clientHeight, scrollHeight - 100);
+        if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === "/dashboard") {
+            setIsLoading(true)
+            setPage((prev) => prev + 1);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [location.pathname]);
 
     const likeVideo = async (videoId, userId) => {
-        await videoServices.likeVideo(videoId, userId ).then(() => {
-
+        await videoServices.likeVideo(videoId, userId).then(() => {
             dispatch({
                 control: 'LIKE_VIDEO',
                 videoId, userId
@@ -62,15 +78,31 @@ export const VideoProvider = ({ children }) => {
     };
 
     const filterVideosByGameChoice = (gameChoice) => {
+        resetState();
         setGameChoice(gameChoice);
-        if (!gameChoice) {
-            setSearchQuery('');
-        }
+        setSearchQuery('');
     };
 
     const filterVideosBySearchQuery = (searchQuery) => {
+        console.log('game' ,gameChoice);
+        if (searchQuery != '' || gameChoice != '') {
+
+            resetState();
+
+        }
+        setGameChoice('');
         setSearchQuery(searchQuery);
     };
+
+    const resetState = () => {
+        videoServices.resetVideos();
+        dispatch({
+            control: 'RESET',
+        });
+        setPage(1);
+    };
+
+
 
     return (
         <VideoContext.Provider
@@ -79,7 +111,9 @@ export const VideoProvider = ({ children }) => {
                 likeVideo,
                 dislikeVideo,
                 filterVideosByGameChoice,
-                filterVideosBySearchQuery
+                filterVideosBySearchQuery,
+                isLoading,
+                gameChoice
             }}
         >
             {children}

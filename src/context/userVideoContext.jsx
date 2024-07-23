@@ -1,52 +1,74 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import userVideoReducer from "../reducers/userVideoReducer";
 import AuthContext from "./authContext";
 import * as videoServices from "../services/videoServices";
-import { useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const UserVideosContext = createContext();
 
 export default UserVideosContext;
 
 export const UserVideosProvider = ({ children, profileId }) => {
-
   const navigate = useNavigate();
   const [videos, dispatch] = useReducer(userVideoReducer, []);
   const { userId } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const location = useLocation()
+
+  useEffect(() => {
+    videoServices.resetUserVideos()
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true)
+    videoServices.getUserVideos(profileId, page).then(result => {
+      dispatch({
+        control: 'GET_YOUR_VIDEOS',
+        videos: result
+      })
+      setIsLoading(false)
+    });
+  }, [page]);
+
+  const handleScroll = () => {
+    if (videoServices.reqUserVideos === false) {
+      window.removeEventListener("scroll", handleScroll);
+      return
+    }
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === `/users/${userId}`) {
+      setIsLoading(true)
+      setPage((prev) => prev + 1);
+    }
+
+  }
 
 
   useEffect(() => {
-    videoServices.getUserVideos(profileId).then(result => {
-
-      dispatch({
-        control: 'GET_YOUR_VIDEOS',
-        video: result
-      })
-    })
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname]);
 
 
-  }, [userId])
+
+
 
   const addVideo = async (formData) => {
-    console.log(formData);
-    const newVideo = await videoServices.upload(formData, setUploadProgress)
-
+    const newVideo = await videoServices.upload(formData, setUploadProgress);
     dispatch({
       type: 'ADD_VIDEO',
       video: newVideo,
     });
     navigate('/');
-
   };
 
   const deleteVideo = (videoId) => {
-  debugger
-      videoServices.removeVideo(videoId);
-      dispatch({
-        control: 'DELETE_VIDEO',
-        videoId,
-      });
-  
+    videoServices.removeVideo(videoId);
+    dispatch({
+      control: 'DELETE_VIDEO',
+      videoId,
+    });
   };
 
   const editVideo = async (videoId, videoData) => {
@@ -63,19 +85,18 @@ export const UserVideosProvider = ({ children, profileId }) => {
   };
 
   const changeOwnerVideoAvatar = (userData) => {
-    
     try {
       dispatch({
         control: 'CHANGE_OWNER_VIDEOS_AVATAR',
         userData: userData,
-    
       });
     } catch (err) {
-
+      console.log("Failed to change avatar:", err);
     }
   };
+
   return (
-    <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo ,changeOwnerVideoAvatar}}>
+    <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo, changeOwnerVideoAvatar, isLoading }}>
       {children}
     </UserVideosContext.Provider>
   );

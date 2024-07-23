@@ -8,18 +8,18 @@ import VideoContext from '../../context/videoContext';
 import GameChoiceBar from '../game-choice-bar/Game-choice-bar';
 import Notifications from '../notifications/Notifications';
 import AuthContext from '../../context/authContext';
+import LoaderSpinner from '../loader-spinner/Loader-spiner';
 
 
 
 const VideoDashboard = () => {
-    // const [videos, setVideos] = useState([])
-  
-    const { videos } = useContext(VideoContext)
+
+    const { videos, isLoading } = useContext(VideoContext)
+
+
     return (
 
         <div className={styles["container"]}>
-
-            
             <GameChoiceBar />
             <div className={styles["video-wrapper"]}>
                 {videos.length === 0 && (
@@ -31,7 +31,8 @@ const VideoDashboard = () => {
                 ))}
 
             </div>
-
+            {isLoading && <LoaderSpinner />}
+            
         </div>
 
     )

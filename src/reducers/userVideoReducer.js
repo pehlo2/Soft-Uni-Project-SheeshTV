@@ -1,8 +1,8 @@
 const userVideoReducer = (state, action) => {
-   
+ 
     switch (action?.control) {
         case 'GET_YOUR_VIDEOS':
-            return [...action.video];
+            return  [...state, ...action.videos];
         case 'ADD_VIDEO':
             return [...state, action.video];
         case 'EDIT_VIDEO':

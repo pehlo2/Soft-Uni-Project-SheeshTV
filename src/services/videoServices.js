@@ -1,5 +1,9 @@
 import * as request from '../lib/request'
 import { endpoints } from '../lib/endpoints'
+export let reqVideos = true
+export let reqUserVideos = true
+export const resetVideos = () => reqVideos = true
+export const resetUserVideos = () => reqVideos = true
 
 
 
@@ -48,32 +52,51 @@ export const removeVideo = async (videoId) => {
 };
 
 
-export const getAllvideos = async (gameChoice, searchQuery) => {
+export const getAllvideos = async (gameChoice, searchQuery, page) => {
+    const limit = 20
+    if (!reqVideos) {
+        return []
+    }
+
+    reqVideos = 0
     const query = new URLSearchParams({
         where: `gameChoice=${gameChoice}`,
-        search: `${searchQuery}`
+        search: `${searchQuery}`,
+        page: `${page}`,
+        limit: limit
     });
 
-    const games = await request.get(`${endpoints.getAllVideos}?${query}`)
 
-    return games
+    const videos = await request.get(`${endpoints.getAllVideos}?${query}`)
+
+    reqVideos = videos.length === limit
+    return videos
 }
+
 
 export const getOneVideo = async (videoId) => {
 
-    const games = await request.get(`${endpoints.geOneVideo}/${videoId}`)
-    return games
+    const videos = await request.get(`${endpoints.geOneVideo}/${videoId}`)
+    return videos
 }
 
 
-export const getUserVideos = async (profileId) => {
 
+export const getUserVideos = async (profileId, page) => {
+    const limit = 4
+    if (!reqUserVideos) {
+        return []
+    }
+    reqUserVideos = 0
     const query = new URLSearchParams({
         where: `profileId=${profileId}`,
+        page: `${page}`,
+        limit: limit
     });
 
 
     const videos = await request.get(`${endpoints.geUserVideos}?${query}`)
+    reqUserVideos = videos.length === limit
     return videos;
 }
 
@@ -81,7 +104,7 @@ export const getUserVideos = async (profileId) => {
 
 export const likeVideo = async (videoId, userId) => {
 
-    const likedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/like`, { userId})
+    const likedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/like`, { userId })
 
     return likedVideo
 }
@@ -91,4 +114,9 @@ export const dislikeVideo = async (videoId, userId) => {
     const dislikedVideo = await request.post(`${endpoints.geOneVideo}/${videoId}/dislike`, { userId })
 
     return dislikedVideo
+}
+
+export const videoCount = async (userId) => {
+    const videoCount = await request.get(`${endpoints.geOneVideo}/videoCount/${userId}`,)
+    return videoCount
 } 
