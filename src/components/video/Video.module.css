@@ -20,18 +20,19 @@
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    gap: 1em;
+   
 }
 
 .react-player {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
-.react-player  video{
-  
+.react-player video {
+
     object-fit: fill;
 }
+
 .thumbnail {
     width: 100%;
     height: 100%;
@@ -44,22 +45,28 @@
 
 .video-owner {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 1em;
-    padding: 0.4em;
+    padding:  0.5em 2em;
 }
 
+.video-owner-info {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
 
 .video-owner h3 {
     font-size: 20px;
-    color: var( --font-color);
+    color: var(--font-color);
 }
 
 .video-owner img {
-    width: 60px;
-    height: 60px;
-    border-radius: 40%;
-    padding: 0.4em;
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+   
 }
 
 
@@ -73,12 +80,13 @@
     flex-direction: column;
     gap: 1em;
     padding: 1em 2em;
+    justify-content: flex-start;
+    align-items: self-start;
 }
 
 .video .social-tab {
     border-top: 1px solid var(--border-color);
-
-    padding: 2em 1em;
+    padding: 1.2em 2em;
     display: flex;
     gap: 1em;
     justify-content: flex-end;
@@ -86,21 +94,74 @@
 }
 
 .video .social-tab a {
-    color:  var(--font-color);
+    color: var(--font-color);
     text-decoration: none;
     border: 1px solid var(--border-color);
     background: transparent;
     padding: 0.5em 1em;
     border-radius: 10em;
+    background-color: var(--button-backgorund-color);
 }
 
-.game-choice{
+.video-info-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.video-info-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+
+
+
+.video-info-inner .time {
+    color: var(--font-color-read)
+}
+
+.game-choice {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.4em;
+    background-color: var(--button-backgorund-color);
+    padding: 0.2em 1em;
+    border-radius: 1em;
 }
-.game-choice img{
+
+.game-choice img {
     width: 16px;
-   height: 16px;
+    height: 16px;
+}
+
+.edit-button {
+    align-self: self-start;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    background-color: var(--button-backgorund-color);
+    border: 1px solid var(--border-color);
+}
+
+.edit-button svg,
+.video .social-tab a svg,
+.video-info-wrapper a svg {
+    padding-right: 0.5em;
+}
+
+.views-count {
+    border-radius: 1.5em;
+    padding: 0.5em 1em;
+    background-color: var(--button-backgorund-color);
+    border: 1px solid var(--border-color);
+    align-self: self-start;
+}
+
+.video-delete button {
+    font-size: 18px;
+    color: red;
+    background-color: transparent;
+    border: none;
 }

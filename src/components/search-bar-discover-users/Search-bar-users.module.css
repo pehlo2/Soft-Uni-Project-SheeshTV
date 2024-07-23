@@ -1,0 +1,50 @@
+.search-bar-users {
+
+    display: flex;
+    max-width: 350px;
+    width: 100%;
+    border: none;
+    position: relative;
+    background: transparent;
+    border-radius: 0.3em;
+    color: white;
+   
+
+}
+
+.search-bar-users input {
+    font-size: 18px;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    border-radius: 15px;
+    border: none;
+    color: white;
+
+    background: #3d3d3d;
+    border-radius: 0.3em;
+    padding: 0.5em 2.3em;
+}
+
+.search-bar-users input:focus {
+
+    outline: none;
+}
+
+.search-bar-users button {
+    height: 30px;
+    width: 30px;
+    background: #3d3d3d;
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 7px;
+    color: grey;
+    border: none;
+
+}
+
+.search-bar-users button svg {
+    font-size: 24px;
+
+}

@@ -9,6 +9,9 @@ import EditVideo from '../edit-video/Edit-Video';
 import FollowButton from '../follow-button/Follow-button';
 import UnFollowButton from '../unfollow-button/Unfollow-button';
 import timeDifferenceToString from '../../utils/timeDifferenceToString';
+import { copyVideoLink } from '../../utils/copyVideoLink';
+import { faComment, faEdit, faEye, faHeart, faLink, faTrash, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const Video = ({ video }) => {
@@ -23,19 +26,19 @@ const Video = ({ video }) => {
 
         }
     }
-      
+    
     return (
         <div className={styles["video"]}>
             <div className={styles["video-wrapper"]}>
                 <div className={styles["video-owner"]}>
-                    <img src={video.owner.avatar} alt="" />
-                    <h3>{video.owner.username}</h3>
-                    < FollowButton userToFollowId={video.owner._id} />
-                    < UnFollowButton userToUnfollowId={video.owner._id} />
-                    <div className={styles["video-crud"]}>
-
-                        <button onClick={deleteVideoHandler}>delete</button>
-
+                    <div className={styles["video-owner-info"]}>
+                        <img src={video.owner.avatar} alt="" />
+                        <h3>{video.owner.username}</h3>
+                        < FollowButton userToFollowId={video.owner._id} />
+                        < UnFollowButton userToUnfollowId={video.owner._id} />
+                    </div>
+                    <div className={styles["video-delete"]}>
+                        <button onClick={deleteVideoHandler}><FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon></button>
                     </div>
                 </div>
                 < ReactPlayer
@@ -51,25 +54,34 @@ const Video = ({ video }) => {
                     }
                 />
                 <div className={styles["video-info"]}>
-                    <h2>{video.title}</h2>
-                    <p>{timeDifferenceToString(video.created_at)} ago</p>
-                    <p>{video.description}</p>
+                    <div className={styles["video-info-wrapper"]}>
+                        <div className={styles["video-info-inner"]}>
+                            <h2>{video.title}</h2>
+                            <p className={styles["time"]} >{timeDifferenceToString(video.created_at)} ago</p>
+                            <p>{video.description}</p>
+                        </div>
+                        <a className={styles["views-count"]}><FontAwesomeIcon icon={faEye}></FontAwesomeIcon>{video.viewCount}</a>
+                    </div>
+
                     <div className={styles["game-choice"]}>
                         <img src={`/gamesIcons/${video.gameChoice}.png`} alt="" />
-                        <p>{video.gameChoice}
+                        <p>
+                            {video.gameChoice}
                         </p>
                     </div>
-                    <a onClick={() => setShowEdit(!showEdit)}>Edit</a>
+                    <a onClick={() => setShowEdit(!showEdit)} className={styles["edit-button"]}><FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>Edit video</a>
                 </div>
                 <div className={styles["social-tab"]}>
-                    <a href="">Likes</a>
-                    <a onClick={() => setShowModal(!showModal)}>Comments</a>
-                    <a href="">Copy Link</a>
+
+                    <a><FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>Like<span>{video.likes.length}</span></a>
+                    <a onClick={() => setShowModal(!showModal)}><FontAwesomeIcon icon={faComment}></FontAwesomeIcon>Comments</a>
+                    <a onClick={() => copyVideoLink(video._id)}><FontAwesomeIcon icon={faLink}></FontAwesomeIcon>Copy Link</a>
                 </div>
             </div>
             {showModal && <VideoModal onClose={() => setShowModal(false)} videoId={video._id} videoData={{ ...video }} />}
             {showEdit && <EditVideo onClose={() => setShowEdit(false)} videoId={video._id} {...video} />}
         </div>
+
 
 
 

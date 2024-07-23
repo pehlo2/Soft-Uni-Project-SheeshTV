@@ -9,7 +9,7 @@
 .profile {
   display: flex;
   justify-content: space-between;
-  background: url("/images/360_F_625339603_zZDUsipJzoMRiRE3Hqiecl8J7HEzi0mY\ \(1\).jpg");
+  background: url("/images/header.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -35,10 +35,8 @@
 }
 
 .media {
-
-  border-radius: 30%;
+  border-radius: 50%;
   overflow: hidden;
-
   width: 150px;
   height: 150px;
 
