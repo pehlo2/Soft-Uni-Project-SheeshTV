@@ -25,9 +25,11 @@
 .game-choice-bar img {
     width: 24px;
 }
+
 .game-choice-bar span {
-   font-size: 14px;
+    font-size: 14px;
 }
+
 .custom-radio:checked+.custom-radio-label {
     background-color: rgb(122, 122, 122);
 }

@@ -14,9 +14,9 @@ const SearchBarForUsers = ({onSearch}) => {
 
     })
    
-    const resetHandler = () => {
-        setValues({search: ""})
-    }
+    // const resetHandler = () => {
+    //     setValues({search: ""})
+    // }
 
     return (
 

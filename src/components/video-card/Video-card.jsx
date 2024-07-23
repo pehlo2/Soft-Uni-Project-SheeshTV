@@ -80,7 +80,7 @@ const VideoCard = ({
                         <div className={styles["view-date"]}>
                             <p><span>{viewCount}</span> views</p>
                             <FontAwesomeIcon icon={faCircle} />
-                            <p>{timeDifferenceToString(created_at)} ago</p>
+                            <p>{timeDifferenceToString(created_at)}</p>
                         </div>
                     </div>
 

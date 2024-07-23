@@ -16,7 +16,8 @@ export const VideoProvider = ({ children }) => {
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const location = useLocation()
-   console.log(page);
+
+
     useEffect(() => {
         videoServices.resetVideos()
     }, []);
@@ -29,7 +30,7 @@ export const VideoProvider = ({ children }) => {
 
     useEffect(() => {
         setIsLoading(true)
-
+debugger
         videoServices.getAllvideos(gameChoice, searchQuery, page).then(result => {
 
             dispatch({
@@ -83,16 +84,15 @@ export const VideoProvider = ({ children }) => {
         setSearchQuery('');
     };
 
-    const filterVideosBySearchQuery = (searchQuery) => {
-        console.log('game' ,gameChoice);
-        if (searchQuery != '' || gameChoice != '') {
-
+    const filterVideosBySearchQuery = (newSearchQuery) => {
+        if (searchQuery !== newSearchQuery) {
             resetState();
-
         }
         setGameChoice('');
-        setSearchQuery(searchQuery);
+        setSearchQuery(newSearchQuery);
     };
+
+
 
     const resetState = () => {
         videoServices.resetVideos();
@@ -101,7 +101,18 @@ export const VideoProvider = ({ children }) => {
         });
         setPage(1);
     };
+    const handleClickAll = () => {
 
+
+        if (searchQuery != '') {
+            resetState()
+            setSearchQuery('')
+            const evt = new CustomEvent("SearchQueryChange", {detail: ""});
+            window.dispatchEvent(evt);
+        };
+
+
+    }
 
 
     return (
@@ -113,7 +124,9 @@ export const VideoProvider = ({ children }) => {
                 filterVideosByGameChoice,
                 filterVideosBySearchQuery,
                 isLoading,
-                gameChoice
+                gameChoice,
+                handleClickAll
+
             }}
         >
             {children}
