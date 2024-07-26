@@ -9,7 +9,7 @@ import io from 'socket.io-client';
 const socket = io('http://localhost:5000');
 
 const NotificationsBell = () => {
-    const { userId, isAuthenticated } = useContext(AuthContext)
+    const { userId, } = useContext(AuthContext)
     const [showNotifications, setShowNotifications] = useState(false)
     const [unreadCount, setUnreadCount] = useState(0);
     const notificationRef = useRef()
@@ -91,7 +91,9 @@ const NotificationsBell = () => {
 
 
     return (
-        <li className={styles['bell']}><FontAwesomeIcon icon={faBell} onClick={() => setShowNotifications(!showNotifications)} ref={notificationRef} />
+
+        <li className={styles['bell']} icon={faBell} onClick={() => setShowNotifications(!showNotifications)}>
+            <FontAwesomeIcon icon={faBell} onClick={() => setShowNotifications(!showNotifications)} ref={notificationRef} />
             {unreadCount > 0 && (<span onClick={() => setShowNotifications(!showNotifications)} className={styles['unread-count']}  >{unreadCount}</span>)}
             <div className={styles['notifications-popup']} onClick={(e) => e.stopPropagation()} >
                 {showNotifications && <Notifications
@@ -103,8 +105,9 @@ const NotificationsBell = () => {
 
                 />}
             </div>
-
         </li>
+
+
     )
 }
 

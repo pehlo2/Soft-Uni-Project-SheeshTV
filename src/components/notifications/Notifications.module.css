@@ -1,8 +1,8 @@
 .notification-wrapper {
     background-color: var(--second-background-color);
     position: absolute;
-    top: 30px;
-    left: -8px;
+    top: 40px;
+    right: -8px;
     z-index: 1000;
     width: 400px;
     border-radius: 0.7em;
@@ -94,4 +94,8 @@
 
 .notification-info {
     width: 100%;
+}
+.notification-message{
+    display: flex;
+    gap: 0.4em;
 }

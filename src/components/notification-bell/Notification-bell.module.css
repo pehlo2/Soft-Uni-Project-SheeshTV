@@ -2,7 +2,9 @@
     position: relative;
     cursor: pointer;
     color: var(--font-color);
-    position: relative;
+   
+  font-size: 24px;
+   
 }
 
 .unread-count {

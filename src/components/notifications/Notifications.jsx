@@ -16,9 +16,9 @@ const Notifications = ({ userId,
 
 
   const notificationTypes = {
-    liked: (notification) => <><span className={styles['authorName']}>{notification.authorName}</span> liked your  {<Link to={`/videos/${notification.videoId}`}>Video</Link>}.</>,
-    commented: (notification) => <> <span className={styles['authorName']}>{notification.authorName}</span> commented '{notification.text}' on your {<Link to={`/videos/${notification.videoId}`}>Video</Link>}.</>,
-    followed: (notification) => <><span className={styles['authorName']}>{notification.authorName}</span> started following you.</>
+    liked: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}>{notification.authorName}</span> liked your  {<Link to={`/videos/${notification.videoId}`}>Video.</Link>}</div>,
+    commented: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}>{notification.authorName}</span> commented '{notification.text}' on your {<Link to={`/videos/${notification.videoId}`}>Video.</Link>}</div>,
+    followed: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}>{notification.authorName}</span> started following you.</div>
   };
 
 
