@@ -21,11 +21,47 @@
   list-style: none;
   gap: 2em;
   flex-wrap: wrap;
+  align-items: center;
 }
-
+/* .main-header nav div {
+  display: flex;
+  list-style: none;
+  gap: 2em;
+  flex-wrap: wrap;
+  align-items: center;
+} */
 .main-header nav ul li a {
   text-decoration: none;
   color: var(--font-color);
+  display: flex;
+}
+.buttons{
+ 
+  background-color: rgb(67, 67, 67);
+  padding: 0.3em 1em;
+  border-radius: 0.5em;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
 }
 
+/* .register-button {
 
+
+}
+
+.login-button {} */
+
+
+.drop-menu-profile{
+  position: relative;
+}
+.drop-menu-profile img{
+  width: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.drop-menu-profile img:hover{
+  border: 1px solid grey;
+} 

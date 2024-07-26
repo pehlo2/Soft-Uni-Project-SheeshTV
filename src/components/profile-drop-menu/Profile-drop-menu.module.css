@@ -1,0 +1,33 @@
+.drop-menu {
+    background-color: var(--second-background-color);
+    position: absolute;
+    top: 50px;
+    right: -40px;
+    z-index: 1000;
+    border-radius: 0.7em;
+    padding: 0.5em 1em;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 0.5em;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.drop-menu a {
+    color: var(--font-color);
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.drop-menu a:hover {
+    text-decoration: underline;
+
+}
+.drop-menu .logout-button{
+    color: red;
+}
