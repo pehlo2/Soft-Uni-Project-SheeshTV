@@ -18,6 +18,9 @@ import { VideoProvider } from './context/videoContext'
 import Logout from './components/logout/Logout'
 import VideoDetailsLink from './components/video-details-link/Video-details-link'
 import DiscoverCreators from './components/discover-creators/Discover-creators'
+import AuthGuard from './components/guards/Auth-guard'
+import AlreadyAuthenticatedGuard from './components/guards/AlreadyAuthenticatedGuard'
+import ErrorBoundary from './components/ErrorBoundary'
 
 
 
@@ -39,37 +42,48 @@ function App() {
 
   }, []);
 
-  
-
-
-
 
   return (
-    <AuthProvider >
-      <VideoProvider>
-        <div className='app' data-theme={theme}>
-          <Navigation toggleTheme={toggleTheme} />
+    <ErrorBoundary>
+      <AuthProvider >
+        <VideoProvider>
+          <div className='app' data-theme={theme}>
+            <Navigation toggleTheme={toggleTheme} />
 
-          <main className='main-app'>
-            <Routes >
-              <Route path='/' element={<Home></Home>} />
-              <Route path='/discover' element={<DiscoverCreators />} />
-              <Route path='/login' element={<Login></Login>} />
-              <Route path='/register' element={<Register></Register>} />
-              <Route path='*' element={<NotFound></NotFound>} />
-              <Route path='/users/:profileId' element={<Profile />} />
-              <Route path='/upload' element={<UploadVideo />} />
-              <Route path='/dashboard' element={<VideoDashboard />} />
-              <Route path='/videos/:videoId' element={<VideoDetailsLink />} />
-              <Route path='/logout' element={<Logout />} />
-            </Routes>
-          </main>
+            <main className='main-app'>
+              <Routes >
 
-          <Footer />
-        </div>
+                <Route path='/' element={<Home></Home>} />
+                <Route path='*' element={<NotFound></NotFound>} />
+                <Route path='/404' element={<NotFound></NotFound>} />
+                <Route path='/dashboard' element={<VideoDashboard />} />
+                <Route path='/videos/:videoId' element={<VideoDetailsLink />} />
+                <Route path='/users/:profileId' element={<Profile />} />
 
-      </VideoProvider>
-    </AuthProvider>
+
+                <Route element={<AlreadyAuthenticatedGuard />}>
+                  <Route path='/login' element={<Login></Login>} />
+                  <Route path='/register' element={<Register></Register>} />
+                </Route>
+
+
+                <Route element={<AuthGuard />}>
+                  <Route path='/discover' element={<DiscoverCreators />} />
+                  <Route path='/upload' element={<UploadVideo />} />
+                  <Route path='/logout' element={<Logout />} />
+                </Route>
+
+
+
+              </Routes>
+            </main>
+
+            <Footer />
+          </div>
+
+        </VideoProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   )
 }
 
