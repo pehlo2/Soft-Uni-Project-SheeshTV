@@ -13,21 +13,21 @@
     overflow: hidden;
     background-color: var(--blur-color);
 
-
 }
 
 .followers-container {
+    padding-top: 0.2em;
+    position: relative;
     color: var(--font-color);
     display: flex;
     width: 400px;
     flex-direction: column;
-    border: 1px solid var(--border-color);
+    /* border: 1px solid var(--border-color); */
     align-items: center;
     border-radius: 0.4em;
     background: var(--inner-background-color);
-    ;
-    height: 635px;
-    gap: 1em;
+    max-height: 495px;
+    min-height: 495px;
     position: sticky;
     top: 3em;
 
@@ -38,13 +38,20 @@
 }
 
 .followers-wrapper {
-    width: 90%;
-
+    width: 100%;
+    overflow: scroll;
+    scrollbar-color: var(--inner-background-color) var(--inner-background-color);
+    scrollbar-width: thin;
+    padding-left: 1em;
+    padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
 }
 
 .followers-box {
     display: flex;
-    border: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     justify-content: space-between;
     width: 100%;
     padding: 0.4em 2em;
@@ -53,13 +60,30 @@
 .followers-box-inner {
     display: flex;
     gap: 1em;
+    justify-content: center;
+    align-items: center;
 }
 
 .followers-media img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-   
+
+}
+
+.title-follow {
+    width: 98%;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.title-follow h2 {
+    padding-bottom: 1em;
+}
+
+.followers-info a {
+    text-decoration: none;
+    color: var(--font-color);
 }
 
 .remove-button {

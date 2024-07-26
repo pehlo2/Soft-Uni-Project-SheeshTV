@@ -10,7 +10,7 @@ import { UserVideosProvider } from '../../context/userVideoContext';
 
 
 const Profile = () => {
-    const { userId } = useContext(AuthContext)
+   
     const { profileId } = useParams()
 
 
