@@ -1,7 +1,7 @@
 import styles from './Navigation.module.css'
 import { Link } from 'react-router-dom'
 import DarkMode from '../../dark-mode/DarkMode'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import AuthContext from '../../../context/authContext'
 import SearchBar from '../../search-bar/Search-bar'
 
@@ -18,9 +18,30 @@ export default function Navigation({
 }) {
 
     const [showDropMenu, setShowDropMenu] = useState(false)
-    const { userId, isAuthenticated, avatar } = useContext(AuthContext)
+    const { isAuthenticated, avatar } = useContext(AuthContext)
+    const dropMenuRef = useRef()
 
-    console.log(showDropMenu);
+    useEffect(() => {
+
+        const handler = (e) => {
+
+            if (!dropMenuRef.current.contains(e.target)) {
+                setShowDropMenu(false)
+            }
+        }
+        document.addEventListener('click', handler)
+
+        return () => {
+            document.removeEventListener('click', handler)
+        }
+
+    }, [])
+
+
+
+
+
+
     return (
         <header className={styles["main-header"]} >
             <div className={styles["logo"]}>
@@ -39,9 +60,9 @@ export default function Navigation({
                             <li><Link to="/dashboard">Dashboard</Link></li>
                             <li><Link to="/discover">Discover</Link></li>
                             <NotificationsBell />
-                            <li className={styles['drop-menu-profile']} >
+                            <li className={styles['drop-menu-profile']} ref={dropMenuRef}>
                                 <img src={avatar} alt={avatar} onClick={() => setShowDropMenu(!showDropMenu)} />
-                                {showDropMenu && <ProfileDropMenu />}
+                                {showDropMenu && <ProfileDropMenu onClose={() => setShowDropMenu(false)} />}
                             </li>
 
                         </>

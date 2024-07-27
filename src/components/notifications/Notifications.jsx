@@ -4,7 +4,6 @@ import styles from './Notifications.module.css'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
-import CloseModalButton from '../close-modal-button/Close-modal-button';
 
 
 const Notifications = ({ userId,

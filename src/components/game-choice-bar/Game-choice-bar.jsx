@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import styles from './Game-choice-bar.module.css'
 import useForm from '../../hooks/useForm';
 import VideoContext from '../../context/videoContext';
@@ -6,18 +6,18 @@ import VideoContext from '../../context/videoContext';
 const GameChoiceBar = () => {
 
 
-    const { filterVideosByGameChoice, gameChoice, handleClickAll} = useContext(VideoContext)
+    const { filterVideosByGameChoice, gameChoice, handleClickAll } = useContext(VideoContext)
 
 
 
 
-    
+
     const gameChoiceHandler = (values) => {
 
         filterVideosByGameChoice(values.gameChoice)
     }
 
-    const { onChange, onSubmit } = useForm(gameChoiceHandler, {
+    const { onChange, onSubmit, setValues } = useForm(gameChoiceHandler, {
         gameChoice: '',
 
     });
@@ -26,17 +26,10 @@ const GameChoiceBar = () => {
         onChange(e);
         gameChoiceHandler({ gameChoice: e.target.value });
     };
-    // const handleClickAll = (e) => {
-    //     debugger
-    //     console.log(searchQuery);
-    //     if (searchQuery != '') {
-    //         setSearchQuery('')
 
-    //     };
-    //     console.log(searchQuery);
-
-    // }
-
+    // useEffect(() => {
+    //     setValues({ gameChoice });
+    // }, [gameChoice, setValues]);
 
     return (
 
@@ -82,4 +75,3 @@ const GameChoiceBar = () => {
     )
 }
 export default GameChoiceBar;
-// ['Valorant', 'Counter Strike 2','Fortnite', 'League of Legends','Minecraft','Apex Legends','GTA V'],

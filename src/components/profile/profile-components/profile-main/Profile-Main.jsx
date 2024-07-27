@@ -11,16 +11,13 @@ import LoaderSpinner from '../../../loader-spinner/Loader-spiner';
 
 
 const ProfileMain = () => {
-
-  const { userId } = useContext(AuthContext)
-  const { profileId } = useParams()
   const { videos, isLoading } = useContext(UserVideosContext)
-
+  const { userId ,username} = useContext(AuthContext)
   return (
 
     <main className={styles["main-profile"]}>
       <div className={styles["video-box"]}>
-        <h1>Whatching Pehlo latest Clips</h1>
+        <h1>Watching {username} latest Clips</h1>
         {videos.length === 0 && (<NovideoProfile />)}
         {videos.map(video => <Video key={video._id} video={video} />)}
         {isLoading && <LoaderSpinner />}

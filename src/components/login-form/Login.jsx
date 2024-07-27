@@ -19,7 +19,7 @@ export default function Login() {
 
     const loginSchema = object({
         email: string().required('* Email is required').email('* Invalid email format'),
-        password: string().required('* Password is required').min(6, '* Password must be at least 8 characters')
+        password: string().required('* Password is required').min(6, '* Password must be at least 6 characters')
     })
 
 

@@ -1,5 +1,4 @@
 const videoReducer = (state, action) => {
-
     switch (action?.control) {
         case 'GET_ALL_VIDEOS':
             return [...state, ...action.videos];

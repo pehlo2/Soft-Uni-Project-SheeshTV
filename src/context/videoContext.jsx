@@ -26,11 +26,11 @@ export const VideoProvider = ({ children }) => {
         return () => {
             setGameChoice('');
         };
-    }, [location]);
+    }, [location.pathname]);
 
     useEffect(() => {
         setIsLoading(true)
-debugger
+   
         videoServices.getAllvideos(gameChoice, searchQuery, page).then(result => {
 
             dispatch({
@@ -85,10 +85,16 @@ debugger
     };
 
     const filterVideosBySearchQuery = (newSearchQuery) => {
+        debugger
         if (searchQuery !== newSearchQuery) {
             resetState();
         }
-        setGameChoice('');
+        if(newSearchQuery == "" && gameChoice !== ""){
+
+            setGameChoice(gameChoice);
+        }else{
+            setGameChoice('');
+        }
         setSearchQuery(newSearchQuery);
     };
 
@@ -102,13 +108,11 @@ debugger
         setPage(1);
     };
     const handleClickAll = () => {
-
-
         if (searchQuery != '') {
             resetState()
             setSearchQuery('')
-            const evt = new CustomEvent("SearchQueryChange", {detail: ""});
-            window.dispatchEvent(evt);
+            // const evt = new CustomEvent("SearchQueryChange", {detail: ""});
+            // window.dispatchEvent(evt);
         };
 
 
@@ -125,8 +129,9 @@ debugger
                 filterVideosBySearchQuery,
                 isLoading,
                 gameChoice,
-                handleClickAll
-
+                handleClickAll,
+                searchQuery,
+                setSearchQuery,
             }}
         >
             {children}

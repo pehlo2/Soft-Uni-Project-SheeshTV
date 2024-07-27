@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useReducer, useState } from "reac
 import userVideoReducer from "../reducers/userVideoReducer";
 import AuthContext from "./authContext";
 import * as videoServices from "../services/videoServices";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Navigate} from "react-router-dom";
 
 const UserVideosContext = createContext();
 
@@ -16,6 +16,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   const [page, setPage] = useState(1);
   const location = useLocation()
 
+
   useEffect(() => {
     videoServices.resetUserVideos()
   }, []);
@@ -28,8 +29,11 @@ export const UserVideosProvider = ({ children, profileId }) => {
         videos: result
       })
       setIsLoading(false)
+    }).catch(err=>{  
+      console.log(err);
+      navigate('/404')
     });
-  }, [page]);
+  }, [page, profileId]);
 
   const handleScroll = () => {
     if (videoServices.reqUserVideos === false) {
@@ -49,6 +53,14 @@ export const UserVideosProvider = ({ children, profileId }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
+
+  useEffect(() => {
+    resetState()
+  }, [profileId]);
+
+
+
+
 
 
 
@@ -94,7 +106,13 @@ export const UserVideosProvider = ({ children, profileId }) => {
       console.log("Failed to change avatar:", err);
     }
   };
-
+  const resetState = () => {
+    videoServices.resetVideos();
+    dispatch({
+      control: 'RESET',
+    });
+    setPage(1);
+  };
   return (
     <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo, changeOwnerVideoAvatar, isLoading }}>
       {children}

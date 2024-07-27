@@ -1,52 +1,40 @@
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import useForm from '../../hooks/useForm'
-import { useContext, useEffect } from 'react'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useForm from '../../hooks/useForm';
+import { useContext, useEffect } from 'react';
 import VideoContext from '../../context/videoContext';
 import { useNavigate } from 'react-router-dom';
-import styles from './Search-bar.module.css'
+import styles from './Search-bar.module.css';
+
 const SearchBar = () => {
-    const navigate = useNavigate()
-
-
-
-    const { filterVideosBySearchQuery } = useContext(VideoContext)
+    const navigate = useNavigate();
+    const { filterVideosBySearchQuery, searchQuery} = useContext(VideoContext);
 
     useEffect(() => {
-        window.addEventListener('SearchQueryChange', searchQueryChange);
-        return () => {
-            window.removeEventListener('SearchQueryChange', searchQueryChange);
-        };
-    }, []);
+        setValues({ search: searchQuery });
+    }, [searchQuery]);
 
-    const searchQueryChange = (event) => {
-        setValues({
-            search: event.detail
-
-        })
-    }
     const submitSearch = (values) => {
-        filterVideosBySearchQuery(values.search)
-        // resetHandler()
-        navigate('/dashboard')
-    }
+        filterVideosBySearchQuery(values.search);
+        navigate('/dashboard');
+    };
 
     const { values, onChange, onSubmit, setValues } = useForm(submitSearch, {
         search: ""
-
-    })
-
-    // const resetHandler = () => {
-    //     setValues({ search: "" })
-    // }
+    });
 
     return (
-
         <form className={styles["search-bar"]} onSubmit={onSubmit}>
-            <input type="search" name='search' placeholder="Search" onChange={onChange} value={values.search} />
-            <button><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
+            <input 
+                type="search" 
+                name='search' 
+                placeholder="Search" 
+                onChange={onChange} 
+                value={values.search} 
+            />
+            <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
         </form>
-    )
+    );
 }
 
-export default SearchBar
+export default SearchBar;
