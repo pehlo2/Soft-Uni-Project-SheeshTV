@@ -54,6 +54,7 @@ const ProfileHeader = () => {
         setFollowingCount(newCount);
     };
 
+    const isUserIdInFollowers = profile.followers?.some(follower => follower._id === userId)
 
 
 
