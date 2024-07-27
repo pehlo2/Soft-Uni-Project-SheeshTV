@@ -1,12 +1,14 @@
 import styles from './Follow-button.module.css'
 import * as usersServices from '../../services/userServices'
 
-const FollowButton = ({ userToFollowId ,onFollow}) => {
+const FollowButton = ({ userToFollowId, onFollow }) => {
 
     const followUserHandler = async (e) => {
         e.preventDefault()
         await usersServices.followUser(userToFollowId)
-        onFollow(userToFollowId); 
+        if (onFollow) {
+            onFollow(userToFollowId);
+        }
     }
 
     return (

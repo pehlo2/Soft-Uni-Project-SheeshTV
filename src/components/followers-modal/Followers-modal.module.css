@@ -56,6 +56,7 @@ padding-top: 2em;
     display: flex;
     border-bottom: 1px solid var(--border-color);
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding: 0.4em 2em;
 }

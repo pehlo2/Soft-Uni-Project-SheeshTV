@@ -34,7 +34,7 @@
     padding: 4em;
   }
   
-  .no-videos-wrapper button {
+  .no-videos-wrapper a {
     font-size: 22px;
     font-weight: bold;
     padding: 0.5em 2em;
