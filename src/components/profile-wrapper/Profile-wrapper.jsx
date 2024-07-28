@@ -42,7 +42,7 @@ const ProfileWrapper = ({ profileId }) => {
 
     return (
         <>
-            <ProfileHeader profile={profile} handleFollow={handleFollow} handleUnfollow={handleUnfollow} />
+            <ProfileHeader profile={profile} handleFollow={handleFollow} handleUnfollow={handleUnfollow}  handleUpdateProfile={handleUpdateProfile}/>
             <ProfileMain handleFollow={handleFollow} handleUnfollow={handleUnfollow} />
         </>
 

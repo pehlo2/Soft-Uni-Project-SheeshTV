@@ -18,7 +18,7 @@ import UnFollowButton from '../../../unfollow-button/Unfollow-button'
 
 
 const ProfileHeader = ({ profile, handleFollow,
-    handleUnfollow }) => {
+    handleUnfollow ,handleUpdateProfile}) => {
 
     const [showProfileEdit, setShowProfileEdit] = useState(false)
     const [showFollowingModal, setShowFollowingModal] = useState(false)
