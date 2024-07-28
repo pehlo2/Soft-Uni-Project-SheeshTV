@@ -1,41 +1,98 @@
 .comments {
     font-size: 12px;
     color: var(--font-color);
-    padding: 0 2em;
+    padding: 1em 2em;
     background-color: var(--inner-background-color);
     flex-grow: 1;
     overflow: auto;
     scrollbar-color: var(--inner-background-color) var(--inner-background-color);
     scrollbar-width: thin;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
-.comments button{
+.comment-edit-form {
+    display: flex;
+    gap: 1em;
+}
+.comment-edit-form input{
+    
+    border-radius: 0.3em;
+    border: none;
+}
+.comments button {
     border: none;
     background: transparent;
 }
-.comments .check{
+
+.comments .check {
     color: green;
     font-size: 16px;
 }
-.comments .delete{
+
+.comments .delete {
     font-size: 18px;
     color: red;
 }
-.comments .cancel{
+
+.comments .cancel {
     font-size: 14px;
-   color: red;
+    color: red;
 }
-.comments .edit{
+
+.comments .edit {
     color: rgb(255, 217, 0);
- }
- .user-info{
+}
+
+.comment-info h3 {
+    font-weight: bolder;
+}
+
+
+.comment-info-date {
+    font-size: 10px;
+    color: var(--font-color-read);
+}
+
+.comment-info-text {
+    font-size: 14px;
+}
+
+.user-info {
     display: flex;
-    gap:0.1em
- }
- .user-info img{
-    width: 24px;
-    height: 24px;
- }
-.error-border{
+    gap: 1em;
+
+}
+
+.user-info img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.user-comment {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2em;
+
+}
+.user-comment:hover {
+    background-color: var(--font-background-un-read);
+
+}
+.user-comment-inner {
+    display: flex;
+    gap: 1.4em;
+}
+
+.comment-buttons {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+
+}
+
+.error-border {
     border: 1px solid red;
-  }
+}

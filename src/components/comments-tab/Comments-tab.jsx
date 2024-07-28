@@ -12,8 +12,9 @@ import { object, string } from 'yup';
 
 import CommentsContext from '../../context/commentsContext';
 import timeDifferenceToString from '../../utils/timeDifferenceToString';
+import AuthContext from '../../context/authContext';
 
-const CommentsSection = ({ videoId }) => {
+const CommentsSection = ({ videoId, videoOwner }) => {
     const {
         comments,
         deleteComment,
@@ -23,10 +24,12 @@ const CommentsSection = ({ videoId }) => {
         editingCommentId,
         startEditing,
         cancelEditing
-    } =useContext(CommentsContext);
+    } = useContext(CommentsContext);
 
-
+    const { isAuthenticated, userId } = useContext(AuthContext)
     const [validationErrors, setValidationErrors] = useState({})
+
+
     const commentSchema = object({
         editingText: string().required().min(1)
     });
@@ -35,7 +38,7 @@ const CommentsSection = ({ videoId }) => {
         e.preventDefault();
 
         try {
-        console.log(editingText);
+            console.log(editingText);
             await commentSchema.validate({
                 editingText
             }, { abortEarly: false });
@@ -66,36 +69,48 @@ const CommentsSection = ({ videoId }) => {
 
                 (
                     <div className={styles["user-comment"]} key={comment._id}>
-                        <div className={styles["user-info"]}>
-                            <img src={comment.author.avatar} alt="" />
-                            <h4>{comment.author.username}</h4>
-                        </div>
+                        <div className={styles["user-comment-inner"]}>
+                            <div className={styles["user-info"]}>
+                                <img src={comment.author.avatar} alt="" />
+                            </div>
 
-                        {editingCommentId === comment._id ? (
-                            <form onSubmit={(e) => handleEditSubmit(e, comment._id)}>
-                                <input
-                                    type="text"
-                                    value={editingText}
-                                    onChange={handleEditingChange}
-                                    className={validationErrors.editingText ? styles["error-border"] : ""}
-                                />
-                                <button type="submit" className={styles['check']}><FontAwesomeIcon icon={faCheck} /></button>
-                                <button type="button" onClick={cancelEditing} className={styles['cancel']}><FontAwesomeIcon icon={faBan} /></button>
-                            </form>
-                        ) : (
-                            <>
-                                <p>{comment.text}</p>
-                                <p>{timeDifferenceToString(comment.createdAt)}</p>
-                                <button onClick={() => deleteComment(comment._id)} className={styles['delete']}><FontAwesomeIcon icon={faXmark} /></button>
+                            {editingCommentId === comment._id && (
+                                <form onSubmit={(e) => handleEditSubmit(e, comment._id)} className={styles["comment-edit-form"]}>
+                                    <input
+                                        type="text"
+                                        value={editingText}
+                                        onChange={handleEditingChange}
+                                        className={validationErrors.editingText ? styles["error-border"] : ""}
+                                    />
+                                    < button type="submit" className={styles['check']}><FontAwesomeIcon icon={faCheck} /></button>
+                                    <button type="button" onClick={cancelEditing} className={styles['cancel']}><FontAwesomeIcon icon={faBan} /></button>
+                                </form>
+                            )}
+
+                            {editingCommentId !== comment._id && (
+                                <div className={styles["comment-info"]}>
+                                    <h3>{comment.author.username}</h3>
+                                    <p className={styles["comment-info-text"]}>{comment.text}</p>
+                                    <p className={styles["comment-info-date"]}>{timeDifferenceToString(comment.createdAt)}</p>
+
+
+                                </div>
+                            )}
+
+                        </div>
+                        {videoOwner === userId && isAuthenticated && (
+                            <div className={styles["comment-buttons"]}>
                                 <button onClick={() => startEditing(comment._id, comment.text)} className={styles['edit']}><FontAwesomeIcon icon={faFileEdit} /></button>
-                            </>
+                                <button onClick={() => deleteComment(comment._id)} className={styles['delete']}><FontAwesomeIcon icon={faXmark} /></button>
+                            </div>
+
                         )}
                     </div>
                 ))}
             </div>
 
+            {isAuthenticated && <InputComments videoId={videoId} />}
 
-            <InputComments videoId={videoId} />
         </>
     );
 }

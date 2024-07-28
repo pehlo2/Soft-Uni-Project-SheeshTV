@@ -71,8 +71,8 @@ const VideoCard = ({
                         <h4>{title}</h4>
                         <div className={styles["game-choice"]}>
                             <img src={`gamesIcons/${gameChoice}.png`} alt="" />
-                            {/* <p> {gameChoice}
-                        </p> */}
+                            <p> {gameChoice}
+                        </p>
                         </div>
                     </div>
                     <div className={styles["top-bottom"]}>

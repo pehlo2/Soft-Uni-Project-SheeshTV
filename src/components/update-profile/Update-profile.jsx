@@ -10,7 +10,7 @@ import CloseModalButton from "../close-modal-button/Close-modal-button";
 const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
 
 
-    const { userId ,updateProfileHandler } = useContext(AuthContext)
+    const { userId, updateProfileHandler } = useContext(AuthContext)
     const [avatarPreview, setAvatarPreview] = useState(profile.avatar)
     const [avatar, setAvatar] = useState()
     const [description, setDescription] = useState(profile.description)
@@ -69,7 +69,7 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
 
             debugger
             const updatedUser = await userServices.updateProfile(formData, userId)
-        
+
             updateProfileHandler(updatedUser)
             closeEdit()
             onUpdate()
@@ -87,8 +87,6 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
 
 
     }
-
-
 
 
 

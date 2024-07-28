@@ -26,7 +26,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
 
         });
     }, [videoId, userId]);
-   
+
     const handleFollowHandler = () => {
         debugger
         setVideo(prevVideo => ({
@@ -82,11 +82,12 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
                                     <div className={styles["profile-media"]}>
                                         <img src={video.owner?.avatar} alt="" />
                                     </div>
-                                    <div>
+                                    <div className={styles["profile-info-inner"]}>
                                         <h4>{video.owner?.username}</h4>
-                                        <div className={styles["game-choice"]}>
-                                            <img src={`/gamesIcons/${video.gameChoice}.png`} alt="" />
-                                            <p>{video.gameChoice}</p>
+
+                                        <div className={styles["video-info"]}>
+                                            <h3>{video.title}</h3>
+                                            <p>{video.description}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -102,9 +103,10 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
                                     </>
                                 )}
                             </div>
-                            <div className={styles["video-info"]}>
-                                <h3>{video.title}</h3>
-                                <p>{video.desctription}</p>
+                            <div className={styles["game-choice"]}>
+                                <img src={`/gamesIcons/${video.gameChoice}.png`} alt="" />
+                                <p>{video.gameChoice}</p>
+
                             </div>
                             <LikeShareTab
                                 video={video}
@@ -113,8 +115,8 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
                                 contextType={contextType}
                             />
                         </div>
-                        <CommnentsProvider videoId={video._id}>
-                            <CommentsTab videoId={video._id} />
+                        <CommnentsProvider videoId={video._id} >
+                            <CommentsTab videoId={video._id} videoOwner={video.owner?._id} />
                         </CommnentsProvider>
                     </div>
                 </aside>

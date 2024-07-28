@@ -41,13 +41,13 @@
 
 .profile-info {
     display: flex;
-    gap: 2em;
+    gap: 0.5em;
 }
 
 .profile-media img {
     width: 60px;
     height: 60px;
-    border-radius: 40%;
+    border-radius: 50%;
     padding: 0.2em;
 }
 
