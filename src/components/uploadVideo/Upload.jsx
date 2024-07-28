@@ -4,6 +4,7 @@ import AuthContext from '../../context/authContext';
 import { useVideoActions } from '../../hooks/useVideoActions';
 import { Link } from 'react-router-dom';
 import { mixed, object, string } from 'yup';
+import UserVideosContext from '../../context/userVideoContext';
 
 
 
@@ -11,7 +12,8 @@ const UploadVideo = () => {
 
 
     const { userId } = useContext(AuthContext)
-    const { addVideo } = useVideoActions(userId);
+    // const { addVideo } = useVideoActions(userId);
+    const { addVideo } = useContext(UserVideosContext);
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -38,33 +40,25 @@ const UploadVideo = () => {
     })
 
     const uploadSubmitHandler = async (e) => {
-        e.preventDefault()
-
+        e.preventDefault();
 
         const formData = new FormData();
-        formData.append('title', title)
-        formData.append('description', description)
-        formData.append('gameChoice', gameChoice)
-        formData.append('userId', userId)
-        formData.append('video', video)
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('gameChoice', gameChoice);
+        formData.append('userId', userId);
+        formData.append('video', video);
 
         try {
-
             await uploadVideoSchema.validate({ title, description, gameChoice, video }, { abortEarly: false });
             setValidationErrors({});
-            await addVideo(formData, setUploadProgress)
+            await addVideo(formData, setUploadProgress);
         } catch (err) {
-            const newError = {}
-            err.inner.forEach(err => {
-                newError[err.path] = err.message
-
-            });
-            setValidationErrors(newError)
-
+            console.error(err);
+            const newError = {};
+            setValidationErrors(newError);
         }
-
     };
-
 
 
 

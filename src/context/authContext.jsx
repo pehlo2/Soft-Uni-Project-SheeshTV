@@ -1,4 +1,4 @@
-import { createContext,} from "react"
+import { createContext, } from "react"
 import { useNavigate } from "react-router-dom"
 
 import * as userService from '../services/userServices'
@@ -8,9 +8,9 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
 
 
-  const [auth, setAuth] = usePersistedState('user',{})
+  const [auth, setAuth] = usePersistedState('user', {})
 
-  
+
   const loginSubmitHandler = async (values) => {
     const result = await userService.login(values)
     localStorage.setItem('accessToken', result.accessToken);
@@ -30,7 +30,21 @@ export const AuthProvider = ({ children }) => {
     navigate('/')
   }
 
+  const updateProfileHandler = async (user) => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      storedUser.username = user.username;
+      if (avatar) {
+        storedUser.avatar = user.avatar;
+      }
+      localStorage.setItem('user', JSON.stringify(storedUser));
+    }
+    setAuth(storedUser)
+  };
+
+
   const values = {
+    updateProfileHandler,
     logoutHandler,
     registerSubmitHandler,
     loginSubmitHandler,
@@ -39,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     userId: auth._id,
     isAuthenticated: !!auth.accessToken,
     avatar: auth.avatar
-    
+
   }
 
   return (

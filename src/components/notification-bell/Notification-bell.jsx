@@ -26,12 +26,9 @@ const NotificationsBell = () => {
             const unreadCount = notifications.filter(notification => !notification.read).length;
             setUnreadCount(unreadCount);
             setNotifications(notifications)
-
         })
-
-
+        
         socket.emit('register', userId);
-
         socket.on('notification', (data) => {
             setNotifications((prevNotifications) => [data, ...prevNotifications]);
             setUnreadCount((prevUnreadCount) => prevUnreadCount + 1);
@@ -77,7 +74,7 @@ const NotificationsBell = () => {
 
         const handler = (e) => {
 
-            if (!notificationRef.current.contains(e.target)) {
+            if (!notificationRef.current?.contains(e.target)) {
                 setShowNotifications(false)
             }
         }

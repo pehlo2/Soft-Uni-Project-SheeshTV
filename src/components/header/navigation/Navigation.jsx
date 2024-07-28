@@ -18,14 +18,14 @@ export default function Navigation({
 }) {
 
     const [showDropMenu, setShowDropMenu] = useState(false)
-    const { isAuthenticated, avatar } = useContext(AuthContext)
+    const { isAuthenticated} = useContext(AuthContext)
     const dropMenuRef = useRef()
-
+     
     useEffect(() => {
 
         const handler = (e) => {
 
-            if (!dropMenuRef.current.contains(e.target)) {
+            if (!dropMenuRef.current?.contains(e.target)) {
                 setShowDropMenu(false)
             }
         }
@@ -37,8 +37,8 @@ export default function Navigation({
 
     }, [])
 
-
-
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+  
 
 
 
@@ -61,7 +61,7 @@ export default function Navigation({
                             <li><Link to="/discover">Discover</Link></li>
                             <NotificationsBell />
                             <li className={styles['drop-menu-profile']} ref={dropMenuRef}>
-                                <img src={avatar} alt={avatar} onClick={() => setShowDropMenu(!showDropMenu)} />
+                                <img src={storedUser?.avatar} alt={storedUser?.avatar} onClick={() => setShowDropMenu(!showDropMenu)} />
                                 {showDropMenu && <ProfileDropMenu onClose={() => setShowDropMenu(false)} />}
                             </li>
 

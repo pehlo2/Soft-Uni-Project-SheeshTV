@@ -1,4 +1,5 @@
 const videoReducer = (state, action) => {
+    debugger
     switch (action?.control) {
         case 'GET_ALL_VIDEOS':
             return [...state, ...action.videos];

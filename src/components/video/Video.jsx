@@ -40,8 +40,8 @@ const Video = ({ video }) => {
                         <h3>{video.owner.username}</h3>
                         {userId !== video.owner._id && isAuthenticated && (<>
 
-                            {video.owner.followers.includes(userId) && < UnFollowButton userToUnfollowId={video.owner._id} />}
-                            {video.owner.followers.includes(userId) && < FollowButton userToFollowId={video.owner._id} />}
+                            {video.owner.followers?.includes(userId) && < UnFollowButton userToUnfollowId={video.owner._id} />}
+                            {video.owner.followers?.includes(userId) && < FollowButton userToFollowId={video.owner._id} />}
 
                         </>
                         )}
@@ -91,7 +91,7 @@ const Video = ({ video }) => {
                     <a onClick={() => copyVideoLink(video._id)}><FontAwesomeIcon icon={faLink}></FontAwesomeIcon>Copy Link</a>
                 </div>
             </div>
-            {showModal && <VideoModal onClose={() => setShowModal(false)} videoId={video._id} videoData={{ ...video }} />}
+            {showModal && <VideoModal onClose={() => setShowModal(false)} videoId={video._id} videoData={{ ...video }}  contextType="userVideos"/>}
             {showEdit && <EditVideo onClose={() => setShowEdit(false)} videoId={video._id} {...video} />}
         </div>
 

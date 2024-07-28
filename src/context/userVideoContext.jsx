@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useReducer, useState } from "reac
 import userVideoReducer from "../reducers/userVideoReducer";
 import AuthContext from "./authContext";
 import * as videoServices from "../services/videoServices";
-import { useLocation, useNavigate, Navigate} from "react-router-dom";
+import { useLocation, useNavigate, Navigate } from "react-router-dom";
 
 const UserVideosContext = createContext();
 
@@ -11,25 +11,31 @@ export default UserVideosContext;
 export const UserVideosProvider = ({ children, profileId }) => {
   const navigate = useNavigate();
   const [videos, dispatch] = useReducer(userVideoReducer, []);
-  const { userId } = useContext(AuthContext);
+  const { userId, username, email, avatar } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const location = useLocation()
 
 
   useEffect(() => {
-    videoServices.resetUserVideos()
-  }, []);
+
+    resetState()
+  }, [profileId]);
+
+
+
 
   useEffect(() => {
     setIsLoading(true)
+
     videoServices.getUserVideos(profileId, page).then(result => {
+      console.log(result);
       dispatch({
-        control: 'GET_YOUR_VIDEOS',
+        type: 'GET_YOUR_VIDEOS',
         videos: result
       })
       setIsLoading(false)
-    }).catch(err=>{  
+    }).catch(err => {
       console.log(err);
       navigate('/404')
     });
@@ -41,44 +47,42 @@ export const UserVideosProvider = ({ children, profileId }) => {
       return
     }
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === `/users/${userId}`) {
+   
+  
+    if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === `/users/${profileId}`) {
       setIsLoading(true)
       setPage((prev) => prev + 1);
     }
-
   }
 
-
   useEffect(() => {
+    resetState()
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
 
-  useEffect(() => {
-    resetState()
-  }, [profileId]);
 
 
+  const addVideo = async (formData, setUploadProgress) => {
+    try {
+      const newVideo = await videoServices.upload(formData, setUploadProgress);
 
+      newVideo.owner = { _id: userId, username, email, avatar }
 
-
-
-
-
-
-  const addVideo = async (formData) => {
-    const newVideo = await videoServices.upload(formData, setUploadProgress);
-    dispatch({
-      type: 'ADD_VIDEO',
-      video: newVideo,
-    });
-    navigate('/');
+      dispatch({
+        type: 'ADD_VIDEO',
+        video: newVideo,
+      });
+    } catch (error) {
+      console.error("Failed to add video:", error);
+    }
   };
 
   const deleteVideo = (videoId) => {
     videoServices.removeVideo(videoId);
     dispatch({
-      control: 'DELETE_VIDEO',
+      type: 'DELETE_VIDEO',
       videoId,
     });
   };
@@ -87,7 +91,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
     try {
       const updatedVideo = await videoServices.editVideo(videoId, videoData);
       dispatch({
-        control: 'EDIT_VIDEO',
+        type: 'EDIT_VIDEO',
         video: updatedVideo,
         videoId,
       });
@@ -97,24 +101,52 @@ export const UserVideosProvider = ({ children, profileId }) => {
   };
 
   const changeOwnerVideoAvatar = (userData) => {
+    debugger
     try {
       dispatch({
-        control: 'CHANGE_OWNER_VIDEOS_AVATAR',
+        type: 'CHANGE_OWNER_VIDEOS_AVATAR',
         userData: userData,
       });
     } catch (err) {
       console.log("Failed to change avatar:", err);
     }
   };
+
+
+
+  const likeVideo = async (videoId, userId) => {
+    await videoServices.likeVideo(videoId, userId).then(() => {
+      dispatch({
+        type: 'LIKE_VIDEO',
+        videoId, userId
+      });
+    });
+  };
+
+  const dislikeVideo = async (videoId, userId) => {
+    debugger
+    await videoServices.dislikeVideo(videoId, userId).then(() => {
+
+      dispatch({
+        type: 'DISLIKE_VIDEO',
+        videoId, userId
+      });
+    });
+  };
+
+
+
+
   const resetState = () => {
-    videoServices.resetVideos();
+    videoServices.resetUserVideos();
     dispatch({
-      control: 'RESET',
+      type: 'RESET',
     });
     setPage(1);
   };
+
   return (
-    <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo, changeOwnerVideoAvatar, isLoading }}>
+    <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo, changeOwnerVideoAvatar, isLoading, likeVideo, dislikeVideo }}>
       {children}
     </UserVideosContext.Provider>
   );

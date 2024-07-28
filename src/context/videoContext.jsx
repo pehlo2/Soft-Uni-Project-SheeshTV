@@ -48,7 +48,6 @@ export const VideoProvider = ({ children }) => {
             return
         }
         const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-        console.log(scrollTop + clientHeight, scrollHeight - 100);
         if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === "/dashboard") {
             setIsLoading(true)
             setPage((prev) => prev + 1);
@@ -70,7 +69,9 @@ export const VideoProvider = ({ children }) => {
     };
 
     const dislikeVideo = async (videoId, userId) => {
+        debugger
         await videoServices.dislikeVideo(videoId, userId).then(() => {
+
             dispatch({
                 control: 'DISLIKE_VIDEO',
                 videoId, userId

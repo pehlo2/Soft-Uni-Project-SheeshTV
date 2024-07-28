@@ -3,14 +3,12 @@ import { endpoints } from '../lib/endpoints'
 export let reqVideos = true
 export let reqUserVideos = true
 export const resetVideos = () => reqVideos = true
-export const resetUserVideos = () => reqVideos = true
-
+export const resetUserVideos = () => reqUserVideos = true
 
 
 export const upload = (videoData, setUploadProgress) => {
     console.log(videoData);
     return new Promise((resolve, reject) => {
-
         const xhr = new XMLHttpRequest();
 
         xhr.upload.addEventListener('progress', (event) => {
@@ -23,7 +21,7 @@ export const upload = (videoData, setUploadProgress) => {
         xhr.upload.addEventListener('load', () => {
             console.log('Upload complete');
             setUploadProgress(100);
-            // resolve(JSON.parse(xhr.responseText));
+           
         });
 
         xhr.upload.addEventListener('error', () => {
@@ -32,11 +30,22 @@ export const upload = (videoData, setUploadProgress) => {
             reject(new Error('Upload failed'));
         });
 
-        xhr.open('POST', `http://localhost:3000${endpoints.upload}`);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    console.log('Response received:', response);
+                    resolve(response);
+                } else {
+                    reject(new Error('Failed to upload video'));
+                }
+            }
+        };
+
+        xhr.open('POST', `http://localhost:3000/data/videos/upload`);
         xhr.send(videoData);
     });
 };
-
 
 export const editVideo = async (videoId, videoData) => {
     const video = await request.put(`${endpoints.edit}/${videoId}/edit`, videoData)

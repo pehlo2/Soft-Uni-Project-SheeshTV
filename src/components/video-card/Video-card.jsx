@@ -95,7 +95,7 @@ const VideoCard = ({
                 viewCount,
                 gameChoice,
                 _id, likes, owner
-            }} />}
+            }} contextType="video" />}
         </div>
     )
 }

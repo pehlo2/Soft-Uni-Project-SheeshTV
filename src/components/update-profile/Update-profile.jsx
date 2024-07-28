@@ -5,12 +5,12 @@ import AuthContext from "../../context/authContext";
 
 import { object, string } from 'yup';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faCross, faUpload } from "@fortawesome/free-solid-svg-icons";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import CloseModalButton from "../close-modal-button/Close-modal-button";
 const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
 
 
-    const { userId } = useContext(AuthContext)
+    const { userId ,updateProfileHandler } = useContext(AuthContext)
     const [avatarPreview, setAvatarPreview] = useState(profile.avatar)
     const [avatar, setAvatar] = useState()
     const [description, setDescription] = useState(profile.description)
@@ -67,8 +67,10 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
             }, { abortEarly: false });
             setValidationErrors({});
 
-
-            await userServices.updateProfile(formData, userId)
+            debugger
+            const updatedUser = await userServices.updateProfile(formData, userId)
+        
+            updateProfileHandler(updatedUser)
             closeEdit()
             onUpdate()
         } catch (err) {
@@ -97,7 +99,7 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
                 <h2>Edit Profile</h2>
                 <form onSubmit={updateProfileSubmitHandler}>
                     <div className={styles["avatar-header"]}>
-                        <img  className={styles["header-image"]} src="/images/header.jpg" alt="" />
+                        <img className={styles["header-image"]} src="/images/header.jpg" alt="" />
 
                         <div className={styles["upload-avatar"]}>
                             <div className={styles["media"]}>
@@ -132,7 +134,7 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
 
                     <button className={styles["sumbit-button"]}>Update</button>
                 </form>
-                <CloseModalButton onClose={closeEdit}/>
+                <CloseModalButton onClose={closeEdit} />
             </div>
         </div>
     )

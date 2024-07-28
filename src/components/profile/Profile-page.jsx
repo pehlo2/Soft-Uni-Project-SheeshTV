@@ -1,29 +1,21 @@
-
-import ProfileHeader from './profile-components/profile-header/Profile-header'
+import ProfileHeader from './profile-components/profile-header/Profile-header';
 import ProfileMain from './profile-components/profile-main/Profile-Main';
-import styles from './Profile-page.module.css'
-
-import { useContext } from 'react';
-import AuthContext from '../../context/authContext';
-import { useParams } from 'react-router-dom';
+import styles from './Profile-page.module.css';
+import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { UserVideosProvider } from '../../context/userVideoContext';
 
-
 const Profile = () => {
-   
-    const { profileId } = useParams()
+    const { profileId } = useParams();
+    const location = useLocation();
 
 
     return (
         <div className={styles["container"]}>
-            <UserVideosProvider profileId={profileId} >
-                <ProfileHeader></ProfileHeader>
-                <ProfileMain />
+            <UserVideosProvider profileId={profileId}>
+                {location.pathname.endsWith('/upload') ? <Outlet /> : <><ProfileHeader /><ProfileMain /> </>}
             </UserVideosProvider>
         </div>
-
-    )
-}
-
+    );
+};
 
 export default Profile;
