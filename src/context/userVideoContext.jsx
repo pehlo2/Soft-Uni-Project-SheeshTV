@@ -114,10 +114,11 @@ export const UserVideosProvider = ({ children, profileId }) => {
 
 
 
+
   const likeVideo = async (videoId, userId) => {
     await videoServices.likeVideo(videoId, userId).then(() => {
       dispatch({
-        type: 'LIKE_VIDEO',
+        type:'LIKE_VIDEO',
         videoId, userId
       });
     });
@@ -134,6 +135,22 @@ export const UserVideosProvider = ({ children, profileId }) => {
     });
   };
 
+  const followUser = (userIdToFollow) => {
+    dispatch({
+      type: 'FOLLOW_USER',
+      userIdToFollow,
+      userId,
+    });
+  };
+
+  const unfollowUser = (userIdToUnfollow) => {
+    dispatch({
+      type: 'UNFOLLOW_USER',
+      userIdToUnfollow,
+      userId,
+    });
+  };
+
 
 
 
@@ -146,7 +163,8 @@ export const UserVideosProvider = ({ children, profileId }) => {
   };
 
   return (
-    <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo, changeOwnerVideoAvatar, isLoading, likeVideo, dislikeVideo }}>
+    <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo, changeOwnerVideoAvatar, isLoading, likeVideo, dislikeVideo ,followUser
+      ,unfollowUser }}>
       {children}
     </UserVideosContext.Provider>
   );

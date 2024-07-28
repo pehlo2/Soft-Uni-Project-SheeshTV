@@ -15,11 +15,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AuthContext from '../../context/authContext';
 
 
-const Video = ({ video }) => {
+const Video = ({ video, handleFollow, handleUnfollow }) => {
     const [showModal, setShowModal] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
-    const { userId, isAuthenticated, avatar } = useContext(AuthContext)
-
+    const { userId, isAuthenticated } = useContext(AuthContext)
+    const { followUser, unfollowUser } = useContext(UserVideosContext)
 
     const { deleteVideo } = useContext(UserVideosContext)
     const deleteVideoHandler = async () => {
@@ -30,6 +30,17 @@ const Video = ({ video }) => {
         }
     }
 
+
+    // const handleFollow = (userIdToFollow) => {
+    //     followUser(userIdToFollow);
+    // };
+
+    // const handleUnFollow = (userIdToFollow) => {
+    //     unfollowUser(userIdToFollow);
+    // };
+
+
+
     return (
         <div className={styles["video"]}>
             <div className={styles["video-wrapper"]}>
@@ -39,9 +50,8 @@ const Video = ({ video }) => {
 
                         <h3>{video.owner.username}</h3>
                         {userId !== video.owner._id && isAuthenticated && (<>
-
-                            {video.owner.followers?.includes(userId) && < UnFollowButton userToUnfollowId={video.owner._id} />}
-                            {video.owner.followers?.includes(userId) && < FollowButton userToFollowId={video.owner._id} />}
+                            {video.owner.followers?.includes(userId) && < UnFollowButton userToUnfollowId={video.owner._id} onUnfollow={handleUnfollow} />}
+                            {!video.owner.followers?.includes(userId) && < FollowButton userToFollowId={video.owner._id} onFollow={handleFollow} />}
 
                         </>
                         )}
@@ -91,7 +101,8 @@ const Video = ({ video }) => {
                     <a onClick={() => copyVideoLink(video._id)}><FontAwesomeIcon icon={faLink}></FontAwesomeIcon>Copy Link</a>
                 </div>
             </div>
-            {showModal && <VideoModal onClose={() => setShowModal(false)} videoId={video._id} videoData={{ ...video }}  contextType="userVideos"/>}
+            {showModal && <VideoModal onClose={() => setShowModal(false)} videoId={video._id} videoData={{ ...video }} contextType="userVideos" handleUnfollow={handleUnfollow}
+                handleFollow={handleFollow} />}
             {showEdit && <EditVideo onClose={() => setShowEdit(false)} videoId={video._id} {...video} />}
         </div>
 

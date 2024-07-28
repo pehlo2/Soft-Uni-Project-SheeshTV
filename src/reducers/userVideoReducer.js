@@ -34,6 +34,18 @@ const userVideoReducer = (state = [], action) => {
                     ? { ...video, likes: video.likes.filter(id => id !== action.userId) }
                     : video
             );
+        case 'FOLLOW_USER':
+            return state.map(video =>
+                video.owner._id === action.userIdToFollow
+                    ? { ...video, owner: { ...video.owner, followers: [...video.owner.followers, action.userId] } }
+                    : video
+            );
+        case 'UNFOLLOW_USER':
+            return state.map(video =>
+                video.owner._id === action.userIdToUnfollow
+                    ? { ...video, owner: { ...video.owner, followers: video.owner.followers.filter(followerId => followerId !== action.userId) } }
+                    : video
+            );
         default:
             return state;
     }

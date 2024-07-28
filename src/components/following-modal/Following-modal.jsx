@@ -7,7 +7,7 @@ import AuthContext from '../../context/authContext';
 import CloseModalButton from '../close-modal-button/Close-modal-button';
 import FollowButton from '../follow-button/Follow-button';
 
-const FollowingModal = ({ onClose, profile ,updateFollowingCount}) => {
+const FollowingModal = ({ onClose, profile, updateFollowingCount }) => {
     const { userId } = useContext(AuthContext);
     const { profileId } = useParams();
     const [followingUsers, setFollowingUsers] = useState([]);

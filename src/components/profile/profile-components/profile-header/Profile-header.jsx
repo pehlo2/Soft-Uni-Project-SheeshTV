@@ -17,20 +17,17 @@ import UnFollowButton from '../../../unfollow-button/Unfollow-button'
 
 
 
-const ProfileHeader = () => {
-    const [profile, setProfile] = useState({})
+const ProfileHeader = ({ profile, handleFollow,
+    handleUnfollow }) => {
+
     const [showProfileEdit, setShowProfileEdit] = useState(false)
     const [showFollowingModal, setShowFollowingModal] = useState(false)
     const [showFollowersModal, setShowFollowersModal] = useState(false)
     const [followingCount, setFollowingCount] = useState(0);
-    const { changeOwnerVideoAvatar } = useContext(UserVideosContext)
     const { profileId } = useParams()
     const { userId } = useContext(AuthContext)
-    useEffect(() => {
 
-        userServices.getUser(profileId).then(setProfile)
 
-    }, [profileId])
 
     useEffect(() => {
         userServices.getFollowingUsers(profileId).then(profileData => {
@@ -42,21 +39,15 @@ const ProfileHeader = () => {
 
 
 
-    const handleUpdateProfile = async () => {
-        await userServices.getUser(profileId).then(profile => {
-            setProfile(profile),
-                changeOwnerVideoAvatar(profile)
 
-        })
-
-    }
     const updateFollowingCount = (newCount) => {
         setFollowingCount(newCount);
     };
 
+
+      console.log(profile);
+
     const isUserIdInFollowers = profile.followers?.some(follower => follower._id === userId)
-
-
 
     return (
         <header>
@@ -75,9 +66,9 @@ const ProfileHeader = () => {
                             {userId !== profileId && (
                                 <>
                                     {isUserIdInFollowers ? (
-                                        <UnFollowButton userToUnfollowId={profile._id} />
+                                        <UnFollowButton userToUnfollowId={profile._id} onUnfollow={handleUnfollow} />
                                     ) : (
-                                        <FollowButton userToFollowId={profile._id} />
+                                        <FollowButton userToFollowId={profile._id} onFollow={handleFollow} />
                                     )}
                                 </>
                             )}

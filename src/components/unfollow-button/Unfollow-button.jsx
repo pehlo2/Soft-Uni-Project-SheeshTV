@@ -6,8 +6,9 @@ const UnFollowButton = ({ userToUnfollowId, onUnfollow }) => {
     const unFollowUserHandler = async (e) => {
         e.preventDefault()
         await usersServices.unFollowUser(userToUnfollowId)
-        if(onUnfollow){
-        onUnfollow(userToUnfollowId)}
+        if (onUnfollow) {
+            onUnfollow(userToUnfollowId)
+        }
 
     }
 

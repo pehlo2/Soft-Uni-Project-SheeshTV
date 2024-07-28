@@ -10,7 +10,7 @@ import LoaderSpinner from '../../../loader-spinner/Loader-spiner';
 
 
 
-const ProfileMain = () => {
+const ProfileMain = ({handleFollow, handleUnfollow}) => {
   const { videos, isLoading } = useContext(UserVideosContext)
   return (
 
@@ -18,7 +18,7 @@ const ProfileMain = () => {
       <div className={styles["video-box"]}>
         <h1>Watching Profile latest Clips</h1>
         {videos.length === 0 && (<NovideoProfile />)}
-        {videos.map(video => <Video key={video._id} video={video} />)}
+        {videos.map(video => <Video key={video._id} video={video} handleFollow={handleFollow} handleUnfollow={handleUnfollow} />)}
         {isLoading && <LoaderSpinner />}
       </div>
       <AsideFollowers />
