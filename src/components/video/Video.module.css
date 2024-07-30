@@ -90,6 +90,8 @@
     display: flex;
     gap: 1em;
     justify-content: flex-end;
+    user-select: none;
+    cursor: pointer;
 
 }
 
@@ -164,4 +166,8 @@
     color: red;
     background-color: transparent;
     border: none;
+}
+
+.copy-link{
+    position: relative;
 }

@@ -114,6 +114,8 @@ width: 100%;
   justify-content: center;
   align-self: center;
   padding: 0 3em;
+  cursor: pointer;
+  user-select: none;
 }
 
 .profile-links a {
@@ -149,4 +151,8 @@ width: 100%;
   left: -2em;
   content:" ";
   position: absolute
+}
+.copy-link{
+  position: relative;
+  
 }

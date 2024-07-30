@@ -28,7 +28,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
     }, [videoId, userId]);
 
     const handleFollowHandler = () => {
-        debugger
+      
         setVideo(prevVideo => ({
             ...prevVideo,
             owner: {
@@ -42,7 +42,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
     };
 
     const handleUnfollowHandler = () => {
-        debugger
+      
         setVideo(prevVideo => ({
             ...prevVideo,
             owner: {

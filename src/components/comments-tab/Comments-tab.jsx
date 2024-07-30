@@ -13,6 +13,7 @@ import { object, string } from 'yup';
 import CommentsContext from '../../context/commentsContext';
 import timeDifferenceToString from '../../utils/timeDifferenceToString';
 import AuthContext from '../../context/authContext';
+import ConfirmDeleteModal from '../confirm-dialog-modal/Confirm-dialog-modal';
 
 const CommentsSection = ({ videoId, videoOwner }) => {
     const {
@@ -28,7 +29,7 @@ const CommentsSection = ({ videoId, videoOwner }) => {
 
     const { isAuthenticated, userId } = useContext(AuthContext)
     const [validationErrors, setValidationErrors] = useState({})
-
+   const [showConfirmation, setshowConfirmation] = useState(false);
 
     const commentSchema = object({
         editingText: string().required().min(1)
@@ -61,6 +62,16 @@ const CommentsSection = ({ videoId, videoOwner }) => {
 
     };
 
+ 
+
+    const handleConfirmDelete = async () => {
+        await deleteComment(editingCommentId);
+        setshowConfirmation(false);
+    };
+
+
+
+    
 
     return (
         <>
@@ -101,7 +112,7 @@ const CommentsSection = ({ videoId, videoOwner }) => {
                         {videoOwner === userId && isAuthenticated && (
                             <div className={styles["comment-buttons"]}>
                                 <button onClick={() => startEditing(comment._id, comment.text)} className={styles['edit']}><FontAwesomeIcon icon={faFileEdit} /></button>
-                                <button onClick={() => deleteComment(comment._id)} className={styles['delete']}><FontAwesomeIcon icon={faXmark} /></button>
+                                <button onClick={() => setshowConfirmation(true)} className={styles['delete']}><FontAwesomeIcon icon={faXmark} /></button>
                             </div>
 
                         )}
@@ -110,6 +121,8 @@ const CommentsSection = ({ videoId, videoOwner }) => {
             </div>
 
             {isAuthenticated && <InputComments videoId={videoId} />}
+            {showConfirmation && <ConfirmDeleteModal show={() => setshowConfirmation(true)} handleClose={() => setshowConfirmation(false)} handleConfirm={handleConfirmDelete} type='Video'/>}
+
 
         </>
     );

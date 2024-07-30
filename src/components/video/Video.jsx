@@ -13,32 +13,47 @@ import { copyVideoLink } from '../../utils/copyVideoLink';
 import { faComment, faEdit, faEye, faHeart, faLink, faTrash, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AuthContext from '../../context/authContext';
+import Popup from '../pop-up/Pop-up';
+import ConfirmDeleteModal from '../confirm-dialog-modal/Confirm-dialog-modal';
 
 
 const Video = ({ video, handleFollow, handleUnfollow }) => {
     const [showModal, setShowModal] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const { userId, isAuthenticated } = useContext(AuthContext)
-    const { followUser, unfollowUser } = useContext(UserVideosContext)
+    const [showPopup, setShowPopup] = useState(false);
+    const [isLiked, setIsLiked] = useState(video.likes?.includes(userId))
+    const [showConfirmation, setshowConfirmation] = useState(false);
+    const { deleteVideo, likeVideo,
+        dislikeVideo } = useContext(UserVideosContext)
 
-    const { deleteVideo } = useContext(UserVideosContext)
-    const deleteVideoHandler = async () => {
-        const confirmation = window.confirm('Are you sure you want to delete this game?');
-        if (confirmation) {
-            await deleteVideo(video._id);
 
-        }
+
+    const handleConfirmDelete = async () => {
+        await deleteVideo(video._id);
+        setShowModal(false);
+    };
+
+
+
+    const handleCopyLink = () => {
+        copyVideoLink(video._id);
+        setShowPopup(true);
+        setTimeout(() => {
+            setShowPopup(false);
+        }, 1500);
+    };
+
+
+    const handleLike = () => {
+        likeVideo(video._id, userId)
+        setIsLiked(true)
     }
 
-
-    // const handleFollow = (userIdToFollow) => {
-    //     followUser(userIdToFollow);
-    // };
-
-    // const handleUnFollow = (userIdToFollow) => {
-    //     unfollowUser(userIdToFollow);
-    // };
-
+    const handleDisLike = () => {
+        dislikeVideo(video._id, userId)
+        setIsLiked(false)
+    }
 
 
     return (
@@ -59,7 +74,7 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
                     </div>
                     {userId === video.owner._id && isAuthenticated && (
                         <div className={styles["video-delete"]}>
-                            <button onClick={deleteVideoHandler}><FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon></button>
+                            <button onClick={() => setshowConfirmation(true)}><FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon></button>
                         </div>
                     )}
 
@@ -96,15 +111,22 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
 
                 </div>
                 <div className={styles["social-tab"]}>
-                    <a><FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>Like<span>{video.likes.length}</span></a>
+
+                    {isLiked && <a style={{ color: "red" }} onClick={handleDisLike}><FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>Liked</a>}
+                    {!isLiked && <a onClick={handleLike}><FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>Like<span></span></a>
+                    }
+
                     <a onClick={() => setShowModal(!showModal)}><FontAwesomeIcon icon={faComment}></FontAwesomeIcon>Comments</a>
-                    <a onClick={() => copyVideoLink(video._id)}><FontAwesomeIcon icon={faLink}></FontAwesomeIcon>Copy Link</a>
+                    <a className={styles["copy-link"]} onClick={handleCopyLink}><FontAwesomeIcon icon={faLink}></FontAwesomeIcon><Popup isVisible={showPopup} />Copy Link</a>
+
                 </div>
             </div>
             {showModal && <VideoModal onClose={() => setShowModal(false)} videoId={video._id} videoData={{ ...video }} contextType="userVideos" handleUnfollow={handleUnfollow}
                 handleFollow={handleFollow} />}
             {showEdit && <EditVideo onClose={() => setShowEdit(false)} videoId={video._id} {...video} />}
+            {showConfirmation && <ConfirmDeleteModal show={() => setshowConfirmation(true)} handleClose={() => setshowConfirmation(false)} handleConfirm={handleConfirmDelete} type='Video'/>}
         </div>
+
 
 
 

@@ -13,6 +13,7 @@ import AuthContext from '../../../../context/authContext'
 import FollowingModal from '../../../following-modal/Following-modal'
 import FollowersModal from '../../../followers-modal/Followers-modal'
 import UnFollowButton from '../../../unfollow-button/Unfollow-button'
+import Popup from '../../../pop-up/Pop-up'
 
 
 
@@ -27,7 +28,7 @@ const ProfileHeader = ({ profile, handleFollow,
     const { profileId } = useParams()
     const { userId } = useContext(AuthContext)
 
-
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         userServices.getFollowingUsers(profileId).then(profileData => {
@@ -44,8 +45,17 @@ const ProfileHeader = ({ profile, handleFollow,
         setFollowingCount(newCount);
     };
 
+    
+    const handleCopyLink = () => {
+   
+        copyProfileLink(profileId);
+        setShowPopup(true);
+        setTimeout(() => {
+            setShowPopup(false);
+        }, 1500);
+    };
 
-      console.log(profile);
+   
 
     const isUserIdInFollowers = profile.followers?.some(follower => follower._id === userId)
 
@@ -77,7 +87,7 @@ const ProfileHeader = ({ profile, handleFollow,
                     </div>
                     <div className={styles["profile-links"]}>
                         <button onClick={() => setShowProfileEdit(!showProfileEdit)} >EDIT PROFILE</button>
-                        <a onClick={() => copyProfileLink(profile._id)}>Copy Profile link </a>
+                        <a  className={styles["copy-link"]} onClick={handleCopyLink}><Popup isVisible={showPopup} />Copy Profile link </a>
                     </div>
                 </div>
                 <div className={styles["profile-info"]}>
