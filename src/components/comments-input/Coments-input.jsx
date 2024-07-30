@@ -49,7 +49,7 @@ const InputComments = ({
 
     return (
         <form className={styles["comments"]} onSubmit={handleAddComment}>
-            <input type="text" placeholder="Add comment..." name='comment' value={text} onChange={handleCommentChange} className={validationErrors.text ? styles["error-border"] : ""} />
+            <input type="text" placeholder="Add comment..." name='comment' value={text} onChange={handleCommentChange} className={validationErrors.text ? styles["error-border"] : ""}  autoComplete='off'/>
             <button className={styles['button']}>Send</button>
         </form>
 
