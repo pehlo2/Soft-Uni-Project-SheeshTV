@@ -18,6 +18,7 @@ import DiscoverCreators from './components/discover-creators/Discover-creators';
 import AuthGuard from './components/guards/Auth-guard';
 import AlreadyAuthenticatedGuard from './components/guards/AlreadyAuthenticatedGuard';
 import ErrorBoundary from './components/ErrorBoundary';
+import { ErrorProvider } from './context/errorContext';
 
 function App() {
   const [theme, setTheme] = useState('dark');
@@ -39,34 +40,36 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <AuthProvider>
-        <VideoProvider>
-          <div className='app' data-theme={theme}>
-            <Navigation toggleTheme={toggleTheme} />
-            <main className='main-app'>
-              <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='*' element={<NotFound />} />
-                <Route path='/404' element={<NotFound />} />
-                <Route path='/dashboard' element={<VideoDashboard />} />
-                <Route path='/videos/:videoId' element={<VideoDetailsLink />} />
-                <Route path='/users/:profileId' element={<Profile />}>
-                  <Route path='upload' element={<UploadVideo />} />
-                </Route>
-                <Route element={<AlreadyAuthenticatedGuard />}>
-                  <Route path='/login' element={<Login />} />
-                  <Route path='/register' element={<Register />} />
-                </Route>
-                <Route element={<AuthGuard />}>
-                  <Route path='/discover' element={<DiscoverCreators />} />
-                  <Route path='/logout' element={<Logout />} />
-                </Route>
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </VideoProvider>
-      </AuthProvider>
+      < ErrorProvider>
+        <AuthProvider>
+          <VideoProvider>
+            <div className='app' data-theme={theme}>
+              <Navigation toggleTheme={toggleTheme} />
+              <main className='main-app'>
+                <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='*' element={<NotFound />} />
+                  <Route path='/404' element={<NotFound />} />
+                  <Route path='/dashboard' element={<VideoDashboard />} />
+                  <Route path='/videos/:videoId' element={<VideoDetailsLink />} />
+                  <Route path='/users/:profileId' element={<Profile />}>
+                    <Route path='upload' element={<UploadVideo />} />
+                  </Route>
+                  <Route element={<AlreadyAuthenticatedGuard />}>
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/register' element={<Register />} />
+                  </Route>
+                  <Route element={<AuthGuard />}>
+                    <Route path='/discover' element={<DiscoverCreators />} />
+                    <Route path='/logout' element={<Logout />} />
+                  </Route>
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          </VideoProvider>
+        </AuthProvider>
+      </ErrorProvider>
     </ErrorBoundary>
   );
 }
