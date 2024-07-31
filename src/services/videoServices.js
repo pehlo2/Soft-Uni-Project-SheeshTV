@@ -7,7 +7,7 @@ export const resetUserVideos = () => reqUserVideos = true
 
 
 export const upload = (videoData, setUploadProgress) => {
-    console.log(videoData);
+   
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 

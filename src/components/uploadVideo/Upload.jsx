@@ -8,7 +8,7 @@ import UserVideosContext from '../../context/userVideoContext';
 
 
 
-const UploadVideo = () => {
+const UploadVideo =  () => {
 
 
     const { userId } = useContext(AuthContext)
@@ -52,11 +52,16 @@ const UploadVideo = () => {
         try {
             await uploadVideoSchema.validate({ title, description, gameChoice, video }, { abortEarly: false });
             setValidationErrors({});
-            await addVideo(formData, setUploadProgress);
+            const videoResult = await addVideo(formData, setUploadProgress);
+
+            console.log(videoResult);
         } catch (err) {
-            console.error(err);
-            const newError = {};
-            setValidationErrors(newError);
+
+            const newError = {}
+            err.inner.forEach(err => {
+                newError[err.path] = err.message
+            });
+            setValidationErrors(newError)
         }
     };
 

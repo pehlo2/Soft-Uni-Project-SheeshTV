@@ -7,8 +7,9 @@ import { object, string } from 'yup';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import CloseModalButton from "../close-modal-button/Close-modal-button";
-const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
+import ErrorContext from "../../context/errorContext";
 
+const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
 
     const { userId, updateProfileHandler } = useContext(AuthContext)
     const [avatarPreview, setAvatarPreview] = useState(profile.avatar)
@@ -17,19 +18,15 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
     const [email, setEmail] = useState(profile.email)
     const [username, setUsername] = useState(profile.username)
     const [validationErrors, setValidationErrors] = useState({})
-
+    const { error, handleError } = useContext(ErrorContext)
     const profileSchema = object({
         username: string().required('* Username is required').min(6, '* Username must be at least 6 characters'),
-        description: string().required('*Description is required').min(5, '* Description must be at least 6 characters'),
+        description: string().required('* Description is required').min(5, '* Description must be at least 6 characters'),
         email: string().required('* Email is required').email('* Invalid email format'),
     })
 
-
-
-
     const handleAvatarChangeAndPreview = (e) => {
         const file = e.target.files[0]
-
         if (file) {
             setAvatar(file)
             const avatarReader = new FileReader()
@@ -37,15 +34,15 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
                 setAvatarPreview(avatarReader.result)
             }
             avatarReader.readAsDataURL(file)
-
         }
-
     }
-
-
 
     const updateProfileSubmitHandler = async (e) => {
         e.preventDefault()
+
+
+
+
         const formData = new FormData()
         if (avatar !== undefined) {
             formData.append('avatar', avatar)
@@ -56,8 +53,6 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
         formData.append('avatarToDelete', profile.avatar)
 
 
-
-
         try {
 
             await profileSchema.validate({
@@ -65,40 +60,32 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
                 username,
                 description,
             }, { abortEarly: false });
+
             setValidationErrors({});
+            await handleError(async () => {
+                const updatedUser = await userServices.updateProfile(formData, userId);
+                updateProfileHandler(updatedUser);
+                closeEdit();
+                onUpdate();
+            });
 
-            debugger
-            const updatedUser = await userServices.updateProfile(formData, userId)
-
-            updateProfileHandler(updatedUser)
-            closeEdit()
-            onUpdate()
         } catch (err) {
-            console.log(err.inner);
+           
             const newError = {}
             err.inner.forEach(err => {
                 newError[err.path] = err.message
-
             });
             setValidationErrors(newError)
-
         }
-
-
-
     }
-
-
 
     return (
         <div className={styles["blur"]} onClick={closeEdit}>
-
             <div className={styles["profile-edit"]} onClick={(e) => e.stopPropagation()} >
                 <h2>Edit Profile</h2>
                 <form onSubmit={updateProfileSubmitHandler}>
                     <div className={styles["avatar-header"]}>
                         <img className={styles["header-image"]} src="/images/header.jpg" alt="" />
-
                         <div className={styles["upload-avatar"]}>
                             <div className={styles["media"]}>
                                 <img src={avatarPreview} alt="" />
@@ -108,9 +95,7 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
                                 <label htmlFor="avatar"><FontAwesomeIcon icon={faUpload} /></label>
                             </div>
                         </div>
-
                     </div>
-
                     <div className={styles["input-fields-wrapper"]}>
                         <div className={styles["input-fields"]}>
                             {validationErrors.email && <p className={styles['error']}>{validationErrors.email}</p>}
@@ -126,17 +111,15 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
                             {validationErrors.description && <p className={styles['error']}>{validationErrors.description}</p>}
                             <textarea type="text" name="description" id="description" value={description} onChange={(e) => { setDescription(e.target.value) }} />
                             <label htmlFor="description">Bio</label>
-
                         </div>
                     </div>
-
                     <button className={styles["sumbit-button"]}>Update</button>
                 </form>
                 <CloseModalButton onClose={closeEdit} />
             </div>
+            {error && <p>Error: {error}</p>}
         </div>
     )
-
 }
 
 export default UpdateProfileModal;

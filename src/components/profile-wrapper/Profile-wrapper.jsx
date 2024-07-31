@@ -7,7 +7,7 @@ import AuthContext from "../../context/authContext"
 const ProfileWrapper = ({ profileId }) => {
 
     const [profile, setProfile] = useState({})
-    const { followUser, unfollowUser } = useContext(UserVideosContext)
+    const { followUser, unfollowUser ,changeOwnerVideoAvatar} = useContext(UserVideosContext)
     const { userId } = useContext(AuthContext)
     useEffect(() => {
         userServices.getUser(profileId).then(setProfile)

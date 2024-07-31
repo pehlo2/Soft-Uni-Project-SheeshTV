@@ -30,7 +30,7 @@ export const VideoProvider = ({ children }) => {
 
     useEffect(() => {
         setIsLoading(true)
-   
+
         videoServices.getAllvideos(gameChoice, searchQuery, page).then(result => {
 
             dispatch({
@@ -90,10 +90,10 @@ export const VideoProvider = ({ children }) => {
         if (searchQuery !== newSearchQuery) {
             resetState();
         }
-        if(newSearchQuery == "" && gameChoice !== ""){
+        if (newSearchQuery == "" && gameChoice !== "") {
 
             setGameChoice(gameChoice);
-        }else{
+        } else {
             setGameChoice('');
         }
         setSearchQuery(newSearchQuery);
@@ -112,8 +112,7 @@ export const VideoProvider = ({ children }) => {
         if (searchQuery != '') {
             resetState()
             setSearchQuery('')
-            // const evt = new CustomEvent("SearchQueryChange", {detail: ""});
-            // window.dispatchEvent(evt);
+
         };
 
 
@@ -136,6 +135,7 @@ export const VideoProvider = ({ children }) => {
             }}
         >
             {children}
+
         </VideoContext.Provider>
     );
 }

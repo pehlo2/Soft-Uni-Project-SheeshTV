@@ -29,8 +29,9 @@ export const AuthProvider = ({ children }) => {
     setAuth({})
     navigate('/')
   }
-
+  
   const updateProfileHandler = async (user) => {
+    console.log(user);
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       storedUser.username = user.username;

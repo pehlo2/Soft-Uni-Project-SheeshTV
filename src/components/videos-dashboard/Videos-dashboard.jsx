@@ -9,6 +9,7 @@ import GameChoiceBar from '../game-choice-bar/Game-choice-bar';
 import Notifications from '../notifications/Notifications';
 import AuthContext from '../../context/authContext';
 import LoaderSpinner from '../loader-spinner/Loader-spiner';
+import { ErrorComponent } from '../error/Error';
 
 
 
@@ -20,6 +21,7 @@ const VideoDashboard = () => {
     return (
 
         <div className={styles["container"]}>
+           < ErrorComponent/>
             <GameChoiceBar />
             <div className={styles["video-wrapper"]}>
                 {videos.length === 0 && (
