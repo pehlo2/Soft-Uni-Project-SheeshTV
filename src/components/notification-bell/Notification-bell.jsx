@@ -11,6 +11,7 @@ const socket = io('https://sheesh-tv-server.vercel.app', {
     withCredentials: true,
     transports: ['websocket', 'polling'],
   });
+
   
 const NotificationsBell = () => {
     const { userId, } = useContext(AuthContext)
@@ -24,31 +25,33 @@ const NotificationsBell = () => {
     const { handleError } = useContext(ErrorContext)
 
     useEffect(() => {
-
         notificationService.getNotifications(userId).then((notifications) => {
-            const unreadCount = notifications.filter(notification => !notification.read).length;
-            setUnreadCount(unreadCount);
-            setNotifications(notifications)
+          const unreadCount = notifications.filter(notification => !notification.read).length;
+          setUnreadCount(unreadCount);
+          setNotifications(notifications);
         }).catch(error => {
-            handleError(error.message);
-
+          handleError(error.message);
         });
-
+    
+     
         socket.emit('register', userId);
         socket.on('notification', (data) => {
-            setNotifications((prevNotifications) => [data, ...prevNotifications]);
-            setUnreadCount((prevUnreadCount) => prevUnreadCount + 1);
+          setNotifications((prevNotifications) => [data, ...prevNotifications]);
+          setUnreadCount((prevUnreadCount) => prevUnreadCount + 1);
         });
-
+    
+        socket.on('connect_error', (err) => {
+          console.error('WebSocket connection error:', err);
+        });
+    
         return () => {
-            socket.off('notification');
-            socket.off('connect_error');
-            socket.emit('deregister', userId);
-            socket.disconnect();
-          };
-    }, [userId]);
-
-
+          socket.off('notification');
+          socket.off('connect_error');
+          socket.emit('deregister', userId);
+          socket.disconnect();
+        };
+      }, [userId]);
+    
 
     const deleteNotificationsReadHandler = async (notificationId) => {
         notificationService.deleteNotifications(notificationId)
