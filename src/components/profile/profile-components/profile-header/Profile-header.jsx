@@ -14,6 +14,7 @@ import FollowingModal from '../../../following-modal/Following-modal'
 import FollowersModal from '../../../followers-modal/Followers-modal'
 import UnFollowButton from '../../../unfollow-button/Unfollow-button'
 import Popup from '../../../pop-up/Pop-up'
+import ErrorContext from '../../../../context/errorContext'
 
 
 
@@ -27,6 +28,7 @@ const ProfileHeader = ({ profile, handleFollow,
     const [followingCount, setFollowingCount] = useState(0);
     const { profileId } = useParams()
     const { userId } = useContext(AuthContext)
+    const { handleError } = useContext(ErrorContext)
 
     const [showPopup, setShowPopup] = useState(false);
 
@@ -34,7 +36,10 @@ const ProfileHeader = ({ profile, handleFollow,
         userServices.getFollowingUsers(profileId).then(profileData => {
             setFollowingCount(profileData.length)
         }
-        );
+        ).catch(error => {
+            handleError(error.message);
+           
+        });;
     }, [profileId]);
 
 

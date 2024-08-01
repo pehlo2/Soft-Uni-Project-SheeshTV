@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import styles from './Login.module.css'
 import { Link } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
@@ -14,7 +14,7 @@ const LoginFormKeys = {
 export default function Login() {
 
 
-    const { loginSubmitHandler } = useContext(AuthContext)
+    const { loginSubmitHandler, error } = useContext(AuthContext)
 
 
     const loginSchema = object({
@@ -59,7 +59,7 @@ export default function Login() {
                         <input type="password" placeholder="Password" name={LoginFormKeys.password} value={values[LoginFormKeys.password]} onChange={onChange} />
                         {validationErrors.password && <p className='error'>{validationErrors.password}</p>}
                     </div>
-
+                    {error && <p className={styles["error"]}>{error}</p>}
                     <a href="#">Forgot your password?</a>
                     <button>Sign In</button>
                 </form>

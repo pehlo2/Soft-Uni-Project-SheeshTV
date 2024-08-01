@@ -1,0 +1,27 @@
+.container {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-self: center;
+    text-align: center;
+    justify-content: center;
+    background-color: red;
+    animation: _ngcontent-ng-c3861978940_shake .3s forwards;
+    z-index: 9;
+
+}
+
+.error-message{
+    font-size: 20px;
+}
+.button{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: #fff;
+    cursor: pointer;
+
+}
+.button svg{
+      font-size: 32px;
+}

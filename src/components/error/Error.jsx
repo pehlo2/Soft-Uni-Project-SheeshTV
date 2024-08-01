@@ -1,20 +1,22 @@
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Error.module.css'
-export const ErrorComponent = ({ errMessage }) => {
+import { faCircleXmark, faXmark } from '@fortawesome/free-solid-svg-icons'
+export const ErrorComponent = ({ errorMessage }) => {
 
 
 
 
     return (
-        <div class={styles["container"]}>
-            <div class={styles["error"]}>
-                <p></p>
-                <div class={styles["error-message"]}>
-                    <h2>EROR</h2>
-                    <p>wORNT</p>
+        <div className={styles["container"]}>
+            <div className={styles["error"]}>
+                <div className={styles["error-message"]}>
+                    <h4>ERROR</h4>
+                    <p>{errorMessage}</p>
                 </div>
             </div>
-            <div class={styles["button"]}>
+            <div className={styles["button"]}>
+                <FontAwesomeIcon icon={faXmark} />
             </div>
         </div>
     )

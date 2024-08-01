@@ -3,6 +3,7 @@ import userVideoReducer from "../reducers/userVideoReducer";
 import AuthContext from "./authContext";
 import * as videoServices from "../services/videoServices";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
+import ErrorContext from "./errorContext";
 
 const UserVideosContext = createContext();
 
@@ -15,7 +16,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const location = useLocation()
-
+  const { handleError } = useContext(ErrorContext)
 
   useEffect(() => {
 
@@ -35,9 +36,9 @@ export const UserVideosProvider = ({ children, profileId }) => {
         videos: result
       })
       setIsLoading(false)
-    }).catch(err => {
-      console.log(err);
-      navigate('/404')
+    }).catch(error => {
+      handleError(error.message);
+      setIsLoading(false);
     });
   }, [page, profileId]);
 
@@ -47,8 +48,8 @@ export const UserVideosProvider = ({ children, profileId }) => {
       return
     }
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-   
-  
+
+
     if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === `/users/${profileId}`) {
       setIsLoading(true)
       setPage((prev) => prev + 1);
@@ -56,8 +57,8 @@ export const UserVideosProvider = ({ children, profileId }) => {
   }
 
   useEffect(() => {
-    resetState()
-    
+
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
@@ -65,18 +66,20 @@ export const UserVideosProvider = ({ children, profileId }) => {
 
 
   const addVideo = async (formData, setUploadProgress) => {
-    try {
-      const newVideo = await videoServices.upload(formData, setUploadProgress);
 
+    const newVideo = await videoServices.upload(formData, setUploadProgress).catch(error => {
+      handleError(error.message);
+
+    });
+    if (newVideo) {
       newVideo.owner = { _id: userId, username, email, avatar }
-
       dispatch({
         type: 'ADD_VIDEO',
         video: newVideo,
       });
-    } catch (error) {
-      console.error("Failed to add video:", error);
+
     }
+     return newVideo._id
   };
 
   const deleteVideo = (videoId) => {
@@ -95,8 +98,8 @@ export const UserVideosProvider = ({ children, profileId }) => {
         video: updatedVideo,
         videoId,
       });
-    } catch (err) {
-      console.log("Failed to edit video:", err);
+    } catch (error) {
+      handleError(error.message);
     }
   };
 
@@ -107,8 +110,8 @@ export const UserVideosProvider = ({ children, profileId }) => {
         type: 'CHANGE_OWNER_VIDEOS_AVATAR',
         userData: userData,
       });
-    } catch (err) {
-      console.log("Failed to change avatar:", err);
+    } catch (error) {
+      handleError(error.message);
     }
   };
 
@@ -118,9 +121,12 @@ export const UserVideosProvider = ({ children, profileId }) => {
   const likeVideo = async (videoId, userId) => {
     await videoServices.likeVideo(videoId, userId).then(() => {
       dispatch({
-        type:'LIKE_VIDEO',
+        type: 'LIKE_VIDEO',
         videoId, userId
       });
+    }).catch(error => {
+      handleError(error.message);
+      setIsLoading(false);
     });
   };
 
@@ -132,6 +138,9 @@ export const UserVideosProvider = ({ children, profileId }) => {
         type: 'DISLIKE_VIDEO',
         videoId, userId
       });
+    }).catch(error => {
+      handleError(error.message);
+      setIsLoading(false);
     });
   };
 
@@ -163,8 +172,10 @@ export const UserVideosProvider = ({ children, profileId }) => {
   };
 
   return (
-    <UserVideosContext.Provider value={{ videos, addVideo, deleteVideo, editVideo, changeOwnerVideoAvatar, isLoading, likeVideo, dislikeVideo ,followUser
-      ,unfollowUser }}>
+    <UserVideosContext.Provider value={{
+      videos, addVideo, deleteVideo, editVideo, changeOwnerVideoAvatar, isLoading, likeVideo, dislikeVideo, followUser
+      , unfollowUser
+    }}>
       {children}
     </UserVideosContext.Provider>
   );

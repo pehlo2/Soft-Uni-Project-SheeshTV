@@ -1,5 +1,5 @@
-import { createContext, } from "react"
-import { useNavigate } from "react-router-dom"
+import { createContext, useEffect, useState, } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import * as userService from '../services/userServices'
 import usePersistedState from "../hooks/usePersistedState"
@@ -9,19 +9,41 @@ export const AuthProvider = ({ children }) => {
 
 
   const [auth, setAuth] = usePersistedState('user', {})
+  const [error, setError] = useState(null)
+  const location = useLocation();
+
+
+  useEffect(() => {
+    setError(null);
+  }, [location.pathname]);
 
 
   const loginSubmitHandler = async (values) => {
-    const result = await userService.login(values)
-    localStorage.setItem('accessToken', result.accessToken);
-    setAuth(result)
-    navigate('/')
+    try {
+      const result = await userService.login(values)
+      localStorage.setItem('accessToken', result.accessToken);
+      setError(null)
+      setAuth(result)
+      navigate('/')
+    } catch (error) {
+      setError(error.message)
+
+    }
+
   }
   const registerSubmitHandler = async (values) => {
-    const result = await userService.register(values)
-    localStorage.setItem('accessToken', result.accessToken);
-    setAuth(result)
-    navigate('/')
+
+    try {
+      const result = await userService.register(values)
+      localStorage.setItem('accessToken', result.accessToken);
+      setError(null)
+      setAuth(result)
+      navigate('/')
+    } catch (error) {
+      setError(error.message)
+
+    }
+
   }
 
   const logoutHandler = async () => {
@@ -29,7 +51,7 @@ export const AuthProvider = ({ children }) => {
     setAuth({})
     navigate('/')
   }
-  
+
   const updateProfileHandler = async (user) => {
     console.log(user);
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -53,8 +75,8 @@ export const AuthProvider = ({ children }) => {
     email: auth.email,
     userId: auth._id,
     isAuthenticated: !!auth.accessToken,
-    avatar: auth.avatar
-
+    avatar: auth.avatar,
+    error: error
   }
 
   return (

@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useReducer, useState } from "reac
 import reducer from "../reducers/commentReducer";
 import AuthContext from "./authContext";
 import * as commentsServices from '../services/commentService';
+import ErrorContext from "./errorContext";
 
 const CommentsContext = createContext();
 export default CommentsContext;
@@ -15,6 +16,7 @@ export const CommnentsProvider = ({ children, videoId }) => {
     const [editingText, setEditingText] = useState('');
     const [editingCommentId, setEditingCommentId] = useState(null);
     const { userId, username, avatar } = useContext(AuthContext)
+    const { handleError } = useContext(ErrorContext)
     useEffect(() => {
         if (!videoId) {
             return;
@@ -24,11 +26,18 @@ export const CommnentsProvider = ({ children, videoId }) => {
                 control: 'GET_ALL_COMMENTS',
                 comment: result,
             });
+        }).catch(error => {
+            handleError(error.message);
+            setIsLoading(false);
         });
     }, [videoId]);
 
     const deleteComment = async (commentId) => {
-        commentsServices.deleteComment(commentId);
+
+        commentsServices.deleteComment(commentId).catch(error => {
+            handleError(error.message);
+
+        });
         dispatch({
             control: 'REMOVE_COMMENT',
             comment: commentId
@@ -36,9 +45,11 @@ export const CommnentsProvider = ({ children, videoId }) => {
     };
 
     const addComment = async () => {
-     
-        const newComment = await commentsServices.createComment(videoId, text, userId, username);
 
+        const newComment = await commentsServices.createComment(videoId, text, userId, username).catch(error => {
+            handleError(error.message);
+
+        });
         const comment = {
             _id: newComment._id,
             author: {
@@ -64,7 +75,10 @@ export const CommnentsProvider = ({ children, videoId }) => {
     };
 
     const editComment = async (commentId, text) => {
-        const editedComment = await commentsServices.editComment(commentId, text);
+        const editedComment = await commentsServices.editComment(commentId, text).catch(error => {
+            handleError(error.message);
+
+        });;
         dispatch({
             control: 'EDIT_COMMENT',
             comment: editedComment, text

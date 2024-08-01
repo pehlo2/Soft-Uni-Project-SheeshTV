@@ -16,7 +16,7 @@ const RegisterFormKeys = {
 
 export default function Register() {
 
-  const { registerSubmitHandler } = useContext(AuthContext)
+  const { registerSubmitHandler,error } = useContext(AuthContext)
 
   const registerSchema = object({
     username: string().required('* Username is required').min(6, '* Username must be at least 6 characters'),
@@ -93,7 +93,9 @@ export default function Register() {
             <input type="password" name={RegisterFormKeys.rePassword} placeholder=" Repeat Password" value={values[RegisterFormKeys.rePassword]} onChange={onChange} />
             {validationErrors.rePassword && <p className='error'>{validationErrors.rePassword}</p>}
           </div>
+        {error && <p className={styles["error"]}>{error}</p>}
           <button className={styles["submit-button"]}>Sign Up</button>
+
         </form>
       </div>
     </div>

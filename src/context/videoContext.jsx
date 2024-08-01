@@ -3,6 +3,7 @@ import videoReducer from "../reducers/videoReducer";
 import * as videoServices from "../services/videoServices";
 import AuthContext from "./authContext";
 import { useLocation } from "react-router-dom";
+import ErrorContext from "./errorContext";
 
 const VideoContext = createContext();
 
@@ -16,7 +17,7 @@ export const VideoProvider = ({ children }) => {
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const location = useLocation()
-
+    const { handleError } = useContext(ErrorContext)
 
     useEffect(() => {
         videoServices.resetVideos()
@@ -39,7 +40,10 @@ export const VideoProvider = ({ children }) => {
             });
             setIsLoading(false)
 
-        });
+        }).catch(error => {
+            handleError(error.message);
+            setIsLoading(false);
+        })
     }, [userId, gameChoice, searchQuery, page]);
 
     const handleScroll = () => {
@@ -65,6 +69,9 @@ export const VideoProvider = ({ children }) => {
                 control: 'LIKE_VIDEO',
                 videoId, userId
             });
+        }).catch(error => {
+            handleError(error.message);
+          
         });
     };
 
@@ -76,6 +83,9 @@ export const VideoProvider = ({ children }) => {
                 control: 'DISLIKE_VIDEO',
                 videoId, userId
             });
+        }).catch(error => {
+            handleError(error.message);
+           
         });
     };
 
