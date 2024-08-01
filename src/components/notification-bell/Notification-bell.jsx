@@ -7,7 +7,7 @@ import * as notificationService from '../../services/notificationsService'
 import styles from './Notification-bell.module.css'
 import io from 'socket.io-client';
 import ErrorContext from "../../context/errorContext"
-const socket = io('http://localhost:5000');
+const socket = io('https://sheesh-tv-server.vercel.app/');
 
 const NotificationsBell = () => {
     const { userId, } = useContext(AuthContext)

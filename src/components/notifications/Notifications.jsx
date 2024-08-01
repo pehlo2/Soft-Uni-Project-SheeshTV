@@ -33,8 +33,12 @@ const Notifications = ({ userId,
           </div>
 
         )}
-
+        <div>
+          <p>delete all</p>
+          <p>Mark all</p>
+        </div>
         {notifications.map((notification) => (
+
           <div key={notification._id} className={`${notification.read ? styles['notification-read'] : styles['notification-unread']}`} >
             <div onClick={() => markAsReadHandler(notification._id)} className={styles['notification-info']}>
               <div>{notificationTypes[notification.type](notification)}</div>

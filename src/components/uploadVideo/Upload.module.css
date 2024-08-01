@@ -1,15 +1,22 @@
 .container {
+  width: 540px;
+  height: auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--inner-background-color);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  -webkit-box-align: center;
   align-items: center;
-  background-color: var(--inner-background-color);
-  width: 520px;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  gap: 1em;
+  color: var(--font-color);
+  font-weight: bold;
+  user-select: none;
+  position: relative;
   margin: 0 auto;
-  margin-top: 10em;
-  margin-bottom: 20em;
-  border-radius: 0.5em;
-  overflow: hidden
+  margin-bottom: 5em;
 }
 
 .upload {
@@ -18,7 +25,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5em;
-  padding: 1em;
+
   width: 100%;
 }
 
@@ -29,12 +36,13 @@
   min-height: 80px;
 }
 
-.input-field{
+.input-field {
   width: 100%;
 }
+
 .input-field input,
-.input-field textarea ,
-.input-field select{
+.input-field textarea,
+.input-field select {
   background-color: var(--body-background);
   border: 2px solid var(--border-color);
   border-radius: 0.5em;
@@ -43,7 +51,8 @@
   font-weight: 600;
   width: 100%;
 }
-.input-field select option{
+
+.input-field select option {
   font-size: 16px;
 }
 
@@ -59,6 +68,7 @@
 
 .media img {
   width: 100%;
+  border-radius: 0.7em;
 }
 
 .submit-button {
@@ -73,8 +83,12 @@
   text-align: center;
   cursor: pointer
 }
-.video{
+
+.video {
   width: 100%;
+
+  border-radius: 0.7em;
+  overflow: hidden;
 }
 
 .progress-container {

@@ -12,6 +12,7 @@
     flex-direction: column;
     gap: 0.5em;
     overflow: hidden;
+    max-height: 800px;
 }
 
 .notification-wrapper h4,

@@ -9,6 +9,7 @@ import AuthContext from '../../context/authContext'
 import FollowButton from '../follow-button/Follow-button'
 import { CommnentsProvider } from '../../context/commentsContext'
 import UnFollowButton from '../unfollow-button/Unfollow-button'
+import ErrorContext from '../../context/errorContext'
 
 
 

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { mixed, object, string } from 'yup';
 import UserVideosContext from '../../context/userVideoContext';
 import ErrorContext from '../../context/errorContext';
+import CloseModalButton from '../close-modal-button/Close-modal-button';
 
 
 
@@ -13,9 +14,7 @@ const UploadVideo = () => {
 
 
     const { userId } = useContext(AuthContext)
-
     const { addVideo } = useContext(UserVideosContext);
-
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [gameChoice, setGameChoice] = useState('')
@@ -80,10 +79,14 @@ const UploadVideo = () => {
             setValidationErrors(newError)
         }
     };
+    const handleCloseModal = () => {
+        navigate('/dashboard');
+    };
 
     return (
 
         <div className={styles["container"]}>
+            <h2>Upload Video</h2>
             {videoPreview && (
                 <video className={styles["video"]} controls controlsList="nodownload nofullscreen noplaybackrate noremoteplayback" disablePictureInPicture>
                     <source src={videoPreview} type="video/mp4" />
@@ -142,7 +145,7 @@ const UploadVideo = () => {
 
             </form>
 
-
+            <CloseModalButton onClose={handleCloseModal}/>
         </div>
     )
 }
