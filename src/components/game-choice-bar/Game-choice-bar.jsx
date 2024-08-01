@@ -17,7 +17,7 @@ const GameChoiceBar = () => {
         filterVideosByGameChoice(values.gameChoice)
     }
 
-    const { onChange, onSubmit, setValues } = useForm(gameChoiceHandler, {
+    const { onChange, onSubmit } = useForm(gameChoiceHandler, {
         gameChoice: '',
 
     });
@@ -27,9 +27,6 @@ const GameChoiceBar = () => {
         gameChoiceHandler({ gameChoice: e.target.value });
     };
 
-    // useEffect(() => {
-    //     setValues({ gameChoice });
-    // }, [gameChoice, setValues]);
 
     return (
 

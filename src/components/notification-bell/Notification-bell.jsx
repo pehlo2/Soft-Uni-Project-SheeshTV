@@ -6,6 +6,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons'
 import * as notificationService from '../../services/notificationsService'
 import styles from './Notification-bell.module.css'
 import io from 'socket.io-client';
+import ErrorContext from "../../context/errorContext"
 const socket = io('http://localhost:5000');
 
 const NotificationsBell = () => {
@@ -17,17 +18,19 @@ const NotificationsBell = () => {
 
 
     const [notifications, setNotifications] = useState([]);
-
+    const { handleError } = useContext(ErrorContext)
 
     useEffect(() => {
-
 
         notificationService.getNotifications(userId).then((notifications) => {
             const unreadCount = notifications.filter(notification => !notification.read).length;
             setUnreadCount(unreadCount);
             setNotifications(notifications)
-        })
-        
+        }).catch(error => {
+            handleError(error.message);
+
+        });
+
         socket.emit('register', userId);
         socket.on('notification', (data) => {
             setNotifications((prevNotifications) => [data, ...prevNotifications]);

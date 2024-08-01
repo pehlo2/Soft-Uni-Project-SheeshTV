@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import AuthContext from '../../context/authContext'
 export const NovideoProfile = () => {
 
-    const { userId, username } = useContext(AuthContext)
+    const { userId } = useContext(AuthContext)
     const { profileId } = useParams()
 
     return (

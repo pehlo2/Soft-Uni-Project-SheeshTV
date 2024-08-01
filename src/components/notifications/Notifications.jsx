@@ -7,7 +7,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 
 const Notifications = ({ userId,
-  onClose,
+
   notifications,
   markAsReadHandler,
   deleteNotificationsReadHandler }) => {

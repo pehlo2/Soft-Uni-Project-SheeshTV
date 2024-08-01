@@ -11,6 +11,7 @@ import AuthContext from '../../context/authContext';
 import LikeShareTab from '../like-share-tab/Like-share-tab';
 import UnFollowButton from '../unfollow-button/Unfollow-button';
 import FollowButton from '../follow-button/Follow-button';
+import ErrorContext from '../../context/errorContext';
 
 const VideoDetails = () => {
     const navigate = useNavigate();
@@ -18,11 +19,14 @@ const VideoDetails = () => {
     const [video, setVideo] = useState({});
     const { videoId } = useParams();
     const [isLiked, setIsLiked] = useState(false);
-
+    const { handleError } = useContext(ErrorContext)
     useEffect(() => {
         videoServices.getOneVideo(videoId)
             .then(setVideo)
-            .catch(console.error);
+            .catch(error => {
+                handleError(error.message);
+
+            });
     }, [videoId]);
 
     useEffect(() => {
@@ -35,7 +39,7 @@ const VideoDetails = () => {
 
 
     const handleFollowHandler = () => {
-      
+
         setVideo(prevVideo => ({
             ...prevVideo,
             owner: {
@@ -49,7 +53,7 @@ const VideoDetails = () => {
     };
 
     const handleUnfollowHandler = () => {
-      
+
         setVideo(prevVideo => ({
             ...prevVideo,
             owner: {
@@ -104,9 +108,9 @@ const VideoDetails = () => {
                                         {video.owner?.followers?.includes(userId) ? (
 
 
-                                            <UnFollowButton userToUnfollowId={video.owner?._id}  onUnfollow={handleUnfollowHandler}/>
+                                            <UnFollowButton userToUnfollowId={video.owner?._id} onUnfollow={handleUnfollowHandler} />
                                         ) : (
-                                            <FollowButton userToFollowId={video.owner?._id} onFollow={handleFollowHandler}/>
+                                            <FollowButton userToFollowId={video.owner?._id} onFollow={handleFollowHandler} />
                                         )}
                                     </>
                                 )}

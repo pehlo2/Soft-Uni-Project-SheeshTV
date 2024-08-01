@@ -5,14 +5,15 @@ import { useVideoActions } from '../../hooks/useVideoActions';
 import { Link } from 'react-router-dom';
 import { mixed, object, string } from 'yup';
 import UserVideosContext from '../../context/userVideoContext';
+import ErrorContext from '../../context/errorContext';
 
 
 
-const UploadVideo =  () => {
+const UploadVideo = () => {
 
 
     const { userId } = useContext(AuthContext)
-    // const { addVideo } = useVideoActions(userId);
+
     const { addVideo } = useContext(UserVideosContext);
 
     const [title, setTitle] = useState('')
@@ -21,11 +22,13 @@ const UploadVideo =  () => {
     const [video, setVideo] = useState()
     const [uploadProgress, setUploadProgress] = useState(0);
     const [validationErrors, setValidationErrors] = useState({})
-
+    const [videoPreview, setVideoPreview] = useState(null);
+    const { handleErrorFunction } = useContext(ErrorContext)
+    const [uploadedVideoId, setUploadedVideoId] = useState(null); 
 
     const uploadVideoSchema = object({
-        title: string().required('title is required').min(6, 'Title must be at least 6 characters'),
-        description: string().required('description is required').min(6, 'description must be at least 6 characters'),
+        title: string().required('* Title is required').min(3, '* Title must be at least 3 characters'),
+        description: string().required('* Description is required').min(6, '* Description must be at least 6 characters'),
         gameChoice: string().oneOf([
             "Valorant",
             "Counter Strike 2",
@@ -39,9 +42,20 @@ const UploadVideo =  () => {
         video: mixed().required('Video file is required')
     })
 
+    const handleVideoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setVideo(file);
+            const videoReader = new FileReader();
+            videoReader.onloadend = () => {
+                setVideoPreview(videoReader.result);
+            };
+            videoReader.readAsDataURL(file);
+        }
+    };
+
     const uploadSubmitHandler = async (e) => {
         e.preventDefault();
-
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
@@ -49,30 +63,42 @@ const UploadVideo =  () => {
         formData.append('userId', userId);
         formData.append('video', video);
 
+
+
         try {
             await uploadVideoSchema.validate({ title, description, gameChoice, video }, { abortEarly: false });
             setValidationErrors({});
-            const videoResult = await addVideo(formData, setUploadProgress);
-
-            console.log(videoResult);
+              handleErrorFunction(async () => {
+                const videoId = await addVideo(formData, setUploadProgress);
+                setUploadedVideoId(videoId);
+            });
         } catch (err) {
-
             const newError = {}
-            err.inner.forEach(err => {
-                newError[err.path] = err.message
+            err.inner.forEach(error => {
+                newError[error.path] = error.message
             });
             setValidationErrors(newError)
         }
     };
 
-
-
     return (
 
         <div className={styles["container"]}>
+            {videoPreview && (
+                <video className={styles["video"]} controls controlsList="nodownload nofullscreen noplaybackrate noremoteplayback" disablePictureInPicture>
+                    <source src={videoPreview} type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            )}
+            {!videoPreview && (
+                <div className={styles["media"]}>
+                    <img src="/images/player.png" alt="" />
+                </div>
+            )}
             <form className={styles["upload"]} onSubmit={uploadSubmitHandler}>
-                <div className={styles["input-field"]}>
 
+
+                <div className={styles["input-field"]}>
                     <input type="text" name="title" placeholder='Title' onChange={e => setTitle(e.target.value)} value={title} />
                     {validationErrors.title && <p className='error'>{validationErrors.title}</p>}
                 </div>
@@ -81,8 +107,8 @@ const UploadVideo =  () => {
                     {validationErrors.description && <p className='error'>{validationErrors.description}</p>}
                 </div>
                 <div className={styles["input-field"]}>
-                    <select name="gameChoice" id="gameChoice" onChange={e => setGameChoice(e.currentTarget.value)} value={gameChoice}>
-                        <option value=""></option>
+                    <select name="gameChoice" id="gameChoice" onChange={e => setGameChoice(e.currentTarget.value)} value={gameChoice} >
+                        <option value="" disabled defaultValue hidden>Game</option>
                         <option value="Valorant">Valorant</option>
                         <option value="Counter Strike 2">Counter Strike 2</option>
                         <option value="League of Legends">League of Legends</option>
@@ -95,33 +121,23 @@ const UploadVideo =  () => {
 
                 </div>
                 <div className={styles["input-field"]}>
-                    <input type="file" name="video" onChange={(e) => { setVideo(e.target.files[0]) }} />
+                    <input type="file" name="video" accept="video/*" onChange={handleVideoChange} />
                     {validationErrors.video && <p className='error'>{validationErrors.video}</p>}
                 </div>
 
-
-
-
-
-
-                {uploadProgress > 0 && (
-                    <div style={{ width: '100%', backgroundColor: '#f3f3f3', marginTop: '10px' }}>
+                {uploadProgress >0 && (
+                    <div className={styles["progress-container"]}>
                         <div
-                            style={{
-                                width: `${uploadProgress}%`,
-                                height: '20px',
-                                backgroundColor: uploadProgress === 100 ? 'green' : 'blue',
-                                transition: 'width 0.2s',
-                            }}
+                            className={`${styles["progress-bar"]} ${uploadProgress === 100 ? styles.complete : ''}`}
+                            style={{ width: `${uploadProgress}%` }}
                         />
                     </div>
                 )}
 
 
-
                 {uploadProgress > 0 && (<p>{Math.round(uploadProgress)}%</p>)}
-                {uploadProgress == 100 && (<Link to={`/users/${userId}`}>Go to Video Page</Link>)}
-                {uploadProgress === 0 && (<button>Submit</button>)}
+                {uploadProgress == 100 && (<Link to={`/videos/${uploadedVideoId}`} className={styles["submit-button"]}>Go to Video Page</Link>)}
+                {uploadProgress === 0 && (<button className={styles["submit-button"]}>Upload</button>)}
 
 
             </form>

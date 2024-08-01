@@ -16,7 +16,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
     const { userId } = useContext(AuthContext)
     const [video, setVideo] = useState({})
     const [isLiked, setIsLiked] = useState(video.likes?.includes(userId))
-
+    const { handleError } = useContext(ErrorContext)
 
 
     useEffect(() => {
@@ -24,11 +24,13 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
             setVideo(videoData);
             setIsLiked(videoData.likes.includes(userId));
 
+        }).catch(error => {
+            handleError(error.message);
         });
     }, [videoId, userId]);
 
     const handleFollowHandler = () => {
-      
+
         setVideo(prevVideo => ({
             ...prevVideo,
             owner: {
@@ -42,7 +44,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
     };
 
     const handleUnfollowHandler = () => {
-      
+
         setVideo(prevVideo => ({
             ...prevVideo,
             owner: {

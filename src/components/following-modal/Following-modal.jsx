@@ -6,14 +6,18 @@ import UnFollowButton from '../unfollow-button/Unfollow-button';
 import AuthContext from '../../context/authContext';
 import CloseModalButton from '../close-modal-button/Close-modal-button';
 import FollowButton from '../follow-button/Follow-button';
+import ErrorContext from '../../context/errorContext';
 
 const FollowingModal = ({ onClose, profile, updateFollowingCount }) => {
     const { userId } = useContext(AuthContext);
     const { profileId } = useParams();
     const [followingUsers, setFollowingUsers] = useState([]);
-
+    const { handleError } = useContext(ErrorContext)
     useEffect(() => {
-        userServices.getFollowingUsers(profileId).then(setFollowingUsers);
+        userServices.getFollowingUsers(profileId).then(setFollowingUsers).catch(error => {
+            handleError(error.message);
+           
+        });;
     }, [profileId]);
 
     const handleUnfollow = (userToUnFollow) => {

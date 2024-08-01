@@ -18,7 +18,7 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
     const [email, setEmail] = useState(profile.email)
     const [username, setUsername] = useState(profile.username)
     const [validationErrors, setValidationErrors] = useState({})
-    const { error, handleError } = useContext(ErrorContext)
+    const { handleErrorFunction } = useContext(ErrorContext)
     const profileSchema = object({
         username: string().required('* Username is required').min(6, '* Username must be at least 6 characters'),
         description: string().required('* Description is required').min(5, '* Description must be at least 6 characters'),
@@ -62,7 +62,7 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
             }, { abortEarly: false });
 
             setValidationErrors({});
-            await handleError(async () => {
+            await handleErrorFunction(async () => {
                 const updatedUser = await userServices.updateProfile(formData, userId);
                 updateProfileHandler(updatedUser);
                 closeEdit();
@@ -70,7 +70,7 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
             });
 
         } catch (err) {
-           
+
             const newError = {}
             err.inner.forEach(err => {
                 newError[err.path] = err.message
@@ -113,11 +113,10 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
                             <label htmlFor="description">Bio</label>
                         </div>
                     </div>
-                    <button className={styles["sumbit-button"]}>Update</button>
+                    <button className={styles["submit-button"]}>Update</button>
                 </form>
                 <CloseModalButton onClose={closeEdit} />
             </div>
-            {error && <p>Error: {error}</p>}
         </div>
     )
 }
