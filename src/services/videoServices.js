@@ -5,9 +5,7 @@ export let reqUserVideos = true
 export const resetVideos = () => reqVideos = true
 export const resetUserVideos = () => reqUserVideos = true
 
-
 export const upload = (videoData, setUploadProgress) => {
-   
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 
@@ -19,9 +17,8 @@ export const upload = (videoData, setUploadProgress) => {
         });
 
         xhr.upload.addEventListener('load', () => {
-            console.log('Upload complete');
-            setUploadProgress(100);
            
+            setUploadProgress(100);
         });
 
         xhr.upload.addEventListener('error', () => {
@@ -34,10 +31,11 @@ export const upload = (videoData, setUploadProgress) => {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
-                    console.log('Response received:', response);
                     resolve(response);
                 } else {
-                    reject(new Error('Failed to upload video'));
+                    console.log('Server error:', xhr.responseText);
+                    setUploadProgress(0)
+                    reject(new Error(xhr.responseText || 'Failed to upload video'));
                 }
             }
         };
@@ -45,6 +43,7 @@ export const upload = (videoData, setUploadProgress) => {
         xhr.open('POST', `http://localhost:3000/data/videos/upload`);
         xhr.send(videoData);
     });
+    
 };
 
 export const editVideo = async (videoId, videoData) => {
