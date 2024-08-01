@@ -7,7 +7,7 @@ import * as notificationService from '../../services/notificationsService'
 import styles from './Notification-bell.module.css'
 import io from 'socket.io-client';
 import ErrorContext from "../../context/errorContext"
-const socket = io('https://sheesh-tv-server.vercel.app/', {
+const socket = io('http://localhost:5000', {
     withCredentials: true,
     transports: ['websocket', 'polling'],
   });
@@ -42,7 +42,10 @@ const NotificationsBell = () => {
 
         return () => {
             socket.off('notification');
-        };
+            socket.off('connect_error');
+            socket.emit('deregister', userId);
+            socket.disconnect();
+          };
     }, [userId]);
 
 

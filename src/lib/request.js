@@ -1,5 +1,5 @@
 
-const url = "https://sheesh-tv-server.vercel.app/";
+const url = "http://localhost:3000";
 
 async function request(method, endpoint, data) {
 
