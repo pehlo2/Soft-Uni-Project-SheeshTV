@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AuthContext from '../../context/authContext';
 import Popup from '../pop-up/Pop-up';
 import ConfirmDeleteModal from '../confirm-dialog-modal/Confirm-dialog-modal';
+import { apiUrl } from '../../lib/url';
 
 
 
@@ -83,12 +84,12 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
                 < ReactPlayer
                     controls
                     className={styles['react-player']}
-                    url={`${window.remoteOrigin}/data/${video.videoUrl}`}
+                    url={`${apiUrl}/data/${video.videoUrl}`}
                     width='100%'
                     height='100%'
                     light={
                         <img className={styles["thumbnail"]}
-                            src={`${window.remoteOrigin}/data/${video.thumbnail}`}
+                            src={`${apiUrl}/data/${video.thumbnail}`}
                             alt={video.thumbnail} />
                     }
                 />

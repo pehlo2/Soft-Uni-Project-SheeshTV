@@ -1,5 +1,6 @@
+import { apiUrl } from "./url";
 
-
+ 
 
 async function request(method, endpoint, data) {
 
@@ -27,10 +28,10 @@ async function request(method, endpoint, data) {
 
   try {
 
-    const response = await fetch(window.remoteOrigin + endpoint, options);
+    const response = await fetch(apiUrl + endpoint, options);
     if (response.status === 204) {
       return {}
-    }
+    }S
   
 
     const result = await response.json();

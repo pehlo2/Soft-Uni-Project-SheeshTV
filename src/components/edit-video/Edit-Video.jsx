@@ -6,6 +6,7 @@ import UserVideosContext from "../../context/userVideoContext";
 
 import { object, string } from 'yup';
 import CloseModalButton from "../close-modal-button/Close-modal-button";
+import { apiUrl } from "../../lib/url";
 
 
 
@@ -56,7 +57,7 @@ const EditVideo = ({ title,
             <div className={styles["container"]} onClick={(e) => e.stopPropagation()}>
                 <h2>Edit Video</h2>
                 <div className={styles["media"]}>
-                    <img src={`${window.remoteOrigin}/data/${thumbnail}`} alt="" />
+                    <img src={`${apiUrl}/data/${thumbnail}`} alt="" />
                 </div>
                 <form className={styles["form-edit"]} onSubmit={onSubmit}>
 

@@ -1,5 +1,6 @@
 import * as request from '../lib/request'
 import { endpoints } from '../lib/endpoints'
+import { apiUrl } from '../lib/url'
 
 export let reqVideos = true
 export let reqUserVideos = true
@@ -41,7 +42,7 @@ export const upload = (videoData, setUploadProgress) => {
             }
         };
 
-        xhr.open('POST', `${window.remoteOrigin}/data/videos/upload`);
+        xhr.open('POST', `${apiUrl}/data/videos/upload`);
         xhr.send(videoData);
     });
     
