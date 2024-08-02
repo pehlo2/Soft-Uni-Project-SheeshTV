@@ -6,7 +6,7 @@ import timeDifferenceToString from "../../utils/timeDifferenceToString";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { apiUrl } from "../../lib/url";
+
 
 
 
@@ -50,12 +50,12 @@ const VideoCard = ({
                     ref={playerRef}
                     muted={true}
                     playing={playing}
-                    url={`${apiUrl}/data/${videoUrl}`}
+                    url={`${window.remoteOrigin}/data/${videoUrl}`}
                     width='100%'
                     height='100%'
                     light={
                         <img className={styles["thumbnail"]}
-                            src={`${apiUrl}/data/${thumbnail}`}
+                            src={`${window.remoteOrigin}/data/${thumbnail}`}
                             alt={thumbnail} />
                     }
 
@@ -74,7 +74,7 @@ const VideoCard = ({
                         <div className={styles["game-choice"]}>
                             <img src={`gamesIcons/${gameChoice}.png`} alt="" />
                             <p> {gameChoice}
-                        </p>
+                            </p>
                         </div>
                     </div>
                     <div className={styles["top-bottom"]}>

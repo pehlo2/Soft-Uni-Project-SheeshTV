@@ -24,6 +24,8 @@ function App() {
   const [theme, setTheme] = useState('dark');
  console.log(import.meta.env);
  console.log(process.env);
+ window.remoteOrigin =  import.meta.env.VITE_SERVER_DATA_URI
+
   const toggleTheme = () => {
     if (theme === 'light') {
       window.localStorage.setItem('theme', 'dark');
