@@ -1,6 +1,5 @@
-import { apiUrl } from "./url";
 
- 
+const url = 'http://localhost:3000';
 
 async function request(method, endpoint, data) {
 
@@ -28,10 +27,10 @@ async function request(method, endpoint, data) {
 
   try {
 
-    const response = await fetch(apiUrl + endpoint, options);
+    const response = await fetch(url + endpoint, options);
     if (response.status === 204) {
       return {}
-    }S
+    }
   
 
     const result = await response.json();
