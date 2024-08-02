@@ -1,5 +1,5 @@
 
-const url = "https://sheeshtv-901957043a0a.herokuapp.com/";
+const url = "https://sheeshtv-901957043a0a.herokuapp.com";
 
 async function request(method, endpoint, data) {
 
