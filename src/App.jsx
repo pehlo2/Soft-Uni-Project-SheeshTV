@@ -22,6 +22,7 @@ import { ErrorProvider } from './context/errorContext';
 
 function App() {
   const [theme, setTheme] = useState('dark');
+  console.log(process.env);
   const toggleTheme = () => {
     if (theme === 'light') {
       window.localStorage.setItem('theme', 'dark');

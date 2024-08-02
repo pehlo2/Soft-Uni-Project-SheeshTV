@@ -6,6 +6,6 @@ import svgr from 'vite-plugin-svgr'
 export default defineConfig({
   plugins: [react(), svgr()],
   define: {
-    'process.env': process.env
+    'process.env.VITE_SERVER_DATA_URI': process.env.VITE_SERVER_DATA_URI
   }
 })
