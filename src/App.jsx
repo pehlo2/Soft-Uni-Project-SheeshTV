@@ -22,6 +22,7 @@ import { ErrorProvider } from './context/errorContext';
 
 function App() {
   const [theme, setTheme] = useState('dark');
+ console.log(import.meta.env);
  console.log(process.env);
   const toggleTheme = () => {
     if (theme === 'light') {
