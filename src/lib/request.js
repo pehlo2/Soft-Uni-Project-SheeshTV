@@ -1,5 +1,5 @@
 
-const url = 'http://localhost:3000';
+
 
 async function request(method, endpoint, data) {
 
@@ -27,7 +27,7 @@ async function request(method, endpoint, data) {
 
   try {
 
-    const response = await fetch(url + endpoint, options);
+    const response = await fetch(window.remoteOrigin + endpoint, options);
     if (response.status === 204) {
       return {}
     }
