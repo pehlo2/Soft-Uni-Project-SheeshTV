@@ -17,6 +17,7 @@ import Popup from '../pop-up/Pop-up';
 import ConfirmDeleteModal from '../confirm-dialog-modal/Confirm-dialog-modal';
 
 
+
 const Video = ({ video, handleFollow, handleUnfollow }) => {
     const [showModal, setShowModal] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
@@ -82,12 +83,12 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
                 < ReactPlayer
                     controls
                     className={styles['react-player']}
-                    url={`http://localhost:3000/data/${video.videoUrl}`}
+                    url={`${window.remoteOrigin}/data/${video.videoUrl}`}
                     width='100%'
                     height='100%'
                     light={
                         <img className={styles["thumbnail"]}
-                            src={`http://localhost:3000/data/${video.thumbnail}`}
+                            src={`${window.remoteOrigin}/data/${video.thumbnail}`}
                             alt={video.thumbnail} />
                     }
                 />

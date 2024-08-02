@@ -8,6 +8,7 @@ import CloseModalButton from '../close-modal-button/Close-modal-button';
 import FollowButton from '../follow-button/Follow-button';
 import ErrorContext from '../../context/errorContext';
 
+
 const FollowersModal = ({ onClose, updateFollowingCount }) => {
     const { userId } = useContext(AuthContext);
     const { profileId } = useParams();
@@ -73,7 +74,7 @@ const FollowersModal = ({ onClose, updateFollowingCount }) => {
                         <div className={styles['followers-box']} key={user._id}>
                             <div className={styles['followers-box-inner']}>
                                 <div className={styles['followers-media']}>
-                                    <img src={`http://localhost:3000/users/${user.avatar}`} alt={user.username} />
+                                    <img src={`${window.remoteOrigin}/users/${user.avatar}`} alt={user.username} />
                                 </div>
                                 <div className={styles['followers-info']}>
                                     <Link to={`/users/${user._id}`} onClick={onClose}>

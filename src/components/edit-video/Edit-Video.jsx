@@ -11,6 +11,7 @@ import CloseModalButton from "../close-modal-button/Close-modal-button";
 
 
 
+
 const EditVideo = ({ title,
     thumbnail,
     description,
@@ -55,7 +56,7 @@ const EditVideo = ({ title,
             <div className={styles["container"]} onClick={(e) => e.stopPropagation()}>
                 <h2>Edit Video</h2>
                 <div className={styles["media"]}>
-                    <img src={`http://localhost:3000/data/${thumbnail}`} alt="" />
+                    <img src={`${window.remoteOrigin}/data/${thumbnail}`} alt="" />
                 </div>
                 <form className={styles["form-edit"]} onSubmit={onSubmit}>
 

@@ -1,5 +1,6 @@
 import * as request from '../lib/request'
 import { endpoints } from '../lib/endpoints'
+
 export let reqVideos = true
 export let reqUserVideos = true
 export const resetVideos = () => reqVideos = true
@@ -40,7 +41,7 @@ export const upload = (videoData, setUploadProgress) => {
             }
         };
 
-        xhr.open('POST', `http://localhost:3000/data/videos/upload`);
+        xhr.open('POST', `${window.remoteOrigin}/data/videos/upload`);
         xhr.send(videoData);
     });
     

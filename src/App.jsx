@@ -22,7 +22,7 @@ import { ErrorProvider } from './context/errorContext';
 
 function App() {
   const [theme, setTheme] = useState('dark');
-
+  window.remoteOrigin = process.env.REACT_APP_SERVER_DATA_URI || 'http://localhost:3000';
   const toggleTheme = () => {
     if (theme === 'light') {
       window.localStorage.setItem('theme', 'dark');

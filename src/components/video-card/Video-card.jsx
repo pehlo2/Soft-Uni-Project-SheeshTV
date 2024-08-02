@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 
 
+
 const VideoCard = ({
     videoUrl,
     thumbnail,
@@ -48,12 +49,12 @@ const VideoCard = ({
                     ref={playerRef}
                     muted={true}
                     playing={playing}
-                    url={`http://localhost:3000/data/${videoUrl}`}
+                    url={`${window.remoteOrigin}/data/${videoUrl}`}
                     width='100%'
                     height='100%'
                     light={
                         <img className={styles["thumbnail"]}
-                            src={`http://localhost:3000/data/${thumbnail}`}
+                            src={`${window.remoteOrigin}/data/${thumbnail}`}
                             alt={thumbnail} />
                     }
 
