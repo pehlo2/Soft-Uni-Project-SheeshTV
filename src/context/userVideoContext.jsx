@@ -79,7 +79,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
       });
 
     }
-     return newVideo._id
+    return newVideo._id
   };
 
   const deleteVideo = (videoId) => {
@@ -93,6 +93,14 @@ export const UserVideosProvider = ({ children, profileId }) => {
   const editVideo = async (videoId, videoData) => {
     try {
       const updatedVideo = await videoServices.editVideo(videoId, videoData);
+      console.log(updatedVideo);
+
+
+
+      updatedVideo.owner = {
+        _id: userId, username, email, avatar
+      }
+
       dispatch({
         type: 'EDIT_VIDEO',
         video: updatedVideo,

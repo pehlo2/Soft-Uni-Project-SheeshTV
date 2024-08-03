@@ -56,6 +56,7 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
         dislikeVideo(video._id, userId)
         setIsLiked(false)
     }
+console.log(video.owner);
 
 
     return (
@@ -84,12 +85,12 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
                 < ReactPlayer
                     controls
                     className={styles['react-player']}
-                    url={`${window.remoteOrigin}/data/${video.videoUrl}`}
+                    url={`${video.videoUrl}`}
                     width='100%'
                     height='100%'
                     light={
                         <img className={styles["thumbnail"]}
-                            src={`${window.remoteOrigin}/data/${video.thumbnail}`}
+                            src={video.thumbnail}
                             alt={video.thumbnail} />
                     }
                 />

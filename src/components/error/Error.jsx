@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Error.module.css'
 import { faCircleXmark, faXmark } from '@fortawesome/free-solid-svg-icons'
-export const ErrorComponent = ({ errorMessage }) => {
+export const ErrorComponent = ({ errorMessage ,onClose }) => {
 
 
 
@@ -15,7 +15,7 @@ export const ErrorComponent = ({ errorMessage }) => {
                     <p>{errorMessage}</p>
                 </div>
             </div>
-            <div className={styles["button"]}>
+            <div className={styles["button"]} onClick={onClose}>
                 <FontAwesomeIcon icon={faXmark} />
             </div>
         </div>

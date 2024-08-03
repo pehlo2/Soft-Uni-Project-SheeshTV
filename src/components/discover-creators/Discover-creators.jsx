@@ -26,12 +26,13 @@ const DiscoverCreators = () => {
         setSearchValue(searchValue)
     }
 
+
     return (
         <div className={styles["container"]}>
             <SearchBarForUsers onSearch={onSearch} />
             <div className={styles["creators"]}>
 
-                {creators.map(creator => (<CreatorCard key={creator._id} {...creator}></CreatorCard>))}
+                {creators.map(creator => (<CreatorCard key={creator._id} creator={creator}></CreatorCard>))}
             </div>
 
         </div>

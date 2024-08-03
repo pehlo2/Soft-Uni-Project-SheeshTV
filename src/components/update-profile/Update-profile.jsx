@@ -64,6 +64,8 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
             setValidationErrors({});
             await handleErrorFunction(async () => {
                 const updatedUser = await userServices.updateProfile(formData, userId);
+                console.log(updatedUser);
+                
                 updateProfileHandler(updatedUser);
                 closeEdit();
                 onUpdate();

@@ -33,6 +33,7 @@ export const CommnentsProvider = ({ children, videoId }) => {
     }, [videoId]);
 
     const deleteComment = async (commentId) => {
+console.log(commentId);
 
         commentsServices.deleteComment(commentId).catch(error => {
             handleError(error.message);

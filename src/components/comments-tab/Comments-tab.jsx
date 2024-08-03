@@ -29,7 +29,8 @@ const CommentsSection = ({ videoId, videoOwner }) => {
 
     const { isAuthenticated, userId } = useContext(AuthContext)
     const [validationErrors, setValidationErrors] = useState({})
-   const [showConfirmation, setshowConfirmation] = useState(false);
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [commentToDeleteId, setCommentToDeleteId] = useState(null);
 
     const commentSchema = object({
         editingText: string().required().min(1)
@@ -58,20 +59,19 @@ const CommentsSection = ({ videoId, videoOwner }) => {
             setValidationErrors(newError)
 
         }
-
-
     };
-
- 
 
     const handleConfirmDelete = async () => {
-        await deleteComment(editingCommentId);
-        setshowConfirmation(false);
+        console.log(commentToDeleteId);
+        await deleteComment(commentToDeleteId);
+        setShowConfirmation(false);
+        setCommentToDeleteId(null);
     };
 
-
-
-    
+    const openConfirmDeleteModal = (commentId) => {
+        setCommentToDeleteId(commentId);
+        setShowConfirmation(true);
+    };
 
     return (
         <>
@@ -103,27 +103,21 @@ const CommentsSection = ({ videoId, videoOwner }) => {
                                     <h3>{comment.author.username}</h3>
                                     <p className={styles["comment-info-text"]}>{comment.text}</p>
                                     <p className={styles["comment-info-date"]}>{timeDifferenceToString(comment.createdAt)}</p>
-
-
                                 </div>
                             )}
-
                         </div>
-                        {videoOwner === userId && isAuthenticated && (
+                        {videoOwner === userId || isAuthenticated && (
                             <div className={styles["comment-buttons"]}>
                                 <button onClick={() => startEditing(comment._id, comment.text)} className={styles['edit']}><FontAwesomeIcon icon={faFileEdit} /></button>
-                                <button onClick={() => setshowConfirmation(true)} className={styles['delete']}><FontAwesomeIcon icon={faXmark} /></button>
+                                <button onClick={() => openConfirmDeleteModal(comment._id)} className={styles['delete']}><FontAwesomeIcon icon={faXmark} /></button>
                             </div>
-
                         )}
                     </div>
                 ))}
             </div>
 
             {isAuthenticated && <InputComments videoId={videoId} />}
-            {showConfirmation && <ConfirmDeleteModal show={() => setshowConfirmation(true)} handleClose={() => setshowConfirmation(false)} handleConfirm={handleConfirmDelete} type='Video'/>}
-
-
+            {showConfirmation && <ConfirmDeleteModal show={() => setShowConfirmation(true)} handleClose={() => setShowConfirmation(false)} handleConfirm={handleConfirmDelete} type='Video' />}
         </>
     );
 }

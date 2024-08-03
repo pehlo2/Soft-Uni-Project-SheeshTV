@@ -23,19 +23,38 @@ export const NovideoProfile = () => {
                     <div className={styles["share-video-box"]}>
 
                         <i className={styles["fa-solid fa-file-pen"]}></i>
-                        <h3>Start Sharing</h3>
+                        <h3>Find Highligths</h3>
                         <p>
-                            Play a game and clip a moment to share with your friends</p>
-                        <Link>Find friens</Link>
+                            Watch a clip and to share with your friends</p>
+                        <Link to={'/dashboard'}>Watch Clips</Link>
                     </div>
+
 
                 </div>
 
             )}
             {userId !== profileId && (
-                
-                 <p> add LOGO HERE</p>
+                <div className={styles["no-videos-wrapper"]}>
+                    <div className={styles["find-friends-box"]}>
+                        <i className={styles["fa-solid fa-user-plus"]}></i>
+                        <h3>Find your friends</h3>
+                        <p>Invite friends to SheeshTv and start connecting</p>
+                        <Link>Find friens</Link>
+                    </div>
+                    <div className={styles["share-video-box"]}>
+
+                        <i className={styles["fa-solid fa-file-pen"]}></i>
+                        <h3>Find Highligths</h3>
+                        <p>
+                            Play a game and clip a moment to share with your friends</p>
+                        <Link>Share</Link>
+                    </div>
+
+
+                </div>
+
             )}
+
 
         </div>
     )

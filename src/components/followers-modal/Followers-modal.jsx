@@ -55,7 +55,8 @@ const FollowersModal = ({ onClose, updateFollowingCount }) => {
     }
 
 
-
+    
+    
 
 
 
@@ -75,7 +76,7 @@ const FollowersModal = ({ onClose, updateFollowingCount }) => {
                         <div className={styles['followers-box']} key={user._id}>
                             <div className={styles['followers-box-inner']}>
                                 <div className={styles['followers-media']}>
-                                    <img src={`${window.remoteOrigin}/users/${user.avatar}`} alt={user.username} />
+                                    <img src={user.avatar} alt={user.username} />
                                 </div>
                                 <div className={styles['followers-info']}>
                                     <Link to={`/users/${user._id}`} onClick={onClose}>

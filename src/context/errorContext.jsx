@@ -21,11 +21,12 @@ export const ErrorProvider = ({ children }) => {
         setTimeout(() => setError(null), 3000);
     };
 
-
+    
+console.log(error);
 
     return (
         <ErrorContext.Provider value={{ error, handleError, handleErrorFunction }}>
-           {error && < ErrorComponent errorMessage={error} />} 
+            {error && < ErrorComponent errorMessage={error} onClose={()=>{setError(null)}}/>}
             {children}
         </ErrorContext.Provider>
     );

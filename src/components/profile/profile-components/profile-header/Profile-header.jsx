@@ -60,6 +60,7 @@ const ProfileHeader = ({ profile, handleFollow,
         }, 1500);
     };
 
+   console.log(profile);
    
 
     const isUserIdInFollowers = profile.followers?.some(follower => follower._id === userId)

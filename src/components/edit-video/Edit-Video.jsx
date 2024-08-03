@@ -25,7 +25,7 @@ const EditVideo = ({ title,
 
         if (!videoUrl) { return };
         await editVideo(_id, values);
-
+        onClose()
 
     };
     const editVideoSchema = object({
@@ -57,7 +57,7 @@ const EditVideo = ({ title,
             <div className={styles["container"]} onClick={(e) => e.stopPropagation()}>
                 <h2>Edit Video</h2>
                 <div className={styles["media"]}>
-                    <img src={`${window.remoteOrigin}/data/${thumbnail}`} alt="" />
+                    <img src={thumbnail} alt="" />
                 </div>
                 <form className={styles["form-edit"]} onSubmit={onSubmit}>
 

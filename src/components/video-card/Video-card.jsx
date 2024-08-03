@@ -23,6 +23,7 @@ const VideoCard = ({
     const [showModal, setShowModal] = useState(false);
     const playerRef = useRef(null);
 
+console.log(_id);
 
     return (
 
@@ -50,12 +51,12 @@ const VideoCard = ({
                     ref={playerRef}
                     muted={true}
                     playing={playing}
-                    url={`${window.remoteOrigin}/data/${videoUrl}`}
+                    url={videoUrl}
                     width='100%'
                     height='100%'
                     light={
                         <img className={styles["thumbnail"]}
-                            src={`${window.remoteOrigin}/data/${thumbnail}`}
+                            src={thumbnail}
                             alt={thumbnail} />
                     }
 
@@ -65,7 +66,7 @@ const VideoCard = ({
 
             <div className={styles["video-info"]}>
                 <div className={styles["owner-info"]}>
-                    <img src={owner.avatar} alt="" />
+                    <img src={owner?.avatar} alt="" />
                 </div>
 
                 <div className={styles["video-stats"]}>
@@ -78,7 +79,7 @@ const VideoCard = ({
                         </div>
                     </div>
                     <div className={styles["top-bottom"]}>
-                        <p><Link to={`/users/${owner._id}`}>{owner.username}</Link></p>
+                        <p><Link to={`/users/${owner?._id}`}>{owner?.username}</Link></p>
                         <div className={styles["view-date"]}>
                             <p><span>{viewCount}</span> views</p>
                             <FontAwesomeIcon icon={faCircle} />

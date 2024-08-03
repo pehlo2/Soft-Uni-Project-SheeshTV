@@ -69,6 +69,8 @@ const UploadVideo = () => {
             setValidationErrors({});
               handleErrorFunction(async () => {
                 const videoId = await addVideo(formData, setUploadProgress);
+                console.log(videoId);
+                
                 setUploadedVideoId(videoId);
             });
         } catch (err) {
