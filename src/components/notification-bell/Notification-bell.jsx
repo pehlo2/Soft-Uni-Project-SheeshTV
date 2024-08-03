@@ -7,7 +7,7 @@ import * as notificationService from '../../services/notificationsService'
 import styles from './Notification-bell.module.css'
 import io from 'socket.io-client';
 import ErrorContext from "../../context/errorContext"
-const socket = io(VITE_SERVER_DATA_URI, {
+const socket = io( window.remoteOrigin, {
     withCredentials: true,
     transports: ['websocket', 'polling'],
   });
