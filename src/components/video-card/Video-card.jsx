@@ -23,7 +23,7 @@ const VideoCard = ({
     const [showModal, setShowModal] = useState(false);
     const playerRef = useRef(null);
 
-console.log(_id);
+
 
     return (
 

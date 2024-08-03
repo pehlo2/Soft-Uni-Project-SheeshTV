@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   const updateProfileHandler = async (user) => {
-    console.log(user);
+  
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       storedUser.username = user.username;

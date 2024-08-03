@@ -56,7 +56,7 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
         dislikeVideo(video._id, userId)
         setIsLiked(false)
     }
-console.log(video.owner);
+
 
 
     return (

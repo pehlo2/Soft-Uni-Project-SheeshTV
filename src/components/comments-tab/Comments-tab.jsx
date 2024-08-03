@@ -40,7 +40,7 @@ const CommentsSection = ({ videoId, videoOwner }) => {
         e.preventDefault();
 
         try {
-            console.log(editingText);
+           
             await commentSchema.validate({
                 editingText
             }, { abortEarly: false });
@@ -62,7 +62,7 @@ const CommentsSection = ({ videoId, videoOwner }) => {
     };
 
     const handleConfirmDelete = async () => {
-        console.log(commentToDeleteId);
+    
         await deleteComment(commentToDeleteId);
         setShowConfirmation(false);
         setCommentToDeleteId(null);

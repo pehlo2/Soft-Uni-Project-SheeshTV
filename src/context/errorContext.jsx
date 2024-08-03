@@ -10,7 +10,7 @@ export const ErrorProvider = ({ children }) => {
         try {
             await asyncFunction();
         } catch (error) {
-            console.log(error);
+           
             setError(error.message);
             setTimeout(() => setError(null), 3000);
         }
@@ -22,7 +22,7 @@ export const ErrorProvider = ({ children }) => {
     };
 
     
-console.log(error);
+
 
     return (
         <ErrorContext.Provider value={{ error, handleError, handleErrorFunction }}>
