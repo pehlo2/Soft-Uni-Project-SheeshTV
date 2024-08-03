@@ -76,7 +76,7 @@ export const VideoProvider = ({ children }) => {
     };
 
     const dislikeVideo = async (videoId, userId) => {
-        debugger
+       
         await videoServices.dislikeVideo(videoId, userId).then(() => {
 
             dispatch({
@@ -96,7 +96,7 @@ export const VideoProvider = ({ children }) => {
     };
 
     const filterVideosBySearchQuery = (newSearchQuery) => {
-        debugger
+       
         if (searchQuery !== newSearchQuery) {
             resetState();
         }

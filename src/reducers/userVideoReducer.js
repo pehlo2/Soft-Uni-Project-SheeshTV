@@ -1,5 +1,5 @@
 const userVideoReducer = (state = [], action) => {
-    debugger
+   
     switch (action.type) {
         case 'GET_YOUR_VIDEOS':
             return [...state, ...action.videos];

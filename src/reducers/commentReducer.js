@@ -1,5 +1,5 @@
 const reducer = (state, action) => {
-   debugger
+  
     switch (action?.control) {
         case 'GET_ALL_COMMENTS':
             return [...action.comment];
