@@ -112,7 +112,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   };
 
   const changeOwnerVideoAvatar = (userData) => {
-    debugger
+  
     try {
       dispatch({
         type: 'CHANGE_OWNER_VIDEOS_AVATAR',
@@ -139,7 +139,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   };
 
   const dislikeVideo = async (videoId, userId) => {
-    debugger
+  
     await videoServices.dislikeVideo(videoId, userId).then(() => {
 
       dispatch({
