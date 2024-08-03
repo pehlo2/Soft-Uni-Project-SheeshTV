@@ -7,12 +7,8 @@ import * as notificationService from '../../services/notificationsService'
 import styles from './Notification-bell.module.css'
 import io from 'socket.io-client';
 import ErrorContext from "../../context/errorContext"
-const socket = io( window.remoteOrigin, {
-    withCredentials: true,
-    transports: ['websocket', 'polling'],
-  });
 
-  
+
 const NotificationsBell = () => {
     const { userId, } = useContext(AuthContext)
     const [showNotifications, setShowNotifications] = useState(false)
@@ -23,35 +19,39 @@ const NotificationsBell = () => {
 
     const [notifications, setNotifications] = useState([]);
     const { handleError } = useContext(ErrorContext)
-
+    const socket = io(window.remoteOrigin, {
+        withCredentials: true,
+        transports: ['websocket', 'polling'],
+    });
     useEffect(() => {
         notificationService.getNotifications(userId).then((notifications) => {
-          const unreadCount = notifications.filter(notification => !notification.read).length;
-          setUnreadCount(unreadCount);
-          setNotifications(notifications);
+            const unreadCount = notifications.filter(notification => !notification.read).length;
+            setUnreadCount(unreadCount);
+            setNotifications(notifications);
         }).catch(error => {
-          handleError(error.message);
+            handleError(error.message);
         });
-    
-     
+
+
+
         socket.emit('register', userId);
         socket.on('notification', (data) => {
-          setNotifications((prevNotifications) => [data, ...prevNotifications]);
-          setUnreadCount((prevUnreadCount) => prevUnreadCount + 1);
+            setNotifications((prevNotifications) => [data, ...prevNotifications]);
+            setUnreadCount((prevUnreadCount) => prevUnreadCount + 1);
         });
-    
+
         socket.on('connect_error', (err) => {
-          console.error('WebSocket connection error:', err);
+            console.error('WebSocket connection error:', err);
         });
-    
+
         return () => {
-          socket.off('notification');
-          socket.off('connect_error');
-          socket.emit('deregister', userId);
-          socket.disconnect();
+            socket.off('notification');
+            socket.off('connect_error');
+            socket.emit('deregister', userId);
+            socket.disconnect();
         };
-      }, [userId]);
-    
+    }, [userId]);
+
 
     const deleteNotificationsReadHandler = async (notificationId) => {
         notificationService.deleteNotifications(notificationId)
