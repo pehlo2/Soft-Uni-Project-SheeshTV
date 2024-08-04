@@ -20,7 +20,7 @@ import ErrorContext from '../../../../context/errorContext'
 
 
 const ProfileHeader = ({ profile, handleFollow,
-    handleUnfollow ,handleUpdateProfile}) => {
+    handleUnfollow, handleUpdateProfile }) => {
 
     const [showProfileEdit, setShowProfileEdit] = useState(false)
     const [showFollowingModal, setShowFollowingModal] = useState(false)
@@ -38,7 +38,7 @@ const ProfileHeader = ({ profile, handleFollow,
         }
         ).catch(error => {
             handleError(error.message);
-           
+
         });;
     }, [profileId]);
 
@@ -50,9 +50,9 @@ const ProfileHeader = ({ profile, handleFollow,
         setFollowingCount(newCount);
     };
 
-    
+
     const handleCopyLink = () => {
-   
+
         copyProfileLink(profileId);
         setShowPopup(true);
         setTimeout(() => {
@@ -60,8 +60,8 @@ const ProfileHeader = ({ profile, handleFollow,
         }, 1500);
     };
 
-   console.log(profile);
-   
+
+
 
     const isUserIdInFollowers = profile.followers?.some(follower => follower._id === userId)
 
@@ -88,18 +88,21 @@ const ProfileHeader = ({ profile, handleFollow,
                                     )}
                                 </>
                             )}
+                            {userId === profileId &&
+                                <button className={styles["edit-profile-button"]} onClick={() => setShowProfileEdit(!showProfileEdit)} >Edit profile</button>
+                            }
 
                         </div>
                     </div>
                     <div className={styles["profile-links"]}>
-                        <button onClick={() => setShowProfileEdit(!showProfileEdit)} >EDIT PROFILE</button>
-                        <a  className={styles["copy-link"]} onClick={handleCopyLink}><Popup isVisible={showPopup} />Copy Profile link </a>
+
+                        <a className={styles["copy-link"]} onClick={handleCopyLink}><Popup isVisible={showPopup} />Copy Profile link </a>
                     </div>
                 </div>
                 <div className={styles["profile-info"]}>
 
                     <div className={styles["profile-stats"]}>
-                        <VideoCount userId={profileId} />
+                        <VideoCount userId={profileId}/>
                         <div className={styles["followers"]} onClick={() => { setShowFollowersModal(true) }}>
                             <p>{profile.followers?.length}</p>
                             <p>Followers</p>

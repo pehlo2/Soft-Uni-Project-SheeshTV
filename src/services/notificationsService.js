@@ -36,7 +36,9 @@ export const markAllAsRead = async (userId) => {
 
 };
 export const deleteAllNotifications = async (userId) => {
-    const notifications = await request.put(`${endpoints.notifications}/${userId}/deleteAll`)
+    
+    
+    const notifications = await request.del(`${endpoints.notifications}/${userId}/deleteAll`)
     return notifications;
 
 

@@ -21,6 +21,7 @@ const VideoCard = ({
 }) => {
     const [playing, setPlaying] = useState(false)
     const [showModal, setShowModal] = useState(false);
+    let timeOutId = 0
     const playerRef = useRef(null);
 
 
@@ -33,10 +34,21 @@ const VideoCard = ({
             <div className={styles["media"]}
                 onClick={() => setShowModal(!showModal)}
                 onMouseEnter={() => {
-                    setPlaying(true);
-                    playerRef.current.setState({ showPreview: false })
+                    timeOutId = setTimeout(() => {
+                        setPlaying(true);
+
+                        playerRef.current.setState({ showPreview: false })
+                    }, 300);
+
                 }}
-                onMouseLeave={() => { setPlaying(false) }}
+                onMouseLeave={() => {
+                    if (timeOutId !== 0) {
+
+                        clearTimeout(timeOutId)
+                    }
+
+                    setPlaying(false)
+                }}
             >
                 < ReactPlayer
 
@@ -78,7 +90,7 @@ const VideoCard = ({
                             </p>
                         </div>
                     </div>
-                    <div className={styles["top-bottom"]}>
+                    <div className={styles["bottom-info"]}>
                         <p><Link to={`/users/${owner?._id}`}>{owner?.username}</Link></p>
                         <div className={styles["view-date"]}>
                             <p><span>{viewCount}</span> views</p>

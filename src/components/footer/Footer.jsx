@@ -19,7 +19,7 @@ export default function Footer() {
                     <li>Home</li>
                     <li>Discover</li>
                     <li>Chat</li>
-                    <li>business</li>
+                    <li>Business</li>
                 </ul>
                 <ul>
                     <h3>Profile</h3>

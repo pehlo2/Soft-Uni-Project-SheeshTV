@@ -10,7 +10,8 @@ const Notifications = ({ userId,
 
   notifications,
   markAsReadHandler,
-  deleteNotificationsReadHandler }) => {
+  deleteNotificationsReadHandler, deleteAllNotificationsReadHandler,
+  markAllAsReadHandler }) => {
 
 
 
@@ -25,6 +26,11 @@ const Notifications = ({ userId,
   return (
     <div className={styles['notification-wrapper']} >
       <h4>Notifications</h4>
+      {notifications.length !== 0 && <div className={styles['notification-all-actions']} >
+        <p onClick={deleteAllNotificationsReadHandler}>Clear all</p>
+        <p onClick={markAllAsReadHandler}>Mark all as read</p>
+      </div>}
+
       <div className={styles['notification-container']}>
         {notifications.length === 0 && (
           <div className={styles['no-notifications']}>
@@ -33,10 +39,7 @@ const Notifications = ({ userId,
           </div>
 
         )}
-        <div>
-          <p>delete all</p>
-          <p>Mark all</p>
-        </div>
+
         {notifications.map((notification) => (
 
           <div key={notification._id} className={`${notification.read ? styles['notification-read'] : styles['notification-unread']}`} >

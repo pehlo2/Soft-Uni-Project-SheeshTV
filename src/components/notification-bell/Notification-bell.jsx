@@ -54,7 +54,7 @@ const NotificationsBell = () => {
 
 
     const deleteNotificationsReadHandler = async (notificationId) => {
-        notificationService.deleteNotifications(notificationId)
+       await notificationService.deleteNotifications(notificationId)
 
         setNotifications((prevNotifications) =>
             prevNotifications.filter((notification) => notification._id !== notificationId)
@@ -64,9 +64,27 @@ const NotificationsBell = () => {
         setUnreadCount(newUnreadCount);
     };
 
+    const deleteAllNotificationsReadHandler = async () => {
+       await notificationService.deleteAllNotifications(userId)
+
+        setNotifications([])
+        setUnreadCount(0);
+
+    };
+    const markAllAsReadHandler = async () => {
+       await notificationService.markAllAsRead(userId)
+
+        setNotifications((prevNotifications) =>
+            prevNotifications.map((notification) => ({
+                ...notification,
+                read: true
+            }))
+        );
+        setUnreadCount(0);
+    };
 
     const markAsReadHandler = async (notificationId) => {
-        notificationService.markAsRead(notificationId)
+       await notificationService.markAsRead(notificationId)
 
         setNotifications((prevNotifications) =>
             prevNotifications.map((notification) =>
@@ -78,8 +96,6 @@ const NotificationsBell = () => {
         setUnreadCount(newUnreadCount);
 
     };
-
-
 
 
     useEffect(() => {
@@ -111,6 +127,8 @@ const NotificationsBell = () => {
                     notifications={notifications}
                     markAsReadHandler={markAsReadHandler}
                     deleteNotificationsReadHandler={deleteNotificationsReadHandler}
+                    deleteAllNotificationsReadHandler={deleteAllNotificationsReadHandler}
+                    markAllAsReadHandler={markAllAsReadHandler}
 
                 />}
             </div>

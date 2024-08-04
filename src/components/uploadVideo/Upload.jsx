@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import styles from './Upload.module.css'
 import AuthContext from '../../context/authContext';
 import { useVideoActions } from '../../hooks/useVideoActions';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { mixed, object, string } from 'yup';
 import UserVideosContext from '../../context/userVideoContext';
 import ErrorContext from '../../context/errorContext';
@@ -23,7 +23,8 @@ const UploadVideo = () => {
     const [validationErrors, setValidationErrors] = useState({})
     const [videoPreview, setVideoPreview] = useState(null);
     const { handleErrorFunction } = useContext(ErrorContext)
-    const [uploadedVideoId, setUploadedVideoId] = useState(null); 
+    const [uploadedVideoId, setUploadedVideoId] = useState(null);
+    const navigate = useNavigate()
 
     const uploadVideoSchema = object({
         title: string().required('* Title is required').min(3, '* Title must be at least 3 characters'),

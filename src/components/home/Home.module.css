@@ -2,20 +2,12 @@
     text-decoration: none;
     font-size: 100%;
     color: white;
-    background: orange;
+    background: var(--button-color);
     padding: 0.5em 3em;
     border-radius: 0.4em;
 }
 
 
-.button {
-    text-decoration: none;
-    font-size: 100%;
-    color: white;
-    background: orange;
-    padding: 0.5em 3em;
-    border-radius: 0.4em;
-}
 
 /*  */
 .top-welcome {
@@ -40,7 +32,7 @@
 }
 
 .top-welcome .inner {
-    z-index:4;
+    z-index: 4;
     display: flex;
     gap: 2em;
     justify-content: center;
@@ -77,31 +69,41 @@
     object-fit: cover;
     overflow-clip-margin: content-box;
     overflow: clip;
-    border-bottom: 3px solid orange;
+    border-bottom: 4px solid var(--button-color);
 }
 
 .top-welcome .content p:nth-child(odd) {
-    color: orange;
+    color: var(--button-color);
 }
 
 .top-welcome .review a {
     text-decoration: none;
     font-size: 26px;
-    color: var(--font-color);
-    ;
-    background: orange;
+    color: white;
+
+    background: var(--button-color);
     padding: 0.5em 3em;
     border-radius: 0.4em;
 }
 
 /*  */
 
+.chat-section-inner {
+    width: 100%;
+    display: flex;
+    gap: 2em;
+    justify-content: space-between;
+    line-height: 1;
+}
+
 
 .chat-content {
     display: flex;
     flex-direction: column;
     gap: 2em;
-    flex: 0 1 64%;
+    flex: 0 1 35%;
+    justify-content: center;
+    line-height: 1;
 }
 
 .chat-review {
@@ -118,10 +120,49 @@
 
 .chat-content p {
     font-size: 26px;
+    padding-top: 0.5em;
 }
 
 /* share */
+/*  */
+.audiance {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 2em;
+}
 
+.audiance .audiance-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 0 1 12%;
+    gap: 1em;
+
+}
+
+.audiance-info {
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid var(--button-color);
+    padding-left: 1em;
+
+}
+.audiance-card .media{
+    align-self: flex-start;
+    padding-left: 1.5em;
+}
+.audiance-card .media svg {
+    font-size: 36px;
+   
+}
+
+.audiance-info p {
+    text-align: left;
+}
+
+/*  */
 
 
 
@@ -187,23 +228,32 @@
     .chat-content p,
     .share-content p,
     .friends-content p {
-
         font-size: 20px;
     }
-    .top-welcome .inner .content{
+
+    .top-welcome .inner .content {
         font-size: 60px;
     }
 }
 
 @media (max-width: 900px) {
-    .chat-content,.friends-content,.share-content{
+
+    .chat-content,
+    .friends-content,
+    .share-content {
         justify-content: center;
         align-items: center;
         text-align: center;
     }
-    .share-images{
+
+    .chat-section {
+        flex-direction: column-reverse;
+    }
+
+    .share-images {
         padding: 3em;
     }
+
     .friends-media img {
         padding: 2em;
     }

@@ -15,7 +15,9 @@
   overflow: hidden;
   color: var(--body-color);
   background:var(--backround-color);
-  ;
+  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+
 }
 
 .container button {

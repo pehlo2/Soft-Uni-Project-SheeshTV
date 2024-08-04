@@ -19,7 +19,7 @@ export default function Register() {
   const { registerSubmitHandler,error } = useContext(AuthContext)
 
   const registerSchema = object({
-    username: string().required('* Username is required').min(6, '* Username must be at least 6 characters'),
+    username: string().required('* Username is required').min(5, '* Username must be at least 5 characters'),
     email: string().required('* Email is required').email('* Invalid email format'),
     password: string().required('* Password is required').min(6, '* Password must be at least 6 characters'),
     rePassword: string().oneOf([ref("password")], '* Password must match').required('* Confirm password is required')

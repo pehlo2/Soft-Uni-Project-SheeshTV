@@ -30,7 +30,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
     setIsLoading(true)
 
     videoServices.getUserVideos(profileId, page).then(result => {
-      console.log(result);
+     
       dispatch({
         type: 'GET_YOUR_VIDEOS',
         videos: result
@@ -93,7 +93,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   const editVideo = async (videoId, videoData) => {
     try {
       const updatedVideo = await videoServices.editVideo(videoId, videoData);
-      console.log(updatedVideo);
+    
 
 
 

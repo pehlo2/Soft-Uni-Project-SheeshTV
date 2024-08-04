@@ -17,6 +17,7 @@
   position: relative;
   margin: 0 auto;
   margin-bottom: 5em;
+  box-shadow: 0 0 0.4em 0 rgba(0, 0, 0, 0.3);
 }
 
 .upload {
@@ -25,7 +26,6 @@
   justify-content: center;
   align-items: center;
   gap: 0.5em;
-
   width: 100%;
 }
 
@@ -77,7 +77,7 @@
   width: 100%;
   padding: 0.5em 0;
   border-radius: 0.7em;
-  color: var(--font-color);
+  color: white;
   font-size: 18px;
   text-decoration: none;
   text-align: center;

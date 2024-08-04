@@ -1,12 +1,10 @@
 .search-bar {
-
     display: flex;
     max-width: 350px;
     width: 100%;
     border: none;
     position: relative;
     background: transparent;
-   
     color: white;
     cursor: text;
 
@@ -20,7 +18,7 @@
     border-radius: 15px;
     border: none;
     color: white;
-    background: #3d3d3d;
+    background: var(--hover-background-color);
     border-radius: 1em;
     padding: 0.5em 2.3em;
 }
@@ -32,7 +30,7 @@
 .search-bar button {
     height: 30px;
     width: 30px;
-    background: #3d3d3d;
+    background: var(--hover-background-color);
     position: absolute;
     z-index: 1;
     top: 5px;

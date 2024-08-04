@@ -1,12 +1,10 @@
 import React from "react";
-// import { ReactComponent as Sun } from "./Sun.svg";
-// import { ReactComponent as Moon } from "./Moon.svg";
 import "./DarkMode.css";
 import Sun from "./Sun.svg?react"
 import Moon from "./Moon.svg?react"
 const DarkMode = ({toggleTheme}) => {
 
- 
+
     return (
         <div className='dark_mode'>
             <input
@@ -14,7 +12,8 @@ const DarkMode = ({toggleTheme}) => {
                 type='checkbox'
                 id='darkmode-toggle'
                 onChange={toggleTheme}
-                checked={localStorage.getItem('theme') ==='dark'}
+                checked={localStorage.getItem('theme') ==='dark' || localStorage.getItem('theme') === null}
+               
             />
             <label className='dark_mode_label' htmlFor='darkmode-toggle'>
                 <Moon />

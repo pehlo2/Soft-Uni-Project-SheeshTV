@@ -17,7 +17,8 @@ const CreatorCard = ({ creator }) => {
     const handleUnfollow = () => {
         setIsLiked(false);
     };
-
+       
+         
     return (
         <div className={styles["creator-card"]} style={{ backgroundImage: `url('${avatarUrl}')` }}>
             <div className={styles["blur-background"]}></div>

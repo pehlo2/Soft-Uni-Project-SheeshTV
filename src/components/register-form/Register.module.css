@@ -1,4 +1,14 @@
-
+.container {
+   margin: 0 auto;
+  margin-top: 10em;
+  margin-bottom: 20em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  display: flex;
+  max-width: 800px;
+  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+}
 
 .overlay-panel,
 .form-container h1 {
@@ -60,20 +70,13 @@
   gap: 1em;
 }
 
-.container {
-  margin: 0 auto;
-  margin-top: 10em;
-  margin-bottom: 20em;
-  border-radius: 0.5em;
-  overflow: hidden;
- 
-}
+
 
 .form-container {
   flex: 0 0 50%;
   padding: 2em;
   background: var(--inner-background-color);
-  color:var(--font-color);
+  color: var(--font-color);
 }
 
 .form-container input {
@@ -81,15 +84,18 @@
   width: 100%;
   font-size: 16px;
 }
-.container .input-field{
+
+.container .input-field {
   width: 100%;
-  
+
 }
-.container .input-field p{
-  color:red;
+
+.container .input-field p {
+  color: red;
   font-size: 12px;
-  
+
 }
+
 .overlay {
   height: 100%;
 }
@@ -114,10 +120,6 @@
   text-shadow: 0 0 3px #000000, 0 0 5px #000000;
 }
 
-.container {
-  display: flex;
-  max-width: 800px;
-}
 
 .social-container {
   display: flex;
@@ -133,6 +135,7 @@
 .social-container img {
   width: 100%;
 }
-.error{
+
+.error {
   color: red;
 }

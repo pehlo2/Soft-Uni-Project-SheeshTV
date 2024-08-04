@@ -1,6 +1,5 @@
 .main-profile {
     display: flex;
-
     gap: 2em;
 }
 
@@ -20,6 +19,7 @@
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 0.3em 0 var(--box-shadow-color);
    
 }
 

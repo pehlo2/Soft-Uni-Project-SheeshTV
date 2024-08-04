@@ -1,14 +1,12 @@
 import styles from './Videos-dashboard.module.css'
 import VideoCard from '../video-card/Video-card';
-// import * as videoServices from '../../services/videoServices'
-// import { endpoints } from '../lib/endpoints'
-import * as videoServices from '../../services/videoServices'
-import { useContext, useEffect, useState } from 'react';
+
+import { useContext} from 'react';
 import VideoContext from '../../context/videoContext';
 import GameChoiceBar from '../game-choice-bar/Game-choice-bar';
 
 import LoaderSpinner from '../loader-spinner/Loader-spiner';
-import { ErrorComponent } from '../error/Error';
+
 
 
 

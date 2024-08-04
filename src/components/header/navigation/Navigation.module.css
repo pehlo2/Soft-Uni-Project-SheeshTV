@@ -1,19 +1,25 @@
 .main-header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid var(--border-color);
-  padding: 1em 3em;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.2em 1em;
   font-size: 18px;
   align-items: center;
   flex-wrap: wrap;
   background-color: var(--inner-background-color);
   user-select: none;
+  box-shadow: 0 0 0.2em 0 var(--box-shadow-color);
 
 }
-
-.main-header .logo p {
-  font-size: 32px;
-  color: var(--font-color);
+.main-header .logo {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  
+}
+.main-header .logo img{
+  width: 90px;
+  
 }
 
 .main-header nav ul {
@@ -23,21 +29,14 @@
   flex-wrap: wrap;
   align-items: center;
 }
-/* .main-header nav div {
-  display: flex;
-  list-style: none;
-  gap: 2em;
-  flex-wrap: wrap;
-  align-items: center;
-} */
+
 .main-header nav ul li a {
   text-decoration: none;
   color: var(--font-color);
   display: flex;
 }
 .buttons{
- 
-  background-color: rgb(67, 67, 67);
+  background-color: var(--hover-background-color);
   padding: 0.3em 1em;
   border-radius: 0.5em;
   display: flex;
@@ -58,7 +57,9 @@
 }
 .drop-menu-profile img{
   width: 45px;
+  height: 45px;
   border-radius: 50%;
+  object-fit: cover;
   cursor: pointer;
 }
 

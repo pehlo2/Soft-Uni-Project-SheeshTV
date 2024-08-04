@@ -20,7 +20,7 @@ const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
     const [validationErrors, setValidationErrors] = useState({})
     const { handleErrorFunction } = useContext(ErrorContext)
     const profileSchema = object({
-        username: string().required('* Username is required').min(6, '* Username must be at least 6 characters'),
+        username: string().required('* Username is required').min(5, '* Username must be at least 5 characters'),
         description: string().required('* Description is required').min(5, '* Description must be at least 6 characters'),
         email: string().required('* Email is required').email('* Invalid email format'),
     })

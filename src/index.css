@@ -8,29 +8,32 @@
 :root {
   --body-background: #0F0F0F;
   --inner-background-color: #161618;
-  --font-color: white;
-  --font-color-read: rgb(183, 183, 183);
-  --smaller-text-color: #89898B;
-
-  
-  --button-color: #FFB74E;
-  --border-color: #323232;
   --second-background-color: #232323;
   --hover-background-color: #414141;
-  --font-background-un-read: #2f2f2f;
-  --blur-color: rgba(57, 54, 54, 0.9);
+  --game-bar-specific-color-hover:rgb(138, 136, 136);
+  --font-color: white;
+  --font-color-2: #89898B;
+  --font-color-3: #2f2f2f;
+  --button-color: #FFB74E;
   --button-backgorund-color: rgb(44, 44, 44);
+  --blur-color: rgba(57, 54, 54, 0.9);
+  --border-color: #323232;
+  --box-shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="light"] {
-  --body-background: rgb(255, 255, 255);
-  --font-color: black;
-  --body-color: black;
-  --button-color: rgb(1, 232, 244);
-  --border-color: rgb(187, 186, 186);
-  --form-color: rgb(35, 7, 7);
-  --second-background-color: #8e8e8e;
-  --inner-background-color: #cfebf0;
+ --body-background: #F0F2F5;
+  --inner-background-color: #FFFFFF;
+  --second-background-color: #F0F2F5;
+  --hover-background-color: #cacaca;
+  --font-color: #2f2f2f;
+  --font-color-3: #65676B;
+  --font-color-2: #89898B;
+  --button-color: #3352eb;
+  --button-backgorund-color: rgb(194, 192, 192);
+  --blur-color: rgba(57, 54, 54, 0.9);
+  --border-color: #dedede;
+  --game-bar-specific-color-hover: #232323
 }
 
 

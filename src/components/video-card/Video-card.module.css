@@ -1,10 +1,11 @@
 .video-card {
     width: 30%;
-    background: #0F0F0F;
+    background: var(--body-background);
     border-radius: 0.5em;
     overflow: hidden;
     color: white;
     position: relative;
+    
 }
 
 .video-info {
@@ -30,13 +31,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--font-color);
 }
-.top-bottom{
+.bottom-info{
    font-size: 25px;
+   color: var(--font-color-2);
 }
 .video-stats .view-date {
     display: flex;
-    color: var(--font-color-read);
+    color: var(--font-color-2);
     justify-content: flex-start;
     align-items: center;
     gap: 0.5em;
@@ -44,12 +47,12 @@
 
 .video-stats .view-date svg {
     font-size: 5px;
-    color: var(--font-color-read);
+    color: var(--font-color-2);
 }
 
 .video-stats p a {
     text-decoration: none;
-    color: var(--font-color-read);
+    color: var(--font-color-2);
 }
 
 

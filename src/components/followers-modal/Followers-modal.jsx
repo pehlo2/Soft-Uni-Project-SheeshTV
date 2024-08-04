@@ -84,6 +84,7 @@ const FollowersModal = ({ onClose, updateFollowingCount }) => {
                                     </Link>
                                 </div>
                             </div>
+                            <div  className={styles['button-container']}>
                             {user._id !== userId && (
                                 <>
                                     {!user.followers.includes(userId) && (
@@ -94,6 +95,9 @@ const FollowersModal = ({ onClose, updateFollowingCount }) => {
                                     )}
                                 </>
                             )}
+
+                            </div>
+                         
                         </div>
                     ))}
                 </div>

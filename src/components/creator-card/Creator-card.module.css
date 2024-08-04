@@ -14,6 +14,7 @@
     z-index:2;
     user-select:none;
     width: 240px;
+    box-shadow: 0 0 0.7em 0 rgba(0, 0, 0, 0.5);
 }
 .blur-background{
     position: absolute;
@@ -40,6 +41,8 @@
 }
 .media img {
     width: 100px;
+    height: 100px;
+    object-fit: cover;
 }
 .content a{
  text-decoration: none;

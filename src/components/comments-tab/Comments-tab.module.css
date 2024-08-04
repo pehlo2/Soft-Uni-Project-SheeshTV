@@ -78,7 +78,7 @@
 
 }
 .user-comment:hover {
-    background-color: var(--font-background-un-read);
+    background-color: var( --font-color-3);
 
 }
 .user-comment-inner {

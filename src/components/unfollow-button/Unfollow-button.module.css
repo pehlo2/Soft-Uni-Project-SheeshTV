@@ -1,10 +1,12 @@
 .unfollow-button{
     font-weight: bold;
-    padding: 0.5em 2em;
+    padding: 0.5em 1em;
     color: white;
     background-color:  rgba(64, 64, 64, 0.7);
     border: 1px none;
     border-radius: 0.3em;
     cursor: pointer;
     user-select:none;
+    text-align: center;
+    width: 100%;
 }

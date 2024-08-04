@@ -3,10 +3,13 @@ import AuthContext from '../../context/authContext'
 import styles from './Home.module.css'
 import SectionComponent from './Section-component'
 import Notifications from '../notifications/Notifications'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faClapperboard, faGlasses, faUserGroup, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
 
 
 const Home = () => {
     const { userId } = useContext(AuthContext)
+
     return (
         <>
 
@@ -20,7 +23,6 @@ const Home = () => {
                         <source src="movie.ogg" type="video/ogg" />
                         Your browser does not support the video tag.
                     </video>
-                    {/* <!-- <img src="./video/maxresdefault.jpg" alt="" /> --> */}
                 </div>
                 <div className={styles['container']}>
                     <div className={styles['inner']}>
@@ -37,27 +39,84 @@ const Home = () => {
             </section>
 
 
-         
-         
+
+
             <SectionComponent >
-
-                <div className={styles['chat-review']}>
-                    <img src="/images/fawfaw.png" alt="" />
-                </div>
-                <div className={styles['chat-content']}>
-                    <h1>Chat with Your Friends</h1>
-                    <p>
-                        Send Private and Group messages fawfawfaw fawfawfaw faf afawf afwa
-                        faw fwaf waf fawfa wfaw faw faw f
-                    </p>
-
-                    <div>
-                        <a href="" className={styles['button']}>Start Chat</a>
+                <div className={styles['chat-section-inner']}>
+                    <div className={styles['chat-review']}>
+                        <img src="/images/ChatFriends.webp" alt="" />
                     </div>
+                    <div className={styles['chat-content']}>
+                        <h1>Chat with Your Friends</h1>
+                        <div>
+                            <p>Send Private across all devices! </p>
+                            <p>Stay up to date with your friends</p>
+                            <p>See your friends gaming moments </p>
+                        </div>
+
+                        <div>
+                            <a href="" className={styles['button']}>Start Chat</a>
+                        </div>
+                    </div>
+
                 </div>
+
 
             </SectionComponent>
 
+
+            <SectionComponent >
+                <div className={styles['audiance']}>
+
+                    <div className={styles['audiance-card']}>
+                        <div className={styles["media"]}>
+                            <FontAwesomeIcon icon={faWandMagicSparkles} />
+                        </div>
+                        <div className={styles["audiance-info"]}>
+                            <h3>The Creators</h3>
+                            <p>Creators are users who actively create content. Their main objective is to share it with others</p>
+                        </div>
+
+                    </div>
+                    <div className={styles['audiance-card']}>
+                        <div className={styles["media"]}>
+                            <FontAwesomeIcon icon={faUserGroup} />
+                        </div>
+                        <div className={styles["audiance-info"]}>
+                            <h3>The Players</h3>
+                            <p> Players are users who game as their main free-time filler. They can be casual of hardcore</p>
+                        </div>
+
+
+                    </div>
+
+                    <div className={styles['audiance-card']}>
+                        <div className={styles["media"]}>
+                            <FontAwesomeIcon icon={faGlasses} />
+                        </div>
+                        <div className={styles["audiance-info"]}>
+                            <h3>The Viewers</h3>
+                            <p>Viewers are users who primarily enjoy watching and/or interacting with content</p>
+                        </div>
+
+
+
+                    </div>
+                    <div className={styles['audiance-card']}>
+                        <div className={styles["media"]}>
+                        <FontAwesomeIcon icon={faClapperboard} />
+                        </div>
+                        <div className={styles["audiance-info"]}>
+                            <h3>The Clippers</h3>
+                            <p>Clippers are users who mainly use medal to save moments from their gameplay</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </SectionComponent>
 
 
             <SectionComponent >
@@ -137,7 +196,10 @@ const Home = () => {
                     <p>Enjoy gamin together</p>
                 </div>
                 <div className={styles['friends-media']}>
-                    <img src="/images/find ppl.png" alt="" />
+                    {localStorage.getItem('theme') === 'dark' && <img src="/images/discover.png" alt="" />}
+                    {localStorage.getItem('theme') === null && <img src="/images/discover.png" alt="" />}
+                    {localStorage.getItem('theme') === 'light' && <img src="/images/discover2.png" alt="" />}
+
                 </div>
 
             </SectionComponent>

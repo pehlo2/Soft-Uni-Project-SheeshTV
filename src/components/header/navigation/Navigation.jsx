@@ -9,7 +9,7 @@ import SearchBar from '../../search-bar/Search-bar'
 
 import NotificationsBell from '../../notification-bell/Notification-bell'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightFromBracket, faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faRightFromBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import ProfileDropMenu from '../../profile-drop-menu/Profile-drop-menu'
 
 
@@ -18,9 +18,9 @@ export default function Navigation({
 }) {
 
     const [showDropMenu, setShowDropMenu] = useState(false)
-    const { isAuthenticated} = useContext(AuthContext)
+    const { isAuthenticated } = useContext(AuthContext)
     const dropMenuRef = useRef()
-     
+
     useEffect(() => {
 
         const handler = (e) => {
@@ -38,18 +38,19 @@ export default function Navigation({
     }, [])
 
     const storedUser = JSON.parse(localStorage.getItem('user'));
-  
+
 
 
 
     return (
         <header className={styles["main-header"]} >
             <div className={styles["logo"]}>
-                <p>SheeshTV</p>
+                <Link to={'/dashboard'}><img src="/icons/Logo.png" alt="" /></Link>
+                <div className={styles["search"]}>
+                    < SearchBar />
+                </div>
             </div>
-            <div className={styles["search"]}>
-                < SearchBar />
-            </div>
+
 
             <nav>
                 <ul>
@@ -84,8 +85,3 @@ export default function Navigation({
 }
 
 
-
-
-{/* <li><a href="">Home</a></li>
-<li><a href="">Signup</a></li>
-<li><a href="">Discover</a></li> */}

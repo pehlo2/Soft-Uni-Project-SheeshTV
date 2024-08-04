@@ -2,6 +2,8 @@
 footer {
     border-top: 1px solid var(--border-color);
     color: var(--font-color);
+    box-shadow: 0 0 0.2em 0 var(--box-shadow-color);
+    
 }
 
 footer .container {
@@ -11,19 +13,28 @@ footer .container {
     flex-wrap: wrap;
     gap: 10em;
     justify-content: center;
+    
+}
+footer .container ul h3 {
+    user-select: none;
    
 }
-
 footer .container ul {
-
     display: flex;
     flex-direction: column;
     gap: 0.5em;
     list-style: none;
     font-size: 1.2em;
-
+   
 }
+footer .container ul >li:hover{
+   text-decoration: underline;
+   cursor: pointer;
+}
+footer .container img{
 
+    cursor: pointer;
+ }
 footer .connections {
     display: flex;
     gap: 2em;

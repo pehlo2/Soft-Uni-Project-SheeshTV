@@ -12,7 +12,20 @@
     flex-direction: column;
     gap: 0.5em;
     overflow: hidden;
-    max-height: 800px;
+    max-height: 490px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 0.3em 0 var(--box-shadow-color);
+
+}
+
+.notification-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.notification-container::-webkit-scrollbar {
+    display: none;
 }
 
 .notification-wrapper h4,
@@ -29,7 +42,7 @@
 
 .notification-unread {
     font-size: 14px;
-    background-color: var(--font-background-un-read);
+    background-color: var(--inner-background-color);
     border: var(--border-color);
     color: var(--font-color);
     display: flex;
@@ -38,19 +51,19 @@
     padding: 1em 1em;
     gap: 1em;
     border-top: 1px solid var(--border-color);
-  
+
 }
 
 .notification-read {
     font-size: 14px;
-    color: var(--font-color-read);
+    color: var(--font-color-2);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 1em 1em;
     gap: 1em;
     border-top: 1px solid var(--border-color);
-  
+
 }
 
 .notification-read:hover,
@@ -76,8 +89,8 @@
     left: 6px;
     border-width: 0 10px 10px 10px;
     border-style: solid;
-    border-color: transparent transparent  var(--second-background-color) transparent;
-    z-index: 999; 
+    border-color: transparent transparent var(--second-background-color) transparent;
+    z-index: 999;
 }
 
 .no-notifications {
@@ -96,7 +109,31 @@
 .notification-info {
     width: 100%;
 }
-.notification-message{
+
+.notification-message {
     display: flex;
     gap: 0.4em;
+}
+
+.notification-all-actions {
+    display: flex;
+    font-size: 12px;
+    justify-content: flex-end;
+    gap: 2em;
+    padding: 0 2em;
+
+}
+
+.notification-all-actions p {
+
+    border-radius: 1.7em;
+    padding: 0.2em 0.5em;
+
+}
+
+.notification-all-actions p:hover {
+    background: grey;
+
+
+
 }
