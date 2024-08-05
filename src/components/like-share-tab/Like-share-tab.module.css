@@ -33,3 +33,7 @@
 .liked svg{
     color: var(--button-color);
 }
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

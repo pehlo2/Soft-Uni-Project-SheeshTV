@@ -39,8 +39,10 @@ const LikeShareTab = ({ video, isLiked, setIsLiked, contextType }) => {
 
     return (
         <div className={styles["social-tab"]}>
-            {!isLiked && (<a><FontAwesomeIcon icon={faHeart} onClick={handleLike} /></a>)}
-            {isLiked && (<a className={styles["liked"]}><FontAwesomeIcon icon={faHeart} onClick={handleDisLike} /></a>)}
+            {!isLiked && (<a><FontAwesomeIcon icon={faHeart} onClick={handleLike} className={`${styles["liked"]} ${!userId ? styles["disabled"] : ""}`}/></a>)}
+            
+            {isLiked && (<a className={styles["liked"]}><FontAwesomeIcon icon={faHeart} onClick={handleDisLike} className={`${styles["liked"]} ${!userId ? styles["disabled"] : ""}`} /></a>)}
+            
             <a><FontAwesomeIcon icon={faComment} /></a>
             <a className={styles["copy-link"]}><Popup isVisible={showPopup} /><FontAwesomeIcon icon={faLink} onClick={handleCopyLink} /></a>
         </div>
