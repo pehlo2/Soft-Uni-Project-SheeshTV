@@ -19,11 +19,16 @@ import AuthGuard from './components/guards/Auth-guard';
 import AlreadyAuthenticatedGuard from './components/guards/AlreadyAuthenticatedGuard';
 import ErrorBoundary from './components/ErrorBoundary';
 import { ErrorProvider } from './context/errorContext';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const [theme, setTheme] = useState('dark');
-
- window.remoteOrigin =  import.meta.env.VITE_SERVER_DATA_URI
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
+  window.remoteOrigin = import.meta.env.VITE_SERVER_DATA_URI
 
   const toggleTheme = () => {
     if (theme === 'light') {

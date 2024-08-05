@@ -13,10 +13,11 @@
 .top-welcome {
 
     width: 100%;
-    min-height: 640px;
+    min-height: 600px;
     position: relative;
     padding: 0;
     max-width: 1920px;
+
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -56,16 +57,12 @@
     inset: 0;
 }
 
-/* .top-welcome .container .media {
-    
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  } */
+
 .top-welcome video {
     width: 100%;
     height: 100%;
     max-width: 100%;
+    min-width: 600px;
     object-fit: cover;
     overflow-clip-margin: content-box;
     overflow: clip;
@@ -91,8 +88,8 @@
 .chat-section-inner {
     width: 100%;
     display: flex;
-    gap: 2em;
-    justify-content: space-between;
+    gap: 15em;
+    justify-content: center;
     line-height: 1;
 }
 
@@ -101,13 +98,14 @@
     display: flex;
     flex-direction: column;
     gap: 2em;
-    flex: 0 1 35%;
+    flex: 0 1 30%;
     justify-content: center;
     line-height: 1;
 }
 
 .chat-review {
     flex: 0 1 30%;
+
 }
 
 .chat-review img {
@@ -128,8 +126,17 @@
 .audiance {
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
-    gap: 2em;
+    justify-content: center;
+    align-items: center;
+    gap: 6em;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.audiance-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 6em;
 }
 
 .audiance .audiance-card {
@@ -137,8 +144,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 0 1 12%;
+    width: 200px;
     gap: 1em;
+
 
 }
 
@@ -149,13 +157,15 @@
     padding-left: 1em;
 
 }
-.audiance-card .media{
+
+.audiance-card .media {
     align-self: flex-start;
     padding-left: 1.5em;
 }
+
 .audiance-card .media svg {
     font-size: 36px;
-   
+
 }
 
 .audiance-info p {
@@ -182,36 +192,86 @@
     flex-wrap: wrap;
     gap: 1em;
     flex: 0 1 35%;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .share-images .media {
     width: 17%;
-
     aspect-ratio: 1 / 1;
 }
 
 .share-images img {
     width: 100%;
     height: 100%;
-
     border-radius: 50%;
+    object-fit: cover;
 }
 
 /*  */
+.icons-dummy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1.5em;
+}
+
+.icons-dummy a {
+    text-decoration: none;
+    color: white;
+    background: var(--game-bar-specific-color-hover);
+    padding: 0.2em 5em;
+    border-radius: 1em;
+    margin-right: 1.2em;
+}
+
+.icons-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    color: var(--font-color);
+}
 
 
+
+
+.icons-dummy svg:nth-child(1),
+.icons-dummy svg:nth-child(7) {
+    font-size: 30px;
+}
+
+.icons-dummy svg:nth-child(2),
+.icons-dummy svg:nth-child(6) {
+    font-size: 40px;
+}
+
+.icons-dummy svg:nth-child(3),
+.icons-dummy svg:nth-child(5) {
+    font-size: 50px;
+}
+
+.icons-dummy svg:nth-child(3),
+.icons-dummy svg:nth-child(5) {
+    font-size: 60px;
+}
+
+.icons-dummy svg:nth-child(4) {
+    font-size: 65px;
+}
 
 .friends-content {
     flex: 1 1 auto;
 }
 
 .friends-media {
-    flex: 0 1 35%;
+    flex: 1 0 35%;
 }
 
 .friends-media img {
     width: 100%;
+    min-width: 375px;
 }
 
 .friends-content h1 {
@@ -246,9 +306,7 @@
         text-align: center;
     }
 
-    .chat-section {
-        flex-direction: column-reverse;
-    }
+
 
     .share-images {
         padding: 3em;
@@ -256,5 +314,23 @@
 
     .friends-media img {
         padding: 2em;
+    }
+
+    .icons-wrapper {
+        gap: 2em;
+    }
+
+    .chat-section-inner {
+        gap: 4em;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .chat-review img {
+        width: 500px;
+    }
+
+    .audiance-wrapper {
+        gap: 13em;
     }
 }

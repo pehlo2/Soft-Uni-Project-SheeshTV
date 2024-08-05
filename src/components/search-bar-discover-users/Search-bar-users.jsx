@@ -6,7 +6,7 @@ const SearchBarForUsers = ({onSearch}) => {
 
     const submitSearch = (values) => {
         onSearch(values.search)
-        resetHandler()
+        
     }
 
     const { values, onChange, onSubmit ,setValues} = useForm(submitSearch, {

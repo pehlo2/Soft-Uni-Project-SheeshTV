@@ -9,50 +9,23 @@
     border-radius: 0.4em;
     background: var(--inner-background-color);
     ;
-    height: 635px;
+    height: 500px;
     gap: 1em;
     position: sticky;
     top: 3em;
     box-shadow: 0 0 0.1em 0 var(--box-shadow-color);
   }
-  
+ 
+  .media img{
+    width: 300px;
+  }
   .followers-aside h3 {
     text-align: center;
   }
   
-  .followers-wrapper {
-    width: 90%;
-  
-  }
-  
-  .followers-box {
-    display: flex;
-    border: 1px solid var(--border-color);
-    justify-content: space-between;
-    width: 100%;
-    padding: 0.4em 2em;
-  }
-  
-  .followers-box-inner {
-    display: flex;
-    gap: 1em;
-  }
-  
-  .followers-media img {
-    width: 60px;
-    height: 60px;
-    border-radius: 40%;
-    padding: 0.2em;
-  }
-  
-  .remove-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .remove-button a {
-    text-decoration: none;
-    color: var(--font-color);
-  }
-  
+  @media (max-width:1200px) {
+
+    .followers-aside{
+      display: none;
+    }
+}

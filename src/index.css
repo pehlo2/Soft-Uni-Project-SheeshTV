@@ -10,7 +10,7 @@
   --inner-background-color: #161618;
   --second-background-color: #232323;
   --hover-background-color: #414141;
-  --game-bar-specific-color-hover:rgb(138, 136, 136);
+  --game-bar-specific-color-hover: rgb(138, 136, 136);
   --font-color: white;
   --font-color-2: #89898B;
   --font-color-3: #2f2f2f;
@@ -22,7 +22,7 @@
 }
 
 [data-theme="light"] {
- --body-background: #F0F2F5;
+  --body-background: #F0F2F5;
   --inner-background-color: #FFFFFF;
   --second-background-color: #F0F2F5;
   --hover-background-color: #cacaca;
@@ -51,7 +51,11 @@ html {
   font: 16px/1.5 "Roboto";
 }
 
+body{
+  min-width: 630px;
+  overflow-x: hidden;
 
+}
 
 .app {
   background: var(--body-background);

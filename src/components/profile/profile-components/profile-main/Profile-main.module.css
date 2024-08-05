@@ -19,3 +19,11 @@
     border-bottom: 1px solid var(--border-color);
     line-height: 2;
 }
+
+@media (max-width:1200px) {
+
+    .video-box {
+        flex: 0 1 100%
+    }
+   
+}
