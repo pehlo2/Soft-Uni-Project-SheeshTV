@@ -13,7 +13,7 @@ const DiscoverCreators = () => {
     const [creators, setCreators] = useState([])
     const [searchValue, setSearchValue] = useState('')
     const { handleError } = useContext(ErrorContext)
-    const { isAuthenticated, userId } = useContext(AuthContext)
+    const {  userId } = useContext(AuthContext)
     useEffect(() => {
 
         userService.getAllNotFollowedUser(searchValue).then(setCreators).catch(error => {
@@ -21,13 +21,14 @@ const DiscoverCreators = () => {
 
         })
 
-    }, [searchValue, isAuthenticated, userId])
+    }, [searchValue, userId])
 
     const onSearch = (searchValue) => {
         setSearchValue(searchValue)
     }
 
-
+        console.log(userId);
+        
     return (
         <div className={styles["container"]}>
             <SearchBarForUsers onSearch={onSearch} />

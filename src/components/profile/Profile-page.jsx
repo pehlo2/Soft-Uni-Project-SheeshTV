@@ -8,7 +8,8 @@ import ProfileWrapper from '../profile-wrapper/Profile-wrapper';
 const Profile = () => {
     const { profileId } = useParams();
     const location = useLocation();
-
+    console.log(profileId);
+    
   
     return (
         <div className={styles["container"]}>
