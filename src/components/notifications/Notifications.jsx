@@ -16,9 +16,9 @@ const Notifications = ({ userId,
 
 
   const notificationTypes = {
-    liked: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}>{notification.authorName}</span> liked your  {<Link to={`/videos/${notification.videoId}`}>Video.</Link>}</div>,
-    commented: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}>{notification.authorName}</span> commented '{notification.text}' on your {<Link to={`/videos/${notification.videoId}`}>Video.</Link>}</div>,
-    followed: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}>{notification.authorName}</span> started following you.</div>
+    liked: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}><Link to={`/users/${notification.authorId}`}>{notification.authorName}</Link></span> liked your  {<Link to={`/videos/${notification.videoId}`}>Video.</Link>}</div>,
+    commented: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}><Link to={`/users/${notification.authorId}`}>{notification.authorName}</Link></span> commented your {<Link to={`/videos/${notification.videoId}`}>Video.</Link>}</div>,
+    followed: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}><Link to={`/users/${notification.authorId}`}>{notification.authorName}</Link></span> started following you.</div>
   };
 
 

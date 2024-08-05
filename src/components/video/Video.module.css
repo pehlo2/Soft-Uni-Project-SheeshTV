@@ -95,15 +95,6 @@
 
 }
 
-.video .social-tab a {
-    color: var(--font-color);
-    text-decoration: none;
-    border: 1px solid var(--border-color);
-    background: transparent;
-    padding: 0.5em 1em;
-    border-radius: 10em;
-    background-color: var(--button-backgorund-color);
-}
 
 .video-info-wrapper {
     width: 100%;
@@ -171,4 +162,20 @@
 .copy-link {
     position: relative;
 }
+.social-tab a {
+    color: var(--font-color);
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid var(--button-backgorund-color) ;
+    padding: 0.5em 1em;
+    border-radius: 10em;
+    background-color: var(--button-backgorund-color);
+}
 
+a.liked {
+    border: 1px solid var(--button-color) ;
+ 
+}
+.liked svg{
+    color: var(--button-color);
+}

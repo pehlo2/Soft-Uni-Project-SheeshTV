@@ -22,7 +22,12 @@ export const VideoProvider = ({ children }) => {
     useEffect(() => {
         videoServices.resetVideos()
     }, []);
+    useEffect(() => {
 
+        resetState()
+      }, [userId]);
+    
+    
     useEffect(() => {
         return () => {
             setGameChoice('');
@@ -31,7 +36,6 @@ export const VideoProvider = ({ children }) => {
 
     useEffect(() => {
         setIsLoading(true)
-
         videoServices.getAllvideos(gameChoice, searchQuery, page).then(result => {
 
             dispatch({

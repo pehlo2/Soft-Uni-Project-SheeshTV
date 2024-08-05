@@ -57,7 +57,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
         handleUnfollow()
     };
 
-console.log(video.owner);
+    console.log(video.owner);
 
     return (
         <div className={styles["blur"]}>

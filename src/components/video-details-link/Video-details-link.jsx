@@ -15,7 +15,7 @@ import ErrorContext from '../../context/errorContext';
 
 const VideoDetails = () => {
     const navigate = useNavigate();
-    const { userId } = useContext(AuthContext);
+    const { userId ,isAuthenticated } = useContext(AuthContext);
     const [video, setVideo] = useState({});
     const { videoId } = useParams();
     const [isLiked, setIsLiked] = useState(false);
@@ -103,7 +103,7 @@ const VideoDetails = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {userId !== video.owner?._id && (
+                                {isAuthenticated && (userId !== video.owner?._id) && (
                                     <>
                                         {video.owner?.followers?.includes(userId) ? (
 

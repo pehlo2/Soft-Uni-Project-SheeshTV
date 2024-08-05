@@ -1,16 +1,15 @@
 import { useContext } from 'react';
-import AsideFollowers from '../aside-followers/Aside-followers';
+
 import styles from './Profile-main.module.css'
 import Video from '../../../video/Video';
-import AuthContext from '../../../../context/authContext';
 import { NovideoProfile } from '../../../no-videos-profile/No-videos-Profile';
-import { useParams } from 'react-router-dom';
 import UserVideosContext from '../../../../context/userVideoContext';
 import LoaderSpinner from '../../../loader-spinner/Loader-spiner';
+import AdvertisingPanel from '../advertising-panel/Advertising-panel';
 
 
 
-const ProfileMain = ({handleFollow, handleUnfollow}) => {
+const ProfileMain = ({ handleFollow, handleUnfollow }) => {
   const { videos, isLoading } = useContext(UserVideosContext)
   return (
 
@@ -21,7 +20,7 @@ const ProfileMain = ({handleFollow, handleUnfollow}) => {
         {videos.map(video => <Video key={video._id} video={video} handleFollow={handleFollow} handleUnfollow={handleUnfollow} />)}
         {isLoading && <LoaderSpinner />}
       </div>
-      <AsideFollowers />
+      <AdvertisingPanel />
     </main>
   )
 }

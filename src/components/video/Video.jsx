@@ -114,14 +114,23 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
 
                 </div>
                 <div className={styles["social-tab"]}>
-
-                    {isLiked && <a style={{ color: "red" }} onClick={handleDisLike}><FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>Liked</a>}
-                    {!isLiked && <a onClick={handleLike}><FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>Like<span></span></a>
-                    }
-
-                    <a onClick={() => setShowModal(!showModal)}><FontAwesomeIcon icon={faComment}></FontAwesomeIcon>Comments</a>
-                    <a className={styles["copy-link"]} onClick={handleCopyLink}><FontAwesomeIcon icon={faLink}></FontAwesomeIcon><Popup isVisible={showPopup} />Copy Link</a>
-
+                    {isLiked && (
+                        <a className={styles["liked"]} onClick={handleDisLike}>
+                            <FontAwesomeIcon icon={faHeart} /> Like
+                        </a>
+                    )}
+                    {!isLiked && (
+                        <a onClick={handleLike}>
+                            <FontAwesomeIcon icon={faHeart} /> Like<span></span>
+                        </a>
+                    )}
+                    <a onClick={() => setShowModal(!showModal)}>
+                        <FontAwesomeIcon icon={faComment} /> Comments
+                    </a>
+                    <a className={styles["copy-link"]} onClick={handleCopyLink}>
+                        <FontAwesomeIcon icon={faLink} />
+                        <Popup isVisible={showPopup} /> Copy Link
+                    </a>
                 </div>
             </div>
             {showModal && <VideoModal onClose={() => setShowModal(false)} videoId={video._id} videoData={{ ...video }} contextType="userVideos" handleUnfollow={handleUnfollow}
