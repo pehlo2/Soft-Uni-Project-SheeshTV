@@ -4,6 +4,7 @@ import * as userService from "../../services/userServices"
 import styles from "./Discover-creators.module.css"
 import SearchBarForUsers from "../search-bar-discover-users/Search-bar-users";
 import ErrorContext from "../../context/errorContext";
+import AuthContext from "../../context/authContext";
 
 
 const DiscoverCreators = () => {
