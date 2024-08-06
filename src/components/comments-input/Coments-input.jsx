@@ -4,12 +4,13 @@ import styles from './Coments-input.module.css'
 import { useContext, useState } from 'react';
 import { object, string } from 'yup';
 import CommentsContext from '../../context/commentsContext';
+import AuthContext from '../../context/authContext';
 
 
 const InputComments = ({
 }) => {
 
-
+    const { isAuthenticated, userId } = useContext(AuthContext)
     const { text, addComment, handleCommentChange } = useContext(CommentsContext);
     const [validationErrors, setValidationErrors] = useState({})
     const commentSchema = object({
@@ -49,8 +50,8 @@ const InputComments = ({
 
     return (
         <form className={styles["comments"]} onSubmit={handleAddComment}>
-            <input type="text" placeholder="Add comment..." name='comment' value={text} onChange={handleCommentChange} className={validationErrors.text ? styles["error-border"] : ""} autoComplete='off' />
-            <button className={styles['button']}>Send</button>
+            <input type="text" placeholder="Add comment..." name='comment' value={text} onChange={handleCommentChange} className={validationErrors.text ? styles["error-border"] : ""} autoComplete='off' disabled={!isAuthenticated} />
+            <button className={styles['button']} disabled={!isAuthenticated}>Send</button>
         </form>
 
     )

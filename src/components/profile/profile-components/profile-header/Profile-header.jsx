@@ -27,7 +27,7 @@ const ProfileHeader = ({ profile, handleFollow,
     const [showFollowersModal, setShowFollowersModal] = useState(false)
     const [followingCount, setFollowingCount] = useState(0);
     const { profileId } = useParams()
-    const { userId } = useContext(AuthContext)
+    const { userId, isAuthenticated } = useContext(AuthContext)
     const { handleError } = useContext(ErrorContext)
 
     const [showPopup, setShowPopup] = useState(false);
@@ -79,7 +79,7 @@ const ProfileHeader = ({ profile, handleFollow,
 
 
 
-                            {userId !== profileId && (
+                            {userId !== profileId && isAuthenticated && (
                                 <>
                                     {isUserIdInFollowers ? (
                                         <UnFollowButton userToUnfollowId={profile._id} onUnfollow={handleUnfollow} />
@@ -102,7 +102,7 @@ const ProfileHeader = ({ profile, handleFollow,
                 <div className={styles["profile-info"]}>
 
                     <div className={styles["profile-stats"]}>
-                        <VideoCount userId={profileId}/>
+                        <VideoCount userId={profileId} />
                         <div className={styles["followers"]} onClick={() => { setShowFollowersModal(true) }}>
                             <p>{profile.followers?.length}</p>
                             <p>Followers</p>

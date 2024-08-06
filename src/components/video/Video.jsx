@@ -115,12 +115,19 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
                 </div>
                 <div className={styles["social-tab"]}>
                     {isLiked && (
-                        <a className={styles["liked"]} onClick={handleDisLike}>
+                        <a
+                            className={styles["liked"]}
+                            onClick={isAuthenticated ? handleDisLike : null}
+                            style={{ cursor: isAuthenticated ? 'pointer' : 'not-allowed', pointerEvents: isAuthenticated ? 'auto' : 'none' }}
+                        >
                             <FontAwesomeIcon icon={faHeart} /> Like
                         </a>
                     )}
                     {!isLiked && (
-                        <a onClick={handleLike}>
+                        <a
+                            onClick={isAuthenticated ? handleLike : null}
+                            style={{ cursor: isAuthenticated ? 'pointer' : 'not-allowed', pointerEvents: isAuthenticated ? 'auto' : 'none' }}
+                        >
                             <FontAwesomeIcon icon={faHeart} /> Like<span></span>
                         </a>
                     )}

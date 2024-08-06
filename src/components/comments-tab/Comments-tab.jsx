@@ -124,7 +124,7 @@ const CommentsSection = ({ videoId, videoOwner }) => {
                 ))}
             </div>
 
-            {isAuthenticated && <InputComments videoId={videoId} />}
+            <InputComments videoId={videoId} />
             {showConfirmation && <ConfirmDeleteModal show={() => setShowConfirmation(true)} handleClose={() => setShowConfirmation(false)} handleConfirm={handleConfirmDelete} type='Video' />}
         </>
     );
