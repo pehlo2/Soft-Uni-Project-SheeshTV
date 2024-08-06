@@ -35,15 +35,19 @@
 }
 
 
-.input-fields-wrapper, .input-field, .form-edit {
+.input-fields-wrapper,
+.input-field,
+.form-edit {
   display: flex;
   flex-direction: column;
 
 }
-.form-edit{
+
+.form-edit {
 
   gap: 1em;
 }
+
 .container .media {
   width: 100%;
 
@@ -115,24 +119,31 @@
 
 
 @media (max-width: 900px) {
-  .container{
+  body {
+    overflow: hidden;
+  }
+
+  .container {
     width: 100%;
     height: 100%;
     gap: 3em;
   }
-  .input-fields-wrapper{
+
+  .input-fields-wrapper {
     gap: 2em;
   }
-  .form-edit{
+
+  .form-edit {
     gap: 3em;
   }
-  .input-field input,
-.input-field textarea,
-.input-field select{
-  padding: 1.5em 1em;
-}
 
-.sumbit-button{
-  padding: 1em 0;
-}
+  .input-field input,
+  .input-field textarea,
+  .input-field select {
+    padding: 1.5em 1em;
+  }
+
+  .sumbit-button {
+    padding: 1em 0;
+  }
 }
