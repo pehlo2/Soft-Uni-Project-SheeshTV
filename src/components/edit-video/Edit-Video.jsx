@@ -50,7 +50,7 @@ const EditVideo = ({ title,
         gameChoice: gameChoice,
     }, editVideoSchema);
 
-    console.log(thumbnail);
+   
 
     return (
         <div className={styles["blur"]} onClick={onClose}>
