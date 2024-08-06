@@ -182,6 +182,10 @@
     width: 100%;
     height: 100%;
     gap: 3em;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
   }
 
   .avatar-header .upload-avatar {
