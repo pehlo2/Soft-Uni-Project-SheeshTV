@@ -57,6 +57,7 @@ export const AuthProvider = ({ children }) => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     if (storedUser) {
       storedUser.username = user.username;
+      storedUser.email = user.email;
       if (avatar) {
         storedUser.avatar = user.avatar;
       }
