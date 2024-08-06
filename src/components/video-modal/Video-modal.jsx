@@ -14,7 +14,7 @@ import ErrorContext from '../../context/errorContext'
 
 
 const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollow }) => {
-    const { userId } = useContext(AuthContext)
+    const { userId, isAuthenticated } = useContext(AuthContext)
     const [video, setVideo] = useState({})
     const [isLiked, setIsLiked] = useState(video.likes?.includes(userId))
     const { handleError } = useContext(ErrorContext)
@@ -95,7 +95,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
                                         </div>
                                     </div>
                                 </div>
-                                {userId !== video.owner?._id && (
+                                {userId !== video.owner?._id && isAuthenticated && (
                                     <>
                                         {video.owner?.followers?.includes(userId) ? (
 
@@ -129,4 +129,10 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
     )
 }
 
+
+
+{
+
+
+}
 export default VideoModal

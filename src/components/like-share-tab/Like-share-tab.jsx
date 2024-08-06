@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Like-share-tab.module.css'
-import { faComment, faHeart, faLink } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faHeart, faLink, faShareNodes } from '@fortawesome/free-solid-svg-icons'
 import { useContext, useState } from 'react'
 
 import AuthContext from '../../context/authContext'
@@ -44,7 +44,7 @@ const LikeShareTab = ({ video, isLiked, setIsLiked, contextType }) => {
             {isLiked && (<a className={styles["liked"]}><FontAwesomeIcon icon={faHeart} onClick={handleDisLike} className={`${styles["liked"]} ${!userId ? styles["disabled"] : ""}`} /></a>)}
             
             <a><FontAwesomeIcon icon={faComment} /></a>
-            <a className={styles["copy-link"]}><Popup isVisible={showPopup} /><FontAwesomeIcon icon={faLink} onClick={handleCopyLink} /></a>
+            <a className={styles["copy-link"]}><Popup isVisible={showPopup} /><FontAwesomeIcon icon={faShareNodes} onClick={handleCopyLink} /></a>
         </div>
     )
 }
