@@ -10,7 +10,7 @@
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
     background-color: var(--blur-color);
 
 }
@@ -30,6 +30,7 @@
     min-height: 495px;
     position: sticky;
     top: 3em;
+    overflow: hidden;
 
 }
 
@@ -47,7 +48,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.2em;
-    overflow: hidden
+    overflow: auto
 }
 .followers-wrapper h4{
 text-align: center;
@@ -112,4 +113,27 @@ padding-top: 2em;
 .remove-button a {
     text-decoration: none;
     color: var(--font-color);
+}
+@media (max-width:900px) {
+
+    .followers-container{
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+    }
+    .followers-media img {
+        width: 70px;
+        height: 70px;
+       
+    
+    }
+    .followers-box{
+        font-size: 24px;
+    }
+    .followers-box button{
+        font-size: 20px;
+    }
+    .title-follow h2 {
+        font-size: 36px;
+    }
 }
