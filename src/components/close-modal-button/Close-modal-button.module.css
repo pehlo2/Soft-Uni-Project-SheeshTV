@@ -9,3 +9,9 @@
   text-align: center;
   cursor: pointer;
 }
+@media (max-width: 900px) {
+  .close-button{
+    font-size: 32px;
+  }
+
+}
