@@ -222,7 +222,7 @@
     color: white;
     background: var(--game-bar-specific-color-hover);
     padding: 0.2em 5em;
-    border-radius: 1em;
+    border-radius: 0.4em;
     margin-right: 1.2em;
 }
 

@@ -137,3 +137,11 @@
 
 
 }
+
+@media (max-width: 900px) {
+
+    .notification-wrapper {
+        right: -55px;
+    }
+
+}
