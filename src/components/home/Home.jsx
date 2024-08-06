@@ -45,11 +45,11 @@ const Home = () => {
             <SectionComponent >
                 <div className={styles['chat-section-inner']}>
                     <div className={styles['chat-review']} data-aos="fade-right"
-                        data-aos-once="false">
+                        data-aos-once="true">
                         <img src="/images/ChatFriends.webp" alt="" />
                     </div>
                     <div className={styles['chat-content']} data-aos="fade-left"
-                        data-aos-once="false">
+                        data-aos-once="true">
                         <h1>Chat with Your Friends</h1>
                         <div>
                             <p>Send Private across all devices! </p>
@@ -70,9 +70,8 @@ const Home = () => {
 
             <SectionComponent  >
                 <div className={styles['audiance']} data-aos="fade-right"
-                    data-aos-offset="100"
-                    data-aos-easing="ease-in-sine"
-                    data-aos-once="false">
+                 
+                    data-aos-once="true">
                     <div className={styles['audiance-wrapper']}>
                         <div className={styles['audiance-card']}>
                             <div className={styles["media"]}>
@@ -131,7 +130,7 @@ const Home = () => {
 
 
             <SectionComponent >
-                <div className={styles['share-content']} data-aos="fade-right" data-aos-once="false">
+                <div className={styles['share-content']} data-aos="fade-right" data-aos-once="true">
                     <div>
                         <h1>Share clips with a single Click</h1>
                     </div>
@@ -145,7 +144,7 @@ const Home = () => {
                         <a href="" className={styles['button']}>Start Sharing</a>
                     </div>
                 </div>
-                <div className={styles['share-images']} data-aos="fade-left" data-aos-once="false">
+                <div className={styles['share-images']} data-aos="fade-left" data-aos-once="true">
                     <div className={styles['media']}>
 
                         <a href="https://www.facebook.com/ivanel.alexandrov"> <img src="/images/1.jpg" alt="" /></a>
@@ -199,7 +198,7 @@ const Home = () => {
             <SectionComponent >
 
                 <div className={styles["icons-dummy"]} data-aos="fade-up"
-                    data-aos-once="false">
+                    data-aos-once="true">
                     <div className={styles["icons-wrapper"]}>
                         <FontAwesomeIcon icon={faClapperboard} />
                         <FontAwesomeIcon icon={faComment} />
@@ -217,13 +216,13 @@ const Home = () => {
 
 
             <SectionComponent >
-                <div className={styles['friends-content']} data-aos="fade-up-right" data-aos-once="false">
+                <div className={styles['friends-content']} data-aos="fade-up-right" data-aos-once="true">
                     <h1>Find friends based on your shared Games</h1>
                     <p>Find someone you know</p>
                     <p>Start a conversation</p>
                     <p>Enjoy gamin together</p>
                 </div>
-                <div className={styles['friends-media']} data-aos="fade-up-left" data-aos-once="false">
+                <div className={styles['friends-media']} data-aos="fade-up-left" data-aos-once="true">
                     {localStorage.getItem('theme') === 'dark' && <img src="/images/discover.png" alt="" />}
                     {localStorage.getItem('theme') === null && <img src="/images/discover.png" alt="" />}
                     {localStorage.getItem('theme') === 'light' && <img src="/images/discover2.png" alt="" />}
