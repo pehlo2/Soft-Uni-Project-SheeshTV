@@ -108,3 +108,33 @@
 .progress-bar.complete {
   background-color: var(--button-color);
 }
+
+@media (max-width: 900px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    gap: 3em;
+  }
+
+  .input-fields-wrapper {
+    gap: 2em;
+  }
+
+  .upload  {
+    gap: 2.5em;
+  }
+
+  .input-field input,
+  .input-field textarea,
+  .input-field select {
+    padding: 1.5em 1em;
+  }
+
+  .submit-button {
+    padding: 1em 0;
+  }
+}

@@ -90,13 +90,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 1em;
   }
 
   .main-header .logo {
-    gap: 3em;
+    gap: 2em;
   }
 
   .main-header nav ul {
-    gap: 2.2em;
+    gap: 3em;
   }
 }

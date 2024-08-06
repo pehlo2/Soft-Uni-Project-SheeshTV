@@ -16,9 +16,9 @@ export const NovideoProfile = () => {
                 <div className={styles["no-videos-wrapper"]}>
                     <div className={styles["find-friends-box"]}>
                         <i className={styles["fa-solid fa-user-plus"]}></i>
-                        <h3>Find your friends</h3>
+                        <h3>Find friends</h3>
                         <p>Invite friends to SheeshTv and start connecting</p>
-                        <Link>Find friens</Link>
+                        <Link>Find friends</Link>
                     </div>
                     <div className={styles["share-video-box"]}>
 
