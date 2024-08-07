@@ -6,6 +6,7 @@ import UserVideosContext from "../../context/userVideoContext";
 
 import { object, string } from 'yup';
 import CloseModalButton from "../close-modal-button/Close-modal-button";
+import DisableBodyScroll from "../DisableBodyScroll";
 
 
 

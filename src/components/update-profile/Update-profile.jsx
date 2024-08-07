@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import CloseModalButton from "../close-modal-button/Close-modal-button";
 import ErrorContext from "../../context/errorContext";
+import DisableBodyScroll from "../DisableBodyScroll";
 
 const UpdateProfileModal = ({ profile, closeEdit, onUpdate }) => {
 
