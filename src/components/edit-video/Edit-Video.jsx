@@ -1,4 +1,4 @@
-import { useContext, } from "react";
+import { useContext, useEffect, } from "react";
 import useForm from "../../hooks/useForm";
 import styles from "./Edit-Video.module.css"
 
@@ -22,6 +22,12 @@ const EditVideo = ({ title,
 
     const { editVideo } = useContext(UserVideosContext)
 
+    useEffect(() => {
+        document.body.classList.add('overflow-y-hidden');
+        return () => {
+            document.body.classList.remove('overflow-y-hidden');
+        };
+    }, []);
     const EditSubmitHandler = async () => {
 
         if (!videoUrl) { return };
@@ -29,6 +35,8 @@ const EditVideo = ({ title,
         onClose()
 
     };
+
+
     const editVideoSchema = object({
         title: string().required('* Title is required').min(6, '* Title must be at least 6 characters'),
         description: string().required('* Description is required').min(6, '* Description must be at least 6 characters'),
