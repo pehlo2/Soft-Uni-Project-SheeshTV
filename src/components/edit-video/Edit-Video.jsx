@@ -50,49 +50,52 @@ const EditVideo = ({ title,
         gameChoice: gameChoice,
     }, editVideoSchema);
 
-   
+
 
     return (
-        <div className={styles["blur"]} onClick={onClose}>
-            <div className={styles["container"]} onClick={(e) => e.stopPropagation()}>
-                <h2>Edit Video</h2>
-                <div className={styles["media"]}>
-                    <img src={thumbnail} alt="" />
-                </div>
-                <form className={styles["form-edit"]} onSubmit={onSubmit}>
-
-                    <div className={styles["input-fields-wrapper"]}>
-                        <div className={styles["input-field"]}>
-                            <label htmlFor="title">Title</label>
-                            <input type="text" name="title" id="title" placeholder='Title' value={values.title} onChange={onChange} />
-                            {validationErrors.title && <p className='error'>{validationErrors.title}</p>}
-                        </div>
-                        <div className={styles["input-field"]}>
-                            <label htmlFor="description">Description</label>
-                            <textarea name="description" id="description" placeholder='Description' value={values.description} onChange={onChange}></textarea>
-                            {validationErrors.description && <p className='error'>{validationErrors.description}</p>}
-                        </div>
-                        <div className={styles["input-field"]}>
-                            <label htmlFor="gameChoice">Game</label>
-                            <select name="gameChoice" id="gameChoice" value={values.gameChoice} onChange={onChange} >
-                                <option value="Valorant">Valorant</option>
-                                <option value="Counter Strike 2">Counter Strike 2</option>
-                                <option value="League of Legends">League of Legends</option>
-                                <option value="Minecraft">Minecraft</option>
-                                <option value="Fortnite">Fortnite</option>
-                                <option value="GTA V">GTA V</option>
-                                <option value="Apex Legends">Apex Legends</option>
-                            </select>
-                            {validationErrors.gameChoice && <p className='error'>{validationErrors.gameChoice}</p>}
-                        </div>
-
+        <>
+            <DisableBodyScroll />
+            <div className={styles["blur"]} onClick={onClose}>
+                <div className={styles["container"]} onClick={(e) => e.stopPropagation()}>
+                    <h2>Edit Video</h2>
+                    <div className={styles["media"]}>
+                        <img src={thumbnail} alt="" />
                     </div>
+                    <form className={styles["form-edit"]} onSubmit={onSubmit}>
 
-                    <button className={styles["sumbit-button"]}>Submit</button>
-                </form>
-                <CloseModalButton onClose={onClose}/>
+                        <div className={styles["input-fields-wrapper"]}>
+                            <div className={styles["input-field"]}>
+                                <label htmlFor="title">Title</label>
+                                <input type="text" name="title" id="title" placeholder='Title' value={values.title} onChange={onChange} />
+                                {validationErrors.title && <p className='error'>{validationErrors.title}</p>}
+                            </div>
+                            <div className={styles["input-field"]}>
+                                <label htmlFor="description">Description</label>
+                                <textarea name="description" id="description" placeholder='Description' value={values.description} onChange={onChange}></textarea>
+                                {validationErrors.description && <p className='error'>{validationErrors.description}</p>}
+                            </div>
+                            <div className={styles["input-field"]}>
+                                <label htmlFor="gameChoice">Game</label>
+                                <select name="gameChoice" id="gameChoice" value={values.gameChoice} onChange={onChange} >
+                                    <option value="Valorant">Valorant</option>
+                                    <option value="Counter Strike 2">Counter Strike 2</option>
+                                    <option value="League of Legends">League of Legends</option>
+                                    <option value="Minecraft">Minecraft</option>
+                                    <option value="Fortnite">Fortnite</option>
+                                    <option value="GTA V">GTA V</option>
+                                    <option value="Apex Legends">Apex Legends</option>
+                                </select>
+                                {validationErrors.gameChoice && <p className='error'>{validationErrors.gameChoice}</p>}
+                            </div>
+
+                        </div>
+
+                        <button className={styles["sumbit-button"]}>Submit</button>
+                    </form>
+                    <CloseModalButton onClose={onClose} />
+                </div>
             </div>
-        </div>
+        </>
     )
 };
 

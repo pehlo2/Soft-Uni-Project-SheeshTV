@@ -60,7 +60,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
   
 
     return (
-        <div className={styles["blur"]}>
+        <div className={styles["blur"]} onClick={onClose}>
             <div className={styles["container"]} onClick={onClose}>
                 <ReactPlayer
                     onClick={(e) => { e.stopPropagation() }}

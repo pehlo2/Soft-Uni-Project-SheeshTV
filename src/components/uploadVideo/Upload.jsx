@@ -117,11 +117,14 @@ const UploadVideo = () => {
                         <option value="" disabled defaultValue hidden>Game</option>
                         <option value="Valorant">Valorant</option>
                         <option value="Counter Strike 2">Counter Strike 2</option>
+                        <option value="Fortnite">Fortnite</option>
                         <option value="League of Legends">League of Legends</option>
                         <option value="Minecraft">Minecraft</option>
-                        <option value="Fortnite">Fortnite</option>
                         <option value="GTA V">GTA V</option>
                         <option value="Apex Legends">Apex Legends</option>
+                        <option value="World Of Warcraft">World Of Warcraft</option>
+                        <option value="Overwatch">Overwatch</option>
+                        
                     </select>
                     {validationErrors.gameChoice && <p className='error'>{validationErrors.gameChoice}</p>}
 
