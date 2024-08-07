@@ -24,6 +24,8 @@ const UploadVideo = () => {
     const [videoPreview, setVideoPreview] = useState(null);
     const { handleErrorFunction } = useContext(ErrorContext)
     const [uploadedVideoId, setUploadedVideoId] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
     const navigate = useNavigate()
 
     const uploadVideoSchema = object({
@@ -66,13 +68,13 @@ const UploadVideo = () => {
 
 
         try {
+            setIsLoading(true);
             await uploadVideoSchema.validate({ title, description, gameChoice, video }, { abortEarly: false });
             setValidationErrors({});
-              handleErrorFunction(async () => {
+            handleErrorFunction(async () => {
                 const videoId = await addVideo(formData, setUploadProgress);
-                console.log(videoId);
-                
                 setUploadedVideoId(videoId);
+                setIsLoading(false)
             });
         } catch (err) {
             const newError = {}
@@ -80,6 +82,7 @@ const UploadVideo = () => {
                 newError[error.path] = error.message
             });
             setValidationErrors(newError)
+            setIsLoading(false)
         }
     };
     const handleCloseModal = () => {
@@ -124,7 +127,7 @@ const UploadVideo = () => {
                         <option value="Apex Legends">Apex Legends</option>
                         <option value="World Of Warcraft">World Of Warcraft</option>
                         <option value="Overwatch">Overwatch</option>
-                        
+
                     </select>
                     {validationErrors.gameChoice && <p className='error'>{validationErrors.gameChoice}</p>}
 
@@ -134,7 +137,7 @@ const UploadVideo = () => {
                     {validationErrors.video && <p className='error'>{validationErrors.video}</p>}
                 </div>
 
-                {uploadProgress >0 && (
+                {uploadProgress > 0 && (
                     <div className={styles["progress-container"]}>
                         <div
                             className={`${styles["progress-bar"]} ${uploadProgress === 100 ? styles.complete : ''}`}
@@ -145,13 +148,13 @@ const UploadVideo = () => {
 
 
                 {uploadProgress > 0 && (<p>{Math.round(uploadProgress)}%</p>)}
-                {uploadProgress == 100 && (<Link to={`/videos/${uploadedVideoId}`} className={styles["submit-button"]}>Go to Video Page</Link>)}
-                {uploadProgress === 0 && (<button className={styles["submit-button"]}>Upload</button>)}
-
+                {uploadProgress === 100 && isLoading === false && (<Link to={`/videos/${uploadedVideoId}`} className={styles["submit-button"]}>Go to Video Page</Link>)}
+                {uploadProgress === 0 && isLoading === false && (<button className={styles["submit-button"]}>Upload</button>)}
+                {uploadProgress > 0 && isLoading === true && (<button className={styles["submit-button"]}>Uploading...</button>)}
 
             </form>
 
-            <CloseModalButton onClose={handleCloseModal}/>
+            <CloseModalButton onClose={handleCloseModal} />
         </div>
     )
 }

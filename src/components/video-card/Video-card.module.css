@@ -1,5 +1,5 @@
 .video-card {
-    width: 30%;
+    width: 442px;
     background: var(--body-background);
     border-radius: 0.5em;
     overflow: hidden;
@@ -115,4 +115,20 @@
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
+}
+@media (max-width: 1360px) {
+    .video-card {
+        width: 45%;
+     
+        
+    }
+    
+}
+@media (max-width: 900px) {
+    .video-card {
+        width: 90%;
+     
+        
+    }
+    
 }

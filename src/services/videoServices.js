@@ -14,13 +14,13 @@ export const upload = (videoData, setUploadProgress) => {
         xhr.upload.addEventListener('progress', (event) => {
             if (event.lengthComputable) {
                 const percentComplete = (event.loaded / event.total) * 100;
+                console.log(`Upload progress: ${percentComplete}%`);
                 setUploadProgress(percentComplete);
             }
         });
 
         xhr.upload.addEventListener('load', () => {
-           
-            setUploadProgress(100);
+            console.log('File upload completed. Waiting for server response...');
         });
 
         xhr.upload.addEventListener('error', () => {
@@ -32,11 +32,13 @@ export const upload = (videoData, setUploadProgress) => {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
+                    console.log('Server response received:', xhr.responseText);
                     const response = JSON.parse(xhr.responseText);
+                    setUploadProgress(100); // Only set to 100% here after server response
                     resolve(response);
                 } else {
                     console.log('Server error:', xhr.responseText);
-                    setUploadProgress(0)
+                    setUploadProgress(0);
                     reject(new Error(xhr.responseText || 'Failed to upload video'));
                 }
             }
@@ -45,8 +47,8 @@ export const upload = (videoData, setUploadProgress) => {
         xhr.open('POST', `${window.remoteOrigin}/data/videos/upload`);
         xhr.send(videoData);
     });
-    
 };
+
 
 export const editVideo = async (videoId, videoData) => {
     const video = await request.put(`${endpoints.edit}/${videoId}/edit`, videoData)

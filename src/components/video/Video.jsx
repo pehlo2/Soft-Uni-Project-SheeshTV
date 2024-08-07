@@ -1,7 +1,7 @@
 
 
 import styles from './Video.module.css'
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import VideoModal from '../video-modal/Video-modal';
 import ReactPlayer from 'react-player';
 import UserVideosContext from '../../context/userVideoContext';
@@ -26,10 +26,11 @@ const Video = ({ video, handleFollow, handleUnfollow }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [isLiked, setIsLiked] = useState(video.likes?.includes(userId))
     const [showConfirmation, setshowConfirmation] = useState(false);
-    const { deleteVideo, likeVideo,
-        dislikeVideo } = useContext(UserVideosContext)
+    const { deleteVideo, likeVideo, dislikeVideo } = useContext(UserVideosContext)
 
-
+    useEffect(() => {
+        setIsLiked(video.likes?.includes(userId));
+    }, [video.likes, userId]);
 
     const handleConfirmDelete = async () => {
         await deleteVideo(video._id);

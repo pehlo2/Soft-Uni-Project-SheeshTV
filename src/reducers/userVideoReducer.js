@@ -24,11 +24,12 @@ const userVideoReducer = (state = [], action) => {
             }));
 
         case 'LIKE_VIDEO':
-            return state.map(video => {
+            return state.map(video =>
                 video._id === action.videoId
                     ? { ...video, likes: [...video.likes, action.userId] }
                     : video
-            });
+            );
+
         case 'DISLIKE_VIDEO':
             return state.map(video =>
                 video._id === action.videoId
