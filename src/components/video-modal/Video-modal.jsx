@@ -18,7 +18,12 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
     const [video, setVideo] = useState({})
     const [isLiked, setIsLiked] = useState(video.likes?.includes(userId))
     const { handleError } = useContext(ErrorContext)
-
+    useEffect(() => {
+        document.body.classList.add('overflow-y-hidden');
+        return () => {
+            document.body.classList.remove('overflow-y-hidden');
+        };
+    }, []);
 
     useEffect(() => {
         videoServices.getOneVideo(videoId).then(videoData => {
@@ -57,27 +62,30 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
         handleUnfollow()
     };
 
-  
+
 
     return (
         <div className={styles["blur"]} onClick={onClose}>
             <div className={styles["container"]} onClick={onClose}>
-                <ReactPlayer
-                    onClick={(e) => { e.stopPropagation() }}
-                    url={video.videoUrl}
-                    config={{
-                        file: {
-                            attributes: {
-                                disablePictureInPicture: true, controlsList: "nodownload noplaybackrate",
-                            },
-                        },
-                    }}
-                    controls
-                    className={styles['video']}
-                    width='100%'
-                    height='100%'
-                    playing={true}
-                />
+                <div className={styles["video"]}>
+                    <div className={styles["video-inner"]}>
+                        <ReactPlayer
+                            onClick={(e) => { e.stopPropagation() }}
+                            url={video.videoUrl}
+                            config={{
+                                file: {
+                                    attributes: {
+                                        disablePictureInPicture: true, controlsList: "nodownload noplaybackrate",
+                                    },
+                                },
+                            }}
+                            controls
+                            width='100%'
+                            height='100%'
+                            playing={true}
+                        />
+                    </div>
+                </div>
                 <aside className={styles["aside-section"]} onClick={(e) => { e.stopPropagation() }}>
                     <div className={styles["aside-inner"]}>
                         <div className={styles["aside-info"]}>

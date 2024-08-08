@@ -10,6 +10,8 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+   flex: 1 1 300px;
+
 }
 
 .comment-edit-form {

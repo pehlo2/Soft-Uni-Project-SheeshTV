@@ -1,7 +1,7 @@
 .game-choice-bar {
     display: flex;
     flex-direction: row;
-    gap: 0.3em;
+    gap: 0.2em;
     color: var(--font-color);
     flex-wrap: wrap;
     justify-content: center;

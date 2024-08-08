@@ -6,7 +6,11 @@
 
 }
 
-.app,
+.app {
+
+    flex: 1 0 100vh;
+}
+
 .main-app {
 
     flex: 1;
@@ -18,4 +22,4 @@
 
 .overflow-y-hidden {
     overflow-y: hidden;
-  }
+}
