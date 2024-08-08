@@ -14,6 +14,7 @@
 .main-app {
 
     flex: 1;
+    min-height: 90vh;
 }
 
 .react-player__play-icon {
