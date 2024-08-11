@@ -4,16 +4,16 @@
 
 ## This project uses:
 
-**Front end**: React + Vite the interactive user interface.(https://sheeshtv.vercel.app/)<br />
-**Back end**: Node. Js server using Express. Js, Mongoose (https://github.com/pehlo2/react-project-server-SheeshTV) / Deployed in Heruko<br />
+**Front end**: React + Vite the interactive user interface.https://sheeshtv.vercel.app/<br />
+**Back end**: Node. Js server using Express. Js, Mongoose. https://github.com/pehlo2/react-project-server-SheeshTV / Deployed in Heruko<br />
 
 ## External Libraries:
 
- **aos**: Scroll Animation for Landing page\
- **dotenv**:t o securely manage environment variables in My project\
- **react-player**: Video Player\
- **socket.io-client**: Implement real-time Notifications on Like, Follow, Comments\
- **yup**: Form Validations
+ **aos**: Scroll Animation for Landing page. \
+ **dotenv**:t o securely manage environment variables in My project. \
+ **react-player**: Video Player. \
+ **socket.io-client**: Implement real-time Notifications on Like, Follow, Comments. \
+ **yup**: Form Validations.
 
 ## The application is split into two parts: Public and Private
 
