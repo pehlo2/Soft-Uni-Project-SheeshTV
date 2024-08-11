@@ -26,7 +26,7 @@
   Cant Access Login/Register , Landing Page , Discover creators page. <br />
  Cant Edit/Delete/Upload Videos. <br />
  Cant Like/Comment on Videos. <br />
- Cant Follow Users on Videos. <br />
+ Cant Follow Users <br />
 
 ### Private part
 
