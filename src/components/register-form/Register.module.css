@@ -1,5 +1,5 @@
 .container {
-   margin: 0 auto;
+  margin: 0 auto;
   margin-top: 10em;
   margin-bottom: 20em;
   border-radius: 0.5em;
@@ -138,4 +138,25 @@
 
 .error {
   color: red;
+}
+
+@media (max-width: 900px) {
+
+  .container {
+
+    max-width: 600px;
+
+  }
+
+  .overlay-container {
+    display: none;
+  }
+
+  .form-container {
+    flex: 0 1 100%;
+  }
+  .container input {
+ 
+    font-size: 12px;
+  }
 }
