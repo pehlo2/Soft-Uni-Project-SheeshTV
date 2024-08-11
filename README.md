@@ -5,7 +5,7 @@
 ## This project uses:
 
 **Front end**: React + Vite the interactive user interface.https://sheeshtv.vercel.app/<br />
-**Back end**: Node. Js server using Express. Js, Mongoose. https://github.com/pehlo2/react-project-server-SheeshTV / Deployed in Heruko<br />
+**Back end**: Node. Js server using Express. Js, Mongoose. https://github.com/pehlo2/react-project-server-SheeshTV Deployed in Heruko.<br />
 
 ## External Libraries:
 
