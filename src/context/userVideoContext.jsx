@@ -30,7 +30,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
     setIsLoading(true)
 
     videoServices.getUserVideos(profileId, page).then(result => {
-     
+
       dispatch({
         type: 'GET_YOUR_VIDEOS',
         videos: result
@@ -47,9 +47,9 @@ export const UserVideosProvider = ({ children, profileId }) => {
       window.removeEventListener("scroll", handleScroll);
       return
     }
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-
-
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = window.innerHeight;
     if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === `/users/${profileId}`) {
       setIsLoading(true)
       setPage((prev) => prev + 1);
@@ -59,7 +59,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   useEffect(() => {
 
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
 
@@ -93,7 +93,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   const editVideo = async (videoId, videoData) => {
     try {
       const updatedVideo = await videoServices.editVideo(videoId, videoData);
-    
+
 
 
 
@@ -112,7 +112,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   };
 
   const changeOwnerVideoAvatar = (userData) => {
-  
+
     try {
       dispatch({
         type: 'CHANGE_OWNER_VIDEOS_AVATAR',
@@ -127,7 +127,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
 
 
   const likeVideo = async (videoId, userId) => {
-   
+
     await videoServices.likeVideo(videoId, userId).then(() => {
       dispatch({
         type: 'LIKE_VIDEO',
@@ -140,7 +140,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   };
 
   const dislikeVideo = async (videoId, userId) => {
-  
+
     await videoServices.dislikeVideo(videoId, userId).then(() => {
 
       dispatch({
