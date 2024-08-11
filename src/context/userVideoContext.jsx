@@ -57,7 +57,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   useEffect(() => {
 
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll ,{ passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
 
