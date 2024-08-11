@@ -48,7 +48,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 
 
-    if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === `/users/${profileId}`) {
+    if (scrollTop + clientHeight >= scrollHeight - 150 && location.pathname === `/users/${profileId}`) {
       setIsLoading(true)
       setPage((prev) => prev + 1);
     }
