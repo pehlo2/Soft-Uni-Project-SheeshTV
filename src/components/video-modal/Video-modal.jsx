@@ -11,6 +11,7 @@ import { CommnentsProvider } from '../../context/commentsContext'
 import UnFollowButton from '../unfollow-button/Unfollow-button'
 import ErrorContext from '../../context/errorContext'
 import CloseModalButton from '../close-modal-button/Close-modal-button'
+import { Link } from 'react-router-dom'
 
 
 
@@ -96,7 +97,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
                                         <img src={video.owner?.avatar} alt="" />
                                     </div>
                                     <div className={styles["profile-info-inner"]}>
-                                        <h4>{video.owner?.username}</h4>
+                                        <h4> <Link to={`/users/${video.owner?._id}`}>{video.owner?.username}</Link></h4>
 
                                         <div className={styles["video-info"]}>
                                             <h3>{video.title}</h3>

@@ -88,11 +88,9 @@
 
 .profile-tab a {
     text-decoration: none;
-    color: white;
-    background: orange;
-    font-size: 12px;
-    border-radius: 0.3em;
-    padding: 0.2em 0.5em;
+    color: var(--font-color);
+    
+    
 }
 
 .video-info {
