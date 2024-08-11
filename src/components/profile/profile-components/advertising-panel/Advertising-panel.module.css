@@ -7,13 +7,14 @@
     border: 1px solid var(--border-color);
     align-items: center;
     border-radius: 0.4em;
-    background: var(--inner-background-color);
-    ;
+    background: var(--inner-background-color);;
     height: 500px;
     gap: 1em;
     position: sticky;
     top: 3em;
     box-shadow: 0 0 0.1em 0 var(--box-shadow-color);
+    justify-content: center;
+    
   }
  
   .media img{
@@ -22,7 +23,9 @@
   .followers-aside h3 {
     text-align: center;
   }
-  
+  .followers-aside h2{
+    color: var(--font-color);
+  }
   @media (max-width:1200px) {
 
     .followers-aside{

@@ -22,12 +22,13 @@ export const VideoProvider = ({ children }) => {
     useEffect(() => {
         videoServices.resetVideos()
     }, []);
-    useEffect(() => {
 
+
+    useEffect(() => {
         resetState()
-      }, [userId]);
-    
-    
+    }, [gameChoice, userId]);
+
+
     useEffect(() => {
         return () => {
             setGameChoice('');
@@ -37,13 +38,11 @@ export const VideoProvider = ({ children }) => {
     useEffect(() => {
         setIsLoading(true)
         videoServices.getAllvideos(gameChoice, searchQuery, page).then(result => {
-
             dispatch({
                 control: 'GET_ALL_VIDEOS',
                 videos: result,
             });
             setIsLoading(false)
-
         }).catch(error => {
             handleError(error.message);
             setIsLoading(false);
@@ -65,7 +64,7 @@ export const VideoProvider = ({ children }) => {
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [location.pathname]);
+    }, [location.pathname, gameChoice, searchQuery]);
 
     const likeVideo = async (videoId, userId) => {
         await videoServices.likeVideo(videoId, userId).then(() => {
@@ -75,12 +74,12 @@ export const VideoProvider = ({ children }) => {
             });
         }).catch(error => {
             handleError(error.message);
-          
+
         });
     };
 
     const dislikeVideo = async (videoId, userId) => {
-       
+
         await videoServices.dislikeVideo(videoId, userId).then(() => {
 
             dispatch({
@@ -89,23 +88,23 @@ export const VideoProvider = ({ children }) => {
             });
         }).catch(error => {
             handleError(error.message);
-           
+
         });
     };
 
     const filterVideosByGameChoice = (gameChoice) => {
-        resetState();
+
         setGameChoice(gameChoice);
+        resetState()
         setSearchQuery('');
     };
 
     const filterVideosBySearchQuery = (newSearchQuery) => {
-       
+
         if (searchQuery !== newSearchQuery) {
             resetState();
         }
         if (newSearchQuery == "" && gameChoice !== "") {
-
             setGameChoice(gameChoice);
         } else {
             setGameChoice('');
@@ -121,12 +120,12 @@ export const VideoProvider = ({ children }) => {
             control: 'RESET',
         });
         setPage(1);
+        setIsLoading(true);
     };
     const handleClickAll = () => {
         if (searchQuery != '') {
             resetState()
             setSearchQuery('')
-
         };
 
 

@@ -58,7 +58,7 @@ export default function Navigation({
 
                     {isAuthenticated && (
                         <>
-                            <li><Link to="/dashboard">Dashboard</Link></li>
+                            <li><Link to="/dashboard">Home</Link></li>
                             <li><Link to="/discover">Discover</Link></li>
                             <NotificationsBell />
                             <li className={styles['drop-menu-profile']} ref={dropMenuRef}>

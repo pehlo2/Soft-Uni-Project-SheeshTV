@@ -14,6 +14,7 @@ const AdvertisingPanel = () => {
             {localStorage.getItem('theme') === 'light' && <div className={styles["media"]}>
                 <img src="/icons/blueLogo.png" alt="" />
             </div>}
+            <h2>Jaw-dropping Gameplays</h2>
         </aside>
     )
 }

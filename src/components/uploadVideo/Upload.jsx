@@ -28,8 +28,8 @@ const UploadVideo = () => {
     const navigate = useNavigate()
 
     const uploadVideoSchema = object({
-        title: string().required('* Title is required').min(3, '* Title must be at least 3 characters'),
-        description: string().required('* Description is required').min(6, '* Description must be at least 6 characters'),
+        title: string().trim().required('* Title is required').min(3, '* Title must be at least 3 characters'),
+        description: string().trim().required('* Description is required').min(6, '* Description must be at least 6 characters'),
         gameChoice: string().oneOf([
             "Valorant",
             "Counter Strike 2",
