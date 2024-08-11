@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigate } from 'react-router-dom';
+
 import NotFound from './not-found/Not-Found';
 
 export default class ErrorBoundary extends Component {
@@ -20,7 +20,7 @@ export default class ErrorBoundary extends Component {
 
     componentDidCatch(error, errorInfo) {
         console.log('componentDidCatch');
-        // TODO: Add logging logic here, e.g., sending error info to a server
+      
     }
 
     render() {

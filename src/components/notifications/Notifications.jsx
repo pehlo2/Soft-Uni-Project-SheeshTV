@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 
-const Notifications = ({ userId,
+const Notifications = ({ userId,onClose,
 
   notifications,
   markAsReadHandler,
@@ -16,9 +16,9 @@ const Notifications = ({ userId,
 
 
   const notificationTypes = {
-    liked: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}><Link to={`/users/${notification.authorId}`}>{notification.authorName}</Link></span> liked your  {<Link to={`/videos/${notification.videoId}`}>Video.</Link>}</div>,
-    commented: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}><Link to={`/users/${notification.authorId}`}>{notification.authorName}</Link></span> commented your {<Link to={`/videos/${notification.videoId}`}>Video.</Link>}</div>,
-    followed: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}><Link to={`/users/${notification.authorId}`}>{notification.authorName}</Link></span> started following you.</div>
+    liked: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}><Link to={`/users/${notification.authorId}`} onClick={onClose}>{notification.authorName}</Link></span> liked your  {<Link to={`/videos/${notification.videoId}`} onClick={onClose}>Video.</Link>}</div>,
+    commented: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}><Link to={`/users/${notification.authorId}`} onClick={onClose}>{notification.authorName}</Link></span> commented your {<Link to={`/videos/${notification.videoId}`} onClick={onClose}>Video.</Link>}</div>,
+    followed: (notification) => <div className={styles['notification-message']}><span className={styles['authorName']}><Link to={`/users/${notification.authorId}`} onClick={onClose}>{notification.authorName}</Link></span> started following you.</div>
   };
 
 
