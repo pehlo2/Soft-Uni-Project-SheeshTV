@@ -17,10 +17,7 @@ const videoReducer = (state, action) => {
                     ? { ...video, likes: video.likes.filter(id => id !== action.userId) }
                     : video
             );
-        // case 'FILTER_VIDEO_BY_GAME_CHOICE':
-        //     console.log(state);
-        //     return state.filter(video => video.gameChoice === action.gameChoice);
-
+      
         default:
             return state;
     }

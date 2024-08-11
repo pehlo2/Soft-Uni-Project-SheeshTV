@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
 
 
@@ -16,17 +17,17 @@ export default function Footer() {
                 </ul>
                 <ul>
                     <h3>Main</h3>
-                    <li>Home</li>
-                    <li>Discover</li>
-                    <li>Chat</li>
+                    <li><Link to="/" className={styles['button']}>Home</Link></li>
+                    <li><Link to="/discover" className={styles['button']}>Discover</Link></li>
                     <li>Business</li>
+                    <li>About us</li>
                 </ul>
                 <ul>
                     <h3>Profile</h3>
                     <li>View</li>
                     <li>Settings</li>
                     <li>Support</li>
-                    <li>Dashboard</li>
+                    <li><Link to="/dashboard" className={styles['button']}>Videos</Link></li>
                 </ul>
                 </div>
             
@@ -34,7 +35,6 @@ export default function Footer() {
                     <img src="/icons/128px-Facebook_Logo_2023.png" alt="" />
                     <img src="/icons/256px-Instagram_icon.png" alt="" />
                     <img src="/icons/Github-desktop-logo-symbol.svg" alt="" />
-                   
                 </div>
             </div>
         </footer>

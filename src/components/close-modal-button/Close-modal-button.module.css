@@ -8,9 +8,11 @@
   color: rgba(64, 64, 64, 0.7);
   text-align: center;
   cursor: pointer;
+  z-index: 24535353;
 }
+
 @media (max-width: 900px) {
-  .close-button{
+  .close-button {
     font-size: 28px;
   }
 

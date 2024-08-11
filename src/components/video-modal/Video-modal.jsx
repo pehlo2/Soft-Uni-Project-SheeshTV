@@ -10,6 +10,7 @@ import FollowButton from '../follow-button/Follow-button'
 import { CommnentsProvider } from '../../context/commentsContext'
 import UnFollowButton from '../unfollow-button/Unfollow-button'
 import ErrorContext from '../../context/errorContext'
+import CloseModalButton from '../close-modal-button/Close-modal-button'
 
 
 
@@ -133,6 +134,7 @@ const VideoModal = ({ onClose, videoId, contextType, handleFollow, handleUnfollo
                     </div>
                 </aside>
             </div>
+            < CloseModalButton></CloseModalButton>
         </div>
     )
 }

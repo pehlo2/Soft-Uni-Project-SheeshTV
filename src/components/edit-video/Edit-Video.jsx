@@ -43,11 +43,13 @@ const EditVideo = ({ title,
         gameChoice: string().oneOf([
             "Valorant",
             "Counter Strike 2",
+            "Fortnite",
             "League of Legends",
             "Minecraft",
-            "Fortnite",
             "GTA V",
-            "Apex Legends"
+            "Apex Legends",
+            "World Of Warcraft",
+            "Overwatch",
         ], 'Invalid game choice')
             .required('Game choice is is required')
     })

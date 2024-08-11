@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import styles from './Upload.module.css'
 import AuthContext from '../../context/authContext';
-import { useVideoActions } from '../../hooks/useVideoActions';
 import { Link, useNavigate } from 'react-router-dom';
 import { mixed, object, string } from 'yup';
 import UserVideosContext from '../../context/userVideoContext';
@@ -34,14 +33,20 @@ const UploadVideo = () => {
         gameChoice: string().oneOf([
             "Valorant",
             "Counter Strike 2",
+            "Fortnite",
             "League of Legends",
             "Minecraft",
-            "Fortnite",
             "GTA V",
-            "Apex Legends"
+            "Apex Legends",
+            "World Of Warcraft",
+            "Overwatch",
         ], 'Invalid game choice')
             .required('Game choice is is required'),
-        video: mixed().required('Video file is required')
+        video: mixed().required('Video file is required').test('fileSize', 'Video file is too large (max 20 MB)', value => {
+            return value && value.size <= 20 * 1024 * 1024;
+        }).test('minFileSize', 'Video file is too small (min 1 MB)', value => {
+            return value && value.size >= 1 * 1024 * 1024;
+        })
     })
 
     const handleVideoChange = (e) => {

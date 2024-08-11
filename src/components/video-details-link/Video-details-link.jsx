@@ -12,10 +12,11 @@ import LikeShareTab from '../like-share-tab/Like-share-tab';
 import UnFollowButton from '../unfollow-button/Unfollow-button';
 import FollowButton from '../follow-button/Follow-button';
 import ErrorContext from '../../context/errorContext';
+import CloseModalButton from '../close-modal-button/Close-modal-button';
 
 const VideoDetails = () => {
     const navigate = useNavigate();
-    const { userId ,isAuthenticated } = useContext(AuthContext);
+    const { userId, isAuthenticated } = useContext(AuthContext);
     const [video, setVideo] = useState({});
     const { videoId } = useParams();
     const [isLiked, setIsLiked] = useState(false);
@@ -69,7 +70,7 @@ const VideoDetails = () => {
 
 
     return (
-        <div className={styles["blur"]}>
+        <div className={styles["blur"]} onClick={() => { navigate('/dashboard') }}>
             <div className={styles["container"]} onClick={() => { navigate('/dashboard') }}>
                 <ReactPlayer
                     onClick={e => e.stopPropagation()}
@@ -123,11 +124,12 @@ const VideoDetails = () => {
                             <LikeShareTab video={video} isLiked={isLiked} setIsLiked={setIsLiked} />
                         </div>
                         <CommnentsProvider videoId={video._id}>
-                            <CommentsTab videoId={video._id} />
+                            <CommentsTab videoId={video._id}  videoOwner={video.owner?._id}/>
                         </CommnentsProvider>
                     </div>
                 </aside>
             </div>
+            < CloseModalButton></CloseModalButton>
         </div>
     );
 };

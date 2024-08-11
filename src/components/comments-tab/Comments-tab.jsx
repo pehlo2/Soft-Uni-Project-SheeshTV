@@ -73,6 +73,10 @@ const CommentsSection = ({ videoId, videoOwner }) => {
         setShowConfirmation(true);
     };
 
+console.log(videoOwner === userId);
+
+console.log(videoOwner);
+console.log(userId);
 
 
     return (
@@ -108,16 +112,26 @@ const CommentsSection = ({ videoId, videoOwner }) => {
                                 </div>
                             )}
                         </div>
-                        {(isAuthenticated && (videoOwner === userId || comment.author._id === userId)) && (
+                        {isAuthenticated && (
                             <div className={styles["comment-buttons"]}>
                                 {(comment.author._id === userId) && (
-                                    <button onClick={() => startEditing(comment._id, comment.text)} className={styles['edit']}>
+                                    <> <button onClick={() => startEditing(comment._id, comment.text)} className={styles['edit']}>
                                         <FontAwesomeIcon icon={faFileEdit} />
                                     </button>
+                                        <button onClick={() => openConfirmDeleteModal(comment._id)} className={styles['delete']}>
+                                            <FontAwesomeIcon icon={faXmark} />
+                                        </button>
+                                    </>
+
                                 )}
-                                <button onClick={() => openConfirmDeleteModal(comment._id)} className={styles['delete']}>
-                                    <FontAwesomeIcon icon={faXmark} />
-                                </button>
+                                {videoOwner === userId && comment.author._id !== userId && (
+                                    <>
+                                        <button onClick={() => openConfirmDeleteModal(comment._id)} className={styles['delete']}>
+                                            <FontAwesomeIcon icon={faXmark} />
+                                        </button>
+                                    </>
+
+                                )}
                             </div>
                         )}
                     </div>

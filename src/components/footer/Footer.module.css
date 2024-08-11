@@ -31,6 +31,15 @@ footer .container ul >li:hover{
    text-decoration: underline;
    cursor: pointer;
 }
+footer .container ul >li a{
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--font-color);
+ }
+ footer .container ul >li a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+ }
 footer .container img{
 
     cursor: pointer;

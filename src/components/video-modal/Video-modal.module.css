@@ -66,17 +66,19 @@
     align-items: center;
     color: var(--font-color);
     padding: 0 0.5em;
-    
+
 }
 
 .profile-info {
     display: flex;
     gap: 0.5em;
 }
+
 .profile-info button {
 
-    width: 2px                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ;
+    width: 2px;
 }
+
 .profile-media img {
     width: 60px;
     height: 60px;
@@ -111,6 +113,11 @@
 .game-choice img {
     width: 12px;
     height: 12px;
+}
+
+.blur>svg:last-child {
+    color: var(--button-color);
+
 }
 
 @media (max-width: 1400px) {

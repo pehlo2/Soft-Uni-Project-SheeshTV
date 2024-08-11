@@ -16,13 +16,13 @@ const RegisterFormKeys = {
 
 export default function Register() {
 
-  const { registerSubmitHandler,error } = useContext(AuthContext)
+  const { registerSubmitHandler, error } = useContext(AuthContext)
 
   const registerSchema = object({
-    username: string().required('* Username is required').min(5, '* Username must be at least 5 characters'),
-    email: string().required('* Email is required').email('* Invalid email format'),
-    password: string().required('* Password is required').min(6, '* Password must be at least 6 characters'),
-    rePassword: string().oneOf([ref("password")], '* Password must match').required('* Confirm password is required')
+    username: string().trim().required('* Username is required').min(5, '* Username must be at least 5 characters'),
+    email: string().trim().required('* Email is required').email('* Invalid email format'),
+    password: string().trim().required('* Password is required').min(6, '* Password must be at least 6 characters'),
+    rePassword: string().trim().oneOf([ref("password")], '* Password must match').required('* Confirm password is required')
   })
 
 
@@ -93,7 +93,7 @@ export default function Register() {
             <input type="password" name={RegisterFormKeys.rePassword} placeholder=" Repeat Password" value={values[RegisterFormKeys.rePassword]} onChange={onChange} />
             {validationErrors.rePassword && <p className='error'>{validationErrors.rePassword}</p>}
           </div>
-        {error && <p className={styles["error"]}>{error}</p>}
+          {error && <p className={styles["error"]}>{error}</p>}
           <button className={styles["submit-button"]}>Sign Up</button>
 
         </form>

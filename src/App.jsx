@@ -54,18 +54,22 @@ function App() {
               <Navigation toggleTheme={toggleTheme} />
               <main className='main-app'>
                 <Routes>
-                  <Route path='/' element={<Home />} />
                   <Route path='*' element={<NotFound />} />
                   <Route path='/404' element={<NotFound />} />
                   <Route path='/dashboard' element={<VideoDashboard />} />
                   <Route path='/videos/:videoId' element={<VideoDetailsLink />} />
-                  <Route path='/users/:profileId' element={<Profile />}>
-                    <Route path='upload' element={<UploadVideo />} />
-                  </Route>
+
                   <Route element={<AlreadyAuthenticatedGuard />}>
+                    <Route path='/' element={<Home />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                   </Route>
+                  <Route path='/users/:profileId' element={<Profile />}>
+                    <Route element={<AuthGuard />}>
+                      <Route path='upload' element={<UploadVideo />} />
+                    </Route>
+                  </Route>
+
                   <Route element={<AuthGuard />}>
                     <Route path='/discover' element={<DiscoverCreators />} />
                     <Route path='/logout' element={<Logout />} />

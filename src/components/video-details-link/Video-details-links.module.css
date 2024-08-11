@@ -108,7 +108,10 @@
     width: 12px;
     height: 12px;
 }
-
+.blur>svg:last-child{
+   color: var(--button-color);
+    
+}
 @media (max-width: 1400px) {
     .container {
         flex-direction: column;

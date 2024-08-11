@@ -33,7 +33,7 @@ const Home = () => {
                             <p>gaming Moments</p>
                         </div>
                         <div className={styles['review']}>
-                            <a href="" className={styles['button']}>Share</a>
+                        <Link to="/login" className={styles['button']}>Start Sharing</Link>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ const Home = () => {
                         </div>
 
                         <div>
-                            <a href="" className={styles['button']}>Start Chat</a>
+                            <Link to="/login" className={styles['button']}>Start Chat</Link>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@ const Home = () => {
 
             <SectionComponent  >
                 <div className={styles['audiance']} data-aos="fade-right"
-                 
+
                     data-aos-once="true">
                     <div className={styles['audiance-wrapper']}>
                         <div className={styles['audiance-card']}>
@@ -141,7 +141,8 @@ const Home = () => {
                     </div>
 
                     <div>
-                        <a href="" className={styles['button']}>Start Sharing</a>
+                        <Link to="/login" className={styles['button']}>Start Sharing</Link>
+
                     </div>
                 </div>
                 <div className={styles['share-images']} data-aos="fade-left" data-aos-once="true">
