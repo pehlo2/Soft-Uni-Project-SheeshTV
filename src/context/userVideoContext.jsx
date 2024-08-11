@@ -24,6 +24,8 @@ export const UserVideosProvider = ({ children, profileId }) => {
   }, [profileId]);
 
 
+
+
   useEffect(() => {
     setIsLoading(true)
 
@@ -48,7 +50,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 
 
-    if (scrollTop + clientHeight >= scrollHeight - 150 && location.pathname === `/users/${profileId}`) {
+    if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === `/users/${profileId}`) {
       setIsLoading(true)
       setPage((prev) => prev + 1);
     }
@@ -57,7 +59,7 @@ export const UserVideosProvider = ({ children, profileId }) => {
   useEffect(() => {
 
 
-    window.addEventListener("scroll", handleScroll ,{ passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
 

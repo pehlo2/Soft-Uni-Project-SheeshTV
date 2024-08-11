@@ -54,7 +54,10 @@ export const VideoProvider = ({ children }) => {
             window.removeEventListener("scroll", handleScroll);
             return
         }
-        const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = window.innerHeight;
+
         if (scrollTop + clientHeight >= scrollHeight - 100 && location.pathname === "/dashboard") {
             setIsLoading(true)
             setPage((prev) => prev + 1);
@@ -62,7 +65,7 @@ export const VideoProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll ,{ passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, [location.pathname, gameChoice, searchQuery]);
 
