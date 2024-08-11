@@ -22,7 +22,7 @@ const VideoDashboard = () => {
             <div className={styles["video-wrapper"]}>
                 {videos.length === 0 && (
 
-                    <h2>No Videos</h2>
+                    <h2>Oof, no more clips here...</h2>
                 )}
                 {videos.map(video => (
                     <VideoCard key={video._id} {...video} />

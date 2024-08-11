@@ -45,7 +45,7 @@ export default function Navigation({
     return (
         <header className={styles["main-header"]} >
             <div className={styles["logo"]}>
-                <Link to={'/dashboard'}><img src="/icons/Logo.png" alt="" /></Link>
+                <Link to={'/'}><img src="/icons/Logo.png" alt="" /></Link>
                 <div className={styles["search"]}>
                     < SearchBar />
                 </div>

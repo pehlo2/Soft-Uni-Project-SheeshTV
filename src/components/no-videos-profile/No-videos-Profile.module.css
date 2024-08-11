@@ -75,3 +75,14 @@
   border-bottom: 1px solid rgb(91, 91, 91);
   line-height: 2;
 }
+@media (max-width:900px) {
+  .find-friends-box,
+  .share-video-box{
+    flex: 0 0 50%;
+  }
+  .no-videos-wrapper {
+    display: flex;
+    gap: 1em;
+    padding: 0 0.5em;
+  }
+}

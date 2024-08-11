@@ -49,3 +49,8 @@
  color: white;
  
 }
+@media (max-width:900px) {
+    .creator-card{
+        width: 100%;
+    }
+  }
