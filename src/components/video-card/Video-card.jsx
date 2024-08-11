@@ -36,17 +36,14 @@ const VideoCard = ({
                 onMouseEnter={() => {
                     timeOutId = setTimeout(() => {
                         setPlaying(true);
-
                         playerRef.current.setState({ showPreview: false })
                     }, 300);
 
                 }}
                 onMouseLeave={() => {
                     if (timeOutId !== 0) {
-
                         clearTimeout(timeOutId)
                     }
-
                     setPlaying(false)
                 }}
             >
