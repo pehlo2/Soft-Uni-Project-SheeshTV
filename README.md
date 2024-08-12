@@ -2,11 +2,12 @@
 
  ### A small website focused on video treaming and Sharing. <br />
 
+ **Link**: https://sheeshtv.vercel.app/<br />
+
 ## This project uses:
 
  
 
- **Link**: https://sheeshtv.vercel.app/<br />
 **Front end**: React + Vite the interactive user interface. <br />
 **Back end**: Node. Js server using Express. Js, MongoDB Atlas. <br />
 **Server Link**:https://github.com/pehlo2/react-project-server-SheeshTV Deployed in https://heroku.com/<br />
