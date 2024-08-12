@@ -1,19 +1,23 @@
 # ProjectSoftuni-SheeshTv 2024 
 
- ### A small website focused Video Streaming/ Sharing. <br />
+ ### A small website focused on video Streaming and Sharing. <br />
 
 ## This project uses:
 
 **Front end**: React + Vite the interactive user interface.  https://sheeshtv.vercel.app/<br />
-**Back end**: Node. Js server using Express. Js, Mongoose.  https://github.com/pehlo2/react-project-server-SheeshTV Deployed in Heruko<br />
+**Back end**: Node. Js server using Express. Js, MongoDB Atlas.  https://github.com/pehlo2/react-project-server-SheeshTV Deployed in https://heroku.com/<br />
+**File Storage**:  Amazon Web Services (AWS) S3 Bucket for all videos, avatars, and thumbnails.
 
 ## External Libraries:
 
+ 
  **aos**: Scroll Animation for Landing page. \
- **dotenv**:t o securely manage environment variables in My project. \
+ **dotenv**:To securely manage environment variables in My project. \
  **react-player**: Video Player. \
  **socket.io-client**: Implement real-time Notifications on Like, Follow, Comments. \
- **yup**: Form Validations.
+ **yup**: Form Validations.\
+ **multer-s3**: Upload files to AWS S3 bucket.\
+ **ffmpeg**:  Generate thumbnails for uploaded videos.
 
 ## The application is split into two parts: Public and Private
 
